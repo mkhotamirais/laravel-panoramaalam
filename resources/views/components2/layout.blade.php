@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ asset('storage/svg/panorama_icon.svg') }}" type="image/x-icon">
 
     <title>{{ env('APP_NAME', 'Laravel') }}</title>
 
@@ -15,23 +14,21 @@
 </head>
 
 <body class="flex flex-col min-h-screen font-poppins">
-    <header class="bg-white h-[4.6rem] sticky top-0 w-full z-50 transition">
+    <header x-data="{ scrolled: false }" x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)"
+        :class="scrolled ? 'bg-white shadow' : 'bg-transparent text-white'"
+        class="h-16 lg:h-20 fixed top-0 w-full bg-transparent z-50 transition">
         <div class="container flex h-full justify-between items-center">
-            <x-logo />
+            <a href="{{ route('home') }}" class="w-64">
+                <img src="{{ asset('storage/svg/panorama_alam_logo.svg') }}" alt="">
+            </a>
             {{-- nav desktop --}}
-            <div class="hidden lg:flex items-center">
-                <nav class="flex text-gray-600 text-md mr-8">
+            <div class="hidden lg:flex">
+                <nav class="flex font-montserrat text-gray-600 text-md">
                     @foreach (config('menu') as $menu)
-                        <a href="{{ route($menu['name']) }}"
-                            class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : '' }} font-medium px-3 hover:text-orange-400 transition">{{ $menu['label'] }}</a>
+                        <a href="{{ route($menu['name']) }}" :class="scrolled ? 'text-gray-900' : 'text-white'"
+                            class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : '' }} px-4 hover:text-orange-400 transition">{{ $menu['label'] }}</a>
                     @endforeach
                 </nav>
-                {{-- contact us --}}
-                <button
-                    class="min-w-fit hidden lg:flex px-5 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition items-center justify-center text-white">
-                    <x-si-whatsapp class="mr-2 w-5 h-5" />
-                    <span>Hubungi Kami</span>
-                </button>
             </div>
             {{-- nav mobile --}}
             <div x-data="{ open: false }" class="lg:hidden flex">
@@ -70,6 +67,12 @@
                     </nav>
                 </div>
             </div>
+            {{-- contact us --}}
+            <button
+                class="hidden lg:flex px-5 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition items-center justify-center text-white">
+                <x-si-whatsapp class="mr-2 w-5 h-5" />
+                <span>Hubungi Kami</span>
+            </button>
         </div>
     </header>
 
@@ -77,11 +80,11 @@
         {{ $slot }}
     </main>
 
-    <footer class="pt-16 pb-8 bg-gradient-to-b from-white to-gray-500/10">
+    <footer class="border-t bg-gradient-to-r from-orange-500/10 to-blue-500/10 pt-16 pb-8">
         <div class="container">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 place-items-baseline">
                 <div class="space-y-4">
-                    <x-logo />
+                    <h3>Logo</h3>
                     <p class="text-gray-600">Cari paket wisata lombok, rental mobil lombok, rental motor lombok dengan
                         harga terbaik di lombok
                     </p>
