@@ -21,17 +21,17 @@
             {{-- nav desktop --}}
             <div class="hidden lg:flex items-center">
                 <nav class="flex text-gray-600 text-md mr-8">
-                    @foreach (config('menu') as $menu)
+                    @foreach (config('menu.main-menu') as $menu)
                         <a href="{{ route($menu['name']) }}"
                             class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : '' }} font-medium px-3 hover:text-orange-400 transition">{{ $menu['label'] }}</a>
                     @endforeach
                 </nav>
                 {{-- contact us --}}
-                <button
+                <a href="http://api.whatsapp.com/send?phone=6281319573240"
                     class="min-w-fit hidden lg:flex px-5 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition items-center justify-center text-white">
                     <x-si-whatsapp class="mr-2 w-5 h-5" />
                     <span>Hubungi Kami</span>
-                </button>
+                </a>
             </div>
             {{-- nav mobile --}}
             <div x-data="{ open: false }" class="lg:hidden flex">
@@ -48,7 +48,7 @@
                     </button>
 
                     <nav class="flex flex-col justify-center items-center">
-                        @foreach (config('menu') as $menu)
+                        @foreach (config('menu.main-menu') as $menu)
                             <a href="{{ route($menu['name']) }}"
                                 class="font-montserrat text-2xl p-4 text-white hover:text-orange-500 transition">{{ $menu['label'] }}</a>
                         @endforeach
@@ -56,13 +56,14 @@
                             <h3 class="text-center text-orange-500 mb-4">Hubungi Kami</h3>
                             <div class="h-[2px] w-12 bg-orange-500 rounded-full mx-auto mb-8"></div>
                             <div class="flex flex-row gap-8">
-                                <a href="">
+                                <a href="http://api.whatsapp.com/send?phone=6281319573240" class="text-white">
                                     <x-si-whatsapp class="w-8 h-8" />
                                 </a>
-                                <a href="">
+                                <a href="https://www.instagram.com/panoramaalamid?igsh=MXYyMHFndm9vNGgwbA=="
+                                    class="text-white">
                                     <x-si-instagram class="w-8 h-8" />
                                 </a>
-                                <a href="">
+                                <a href="https://www.facebook.com/profile.php?id=100089579831759" class="text-white">
                                     <x-si-facebook class="w-8 h-8" />
                                 </a>
                             </div>
@@ -75,6 +76,19 @@
 
     <main class="grow">
         {{ $slot }}
+        <div x-data="{ visible: false, timeout: null }" x-init="window.addEventListener('scroll', () => {
+            visible = true;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => visible = false, 2000);
+        })" :class="visible ? 'translate-x-0' : 'translate-x-full'"
+            class="fixed bottom-0 right-0 pr-6 pb-6 flex lg:hidden transition-transform duration-300"
+            @mouseenter="clearTimeout(timeout)" @mouseleave="timeout = setTimeout(() => visible = false, 2000)">
+            <a href="http://api.whatsapp.com/send?phone=6281319573240"
+                class="flex items-center hover:scale-105 transition">
+                <img src="https://raw.githubusercontent.com/grommet/grommet-icons/master/public/img/whatsapp.svg"
+                    alt="" class="size-12">
+            </a>
+        </div>
     </main>
 
     <footer class="pt-16 pb-8 bg-gradient-to-b from-white to-gray-500/10">
@@ -93,7 +107,7 @@
                 <div>
                     <h2 class="text-2xl font-semibold">Menu</h2>
                     <nav class="flex flex-col gap-2 mt-4">
-                        @foreach (config('menu') as $menu)
+                        @foreach (config('menu.main-menu') as $menu)
                             <a href="{{ route($menu['name']) }}"
                                 class="text-gray-600 hover:text-orange-400 transition }}">{{ $menu['label'] }}</a>
                         @endforeach
@@ -102,17 +116,19 @@
                 <div>
                     <h2 class="text-2xl font-semibold">Hubungi Kami</h2>
                     <nav class="flex flex-col gap-2 mt-4">
-                        <a href="" class="flex items-center gap-2">
+                        <a href="http://api.whatsapp.com/send?phone=6281319573240" class="flex items-center gap-2">
                             <x-si-whatsapp class="w-5 h-5" />
-                            <span>(+62) 895-1234-5678</span>
+                            <span>(+62) 813-1957-3240</span>
                         </a>
-                        <a href="" class="flex items-center gap-2">
+                        <a href="https://www.instagram.com/panoramaalamid?igsh=MXYyMHFndm9vNGgwbA=="
+                            class="flex items-center gap-2">
                             <x-si-instagram class="w-5 h-5" />
-                            <span>panorama_alam</span>
+                            <span>@panoramaalam</span>
                         </a>
-                        <a href="" class="flex items-center gap-2">
+                        <a href="https://www.facebook.com/profile.php?id=100089579831759"
+                            class="flex items-center gap-2">
                             <x-si-facebook class="w-5 h-5" />
-                            <span>panorama_alam</span>
+                            <span>@panoramaalam</span>
                         </a>
                     </nav>
                 </div>

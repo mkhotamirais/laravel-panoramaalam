@@ -18,7 +18,7 @@ h2 {
 }
 
 h1.title {
-    @apply text-4xl lg:text-5xl font-semibold leading-relaxed;
+    @apply text-3xl lg:text-4xl font-semibold leading-relaxed;
 }
 
 h3.up-title {
@@ -29,10 +29,19 @@ label {
     @apply font-medium;
 }
 
-.input {
-    @apply border w-full p-2 mt-2 rounded;
+.input,
+.select {
+    @apply border w-full p-2 mt-2 rounded ring-2 ring-transparent;
+}
+
+.input:focus {
+    @apply ring-orange-400 outline-none;
 }
 
 #hero .deskripsi span {
     @apply text-orange-400 font-semibold;
+}
+
+.error {
+    @apply text-red-500 text-sm mt-1;
 }
