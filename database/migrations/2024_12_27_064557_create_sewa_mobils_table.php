@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_categories', function (Blueprint $table) {
+        Schema::create('sewa_mobils', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('brand_name');
+            $table->string('number_plate');
+            $table->string('rental_fee');
+            $table->string('color');
+            $table->string('banner');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_categories');
+        Schema::dropIfExists('sewa_mobils');
     }
 };

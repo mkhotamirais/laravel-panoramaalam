@@ -1,5 +1,7 @@
 <x-authlayout>
-    <div class="container">
+    <div class="container py-4">
+        <h1 class="title">Blog Category List</h1>
+
         <h2 class="text-2xl mt-4 py-2 font-semibold">Blog Category</h2>
         {{-- Session Messages --}}
         @if (session('delete'))

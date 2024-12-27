@@ -7,5 +7,9 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    //
+    public function users()
+    {
+        $users = User::all();
+        return view('dashboard.users.index', compact('users'));
+    }
 }

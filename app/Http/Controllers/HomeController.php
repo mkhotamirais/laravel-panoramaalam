@@ -11,6 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // app()->setLocale(session('locale'));
+
         $latestThreeBlogs = Blog::latest()->take(3)->get();
         return view('home', compact('latestThreeBlogs'));
     }

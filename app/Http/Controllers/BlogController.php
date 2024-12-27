@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreblogRequest;
-use App\Http\Requests\UpdateblogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;

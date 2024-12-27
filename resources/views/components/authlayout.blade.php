@@ -39,7 +39,9 @@
                                 @click.outside="if (window.innerWidth < 1024) open = false"
                                 class="fixed w-72 left-0 top-16 bottom-0 bg-white p-4 border-r lg:translate-x-0">
                                 <div class="flex flex-col gap-2">
-                                    <a href="">Dashboard</a>
+                                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                                    <p class="font-semibold">Users</p>
+                                    <a href="{{ route('users') }}">User List</a>
                                     <p class="font-semibold">Blogs</p>
                                     <a href="{{ route('blogs.index') }}">Blog List</a>
                                     <a href="{{ route('blog-categories.index') }}">Blog Categories</a>

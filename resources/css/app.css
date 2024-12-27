@@ -45,3 +45,8 @@ label {
 .error {
     @apply text-red-500 text-sm mt-1;
 }
+
+table td,
+table th {
+    @apply p-2;
+}
