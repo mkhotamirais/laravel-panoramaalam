@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sewa_mobils', function (Blueprint $table) {
+        Schema::create('car_rental_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('brand_name');
-            $table->string('number_plate');
-            $table->string('rental_fee');
-            $table->string('color');
-            $table->string('banner');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sewa_mobils');
+        Schema::dropIfExists('car_rental_categories');
     }
 };

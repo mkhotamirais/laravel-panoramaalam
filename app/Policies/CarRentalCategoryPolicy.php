@@ -2,15 +2,14 @@
 
 namespace App\Policies;
 
+use App\Models\CarRentalCategory;
 use App\Models\User;
-use App\Models\blog;
-use Illuminate\Auth\Access\Response;
 
-class BlogPolicy
+class CarRentalCategoryPolicy
 {
-    public function modify(User $user, Blog $blog)
+    public function modify(User $user, CarRentalCategory $carRentalCategory)
     {
-        return $user->id === $blog->user_id;
+        return $user->id === $carRentalCategory->user_id;
     }
     // /**
     //  * Determine whether the user can view any models.
@@ -23,7 +22,7 @@ class BlogPolicy
     // /**
     //  * Determine whether the user can view the model.
     //  */
-    // public function view(User $user, blog $blog): bool
+    // public function view(User $user, CarRentalCategory $carRentalCategory): bool
     // {
     //     return false;
     // }
@@ -39,7 +38,7 @@ class BlogPolicy
     // /**
     //  * Determine whether the user can update the model.
     //  */
-    // public function update(User $user, blog $blog): bool
+    // public function update(User $user, CarRentalCategory $carRentalCategory): bool
     // {
     //     return false;
     // }
@@ -47,7 +46,7 @@ class BlogPolicy
     // /**
     //  * Determine whether the user can delete the model.
     //  */
-    // public function delete(User $user, blog $blog): bool
+    // public function delete(User $user, CarRentalCategory $carRentalCategory): bool
     // {
     //     return false;
     // }
@@ -55,7 +54,7 @@ class BlogPolicy
     // /**
     //  * Determine whether the user can restore the model.
     //  */
-    // public function restore(User $user, blog $blog): bool
+    // public function restore(User $user, CarRentalCategory $carRentalCategory): bool
     // {
     //     return false;
     // }
@@ -63,7 +62,7 @@ class BlogPolicy
     // /**
     //  * Determine whether the user can permanently delete the model.
     //  */
-    // public function forceDelete(User $user, blog $blog): bool
+    // public function forceDelete(User $user, CarRentalCategory $carRentalCategory): bool
     // {
     //     return false;
     // }

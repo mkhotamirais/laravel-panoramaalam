@@ -5,18 +5,19 @@
         <div class="bg-gradient-to-t from-black/40 to-black/60 min-h-[40vh] flex flex-col items-center justify-center">
             <div class="container text-white">
                 <div class="space-y-8 max-w-screen-sm leading-relaxed">
-                    <h1 class="text-4xl lg:text-5xl font-semibold">{{ __('menu.car-rental.title') }}</h1>
+                    <h1 class="text-4xl lg:text-5xl font-semibold capitalize">{{ $user->username }}'s Car Rentals
+                        ({{ $userCarRentals->total() }})</h1>
                     {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
 
                     {{-- search form --}}
                     <form>
                         {{-- @if (request('category'))
-                            <input type="hidden" name="category" value="{{ request('category') }}">
-                        @endif
-        
-                        @if (request('author'))
-                            <input type="hidden" name="author" value="{{ request('author') }}">
-                        @endif --}}
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+    
+                    @if (request('author'))
+                        <input type="hidden" name="author" value="{{ request('author') }}">
+                    @endif --}}
 
                         <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
                             <div class="relative w-full">
@@ -41,20 +42,33 @@
             </div>
         </div>
     </section>
-    {{-- sewa mobil list --}}
-    <section class="py-16">
+
+    @if ($search)
+        <div class="container py-6">
+            <p class="text-xl">
+                Hasil pencarian <span class="text-orange-500 font-semibold italic">"{{ $search }}"</span> dari
+                Semua Car Rental <span class="capitalize">{{ $user->username }}</span> ( {{ $userCarRentals->total() }}
+                )
+            </p>
+        </div>
+    @endif
+
+    @if ($userCarRentals->total() == 0)
         <div class="container">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden">
-                    <img src="https://picsum.photos/500" alt="" class="object-cover object-center w-full h-64">
-                    <div class="p-6 space-y-4">
-                        <h2 class="text-3xl font-semibold mb-2">Judul</h2>
-                        <h1>Harga</h1>
-                        <p>Tags</p>
-                        <a href="" class="inline-block rounded-full bg-orange-500 py-3 px-5 text-white">Pesan</a>
-                    </div>
+            <p class="text-3xl italic font-semibold">Blog tidak ditemukan</p>
+        </div>
+    @else
+        <div class="container py-12">
+            <div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    @foreach ($userCarRentals as $blog)
+                        <x-blog-card :blog="$blog"></x-blog-card>
+                    @endforeach
+                </div>
+                <div class="mt-4">
+                    {{ $userCarRentals->links() }}
                 </div>
             </div>
         </div>
-    </section>
+    @endif
 </x-layout>

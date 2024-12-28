@@ -5,7 +5,7 @@
         <div class="bg-gradient-to-t from-black/40 to-black/60 min-h-[40vh] flex flex-col items-center justify-center">
             <div class="container text-white">
                 <div class="space-y-8 max-w-screen-sm leading-relaxed">
-                    <h1 class="text-4xl lg:text-5xl font-semibold">Blog Wisata</h1>
+                    <h1 class="text-4xl lg:text-5xl font-semibold">{{ __('menu.travel-package.title') }}</h1>
                     {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
 
                     {{-- search form --}}

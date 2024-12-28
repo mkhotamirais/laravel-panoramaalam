@@ -2,9 +2,10 @@
     <div class="container py-4">
         <h1 class="title">Blog List</h1>
 
-        <h2 class="text-2xl font-semibold mt-3 py-2">Blog Wisata Kamu ({{ $myBlogs->total() }})</h2>
+        <h2 class="text-2xl font-semibold mt-3 py-2">Your Travel Blogs ({{ $myBlogs->total() }})</h2>
         <a href="{{ route('blogs.create') }}"
-            class="bg-orange-500 hover:bg-orange-600 py-2 px-4 rounded-full text-white inline-block my-2">Tambah Blog</a>
+            class="bg-orange-500 hover:bg-orange-600 py-2 px-4 rounded-full text-white inline-block my-2">Add New
+            Blog</a>
 
         {{-- Session Messages --}}
         @if (session('delete'))

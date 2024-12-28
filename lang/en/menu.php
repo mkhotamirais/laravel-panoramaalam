@@ -39,5 +39,14 @@ return [
         'description' => 'Find Lombok tour packages, car rentals, and motorbike rentals at the best prices in Lombok',
         'address' => 'Jln Raya Lembar-Gerung West Lombok (Near the Gerung roundabout).',
         'contact-title' => 'Contact Us',
+    ],
+    'car-rental' => [
+        'title' => 'Car Rental'
+    ],
+    'travel-package' => [
+        'title' => 'Travel Package'
+    ],
+    'travel-blog' => [
+        'title' => 'Travel Blog'
     ]
 ];

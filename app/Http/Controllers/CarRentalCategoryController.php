@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogCategory;
+use App\Models\CarRentalCategory;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
-class BlogCategoryController extends Controller implements HasMiddleware
+class CarRentalCategoryController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -25,8 +25,8 @@ class BlogCategoryController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        $blogCategories = BlogCategory::latest()->get();
-        return view('dashboard.blog-categories.index', compact('blogCategories'));
+        $carRentalCategories = CarRentalCategory::latest()->get();
+        return view('dashboard.sewa-mobil-categories.index', compact('carRentalCategories'));
     }
 
     /**
@@ -48,19 +48,19 @@ class BlogCategoryController extends Controller implements HasMiddleware
 
         $slug = Str::slug($fields['name']);
 
-        Auth::user()->blogCategories()->create([
+        Auth::user()->carRentalCategories()->create([
             'name' => $fields['name'],
             'slug' => $slug
         ]);
 
         // return redirect()->route('blog-categories.index')->with('success', 'Blog Category created successfully');
-        return back()->with('success', 'Blog Category created successfully');
+        return back()->with('success', 'Car Rental Category created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BlogCategory $blogCategory)
+    public function show(CarRentalCategory $carRentalCategory)
     {
         //
     }
@@ -68,7 +68,7 @@ class BlogCategoryController extends Controller implements HasMiddleware
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BlogCategory $blogCategory)
+    public function edit(CarRentalCategory $carRentalCategory)
     {
         //
     }
@@ -76,9 +76,9 @@ class BlogCategoryController extends Controller implements HasMiddleware
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BlogCategory $blogCategory)
+    public function update(Request $request, CarRentalCategory $carRentalCategory)
     {
-        Gate::authorize('modify', $blogCategory);
+        Gate::authorize('modify', $carRentalCategory);
 
         $fields = $request->validate([
             'name' => 'required|string|max:255'
@@ -86,23 +86,23 @@ class BlogCategoryController extends Controller implements HasMiddleware
 
         $slug = Str::slug($fields['name']);
 
-        $blogCategory->update([
+        $carRentalCategory->update([
             'name' => $fields['name'],
             'slug' => $slug
         ]);
 
-        return back()->with('success', 'Blog Category updated successfully');
+        return back()->with('success', 'Car Rental Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BlogCategory $blogCategory)
+    public function destroy(CarRentalCategory $carRentalCategory)
     {
-        Gate::authorize('modify', $blogCategory);
+        Gate::authorize('modify', $carRentalCategory);
 
-        $blogCategory->delete();
+        $carRentalCategory->delete();
 
-        return back()->with('delete', 'Blog Category deleted successfully');
+        return back()->with('delete', 'Car Rental Category deleted successfully');
     }
 }

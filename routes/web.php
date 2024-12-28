@@ -3,13 +3,12 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CarRentalCategoryController;
+use App\Http\Controllers\CarRentalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\App;
 
 
 Route::middleware([SetLocale::class])->group(function () {
@@ -20,10 +19,13 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/sewa-mobil', [HomeController::class, 'sewaMobil'])->name('sewa-mobil');
 
     Route::resource('blogs', BlogController::class);
+    Route::resource('sewas', CarRentalController::class);
+
     Route::get('/{user:username}/user-blogs', [HomeController::class, 'userBlogs'])->name('user.blogs');
     Route::get('/{blogCategory:name}/category-blogs', [HomeController::class, 'categoryBlogs'])->name('blog-category.blogs');
 
     Route::resource('/blog-categories', BlogCategoryController::class);
+    Route::resource('/sewa-categories', CarRentalCategoryController::class);
 
     Route::middleware('guest')->group(function () {
         // Route::view('/basmalah', 'auth.register')->name('register');
@@ -41,7 +43,7 @@ Route::middleware([SetLocale::class])->group(function () {
 
         Route::view('/lauhah', 'dashboard.index')->name('dashboard');
 
-        // Route::get('/users', [DashboardController::class, 'users'])->name('users');
+        Route::get('/users', [DashboardController::class, 'users'])->name('users');
     });
 });
 

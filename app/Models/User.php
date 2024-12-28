@@ -52,8 +52,18 @@ class User extends Authenticatable
         return $this->hasMany(Blog::class);
     }
 
+    public function carRentals(): HasMany
+    {
+        return $this->hasMany(CarRental::class);
+    }
+
     public function blogCategories(): HasMany
     {
         return $this->hasMany(BlogCategory::class);
+    }
+
+    public function carRentalCategories(): HasMany
+    {
+        return $this->hasMany(CarRentalCategory::class);
     }
 }

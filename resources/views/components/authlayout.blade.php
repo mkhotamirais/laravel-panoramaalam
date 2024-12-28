@@ -39,12 +39,16 @@
                                 @click.outside="if (window.innerWidth < 1024) open = false"
                                 class="fixed w-72 left-0 top-16 bottom-0 bg-white p-4 border-r lg:translate-x-0">
                                 <div class="flex flex-col gap-2">
+                                    <h2 class="text-xl font-semibold">Admin Dashboard</h2>
                                     <a href="{{ route('dashboard') }}">Dashboard</a>
-                                    <p class="font-semibold">Users</p>
+                                    <p class="font-semibold mt-3">Users</p>
                                     <a href="{{ route('users') }}">User List</a>
-                                    <p class="font-semibold">Blogs</p>
+                                    <p class="font-semibold mt-3">Blogs</p>
                                     <a href="{{ route('blogs.index') }}">Blog List</a>
                                     <a href="{{ route('blog-categories.index') }}">Blog Categories</a>
+                                    <p class="font-semibold mt-3">Car Rentals</p>
+                                    <a href="{{ route('sewas.index') }}">Car Rental List</a>
+                                    <a href="{{ route('sewa-categories.index') }}">Car Rental Categories</a>
                                 </div>
                             </div>
                         </div>

@@ -23,8 +23,7 @@
             {{-- blog category --}}
             <div class="mb-4">
                 <label for="blogCategory">Category</label>
-                <a href="{{ route('blog-categories.index') }}"
-                    class="text-sm text-orange-500 hover:underline block w-fit">tambah
+                <a href="{{ route('blog-categories.index') }}" class="text-sm text-orange-500 hover:underline">tambah
                     category</a>
                 <select class="select @error('title') !ring-red-500 @enderror" name="blogCategory" id="blogCategory">
                     <option value="">-- Select Category</option>
