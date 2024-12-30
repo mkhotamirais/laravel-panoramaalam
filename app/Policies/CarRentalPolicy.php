@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Carrental;
 use Illuminate\Auth\Access\Response;
 
-class CarRentalPolicy
+class CarrentalPolicy
 {
     public function modify(User $user, Carrental $carrental)
     {
