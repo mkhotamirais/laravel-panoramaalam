@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Blogcat;
 use App\Models\Carrental;
 use App\Models\Carrentalcat;
+use App\Models\Tourpackagecat;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -35,14 +36,20 @@ class DatabaseSeeder extends Seeder
         // Blogcat::create(['name' => 'panorama alam', 'slug' => 'panorama-alam']);
         Blogcat::firstOrCreate([
             'id' => 1,
-            'name' => 'panorama alam',
-            'slug' => 'panorama-alam'
+            'name' => 'panorama blog',
+            'slug' => 'panorama-blog'
         ]);
 
         Carrentalcat::firstOrCreate([
             'id' => 1,
-            'name' => 'panorama alam',
-            'slug' => 'panorama-alam'
+            'name' => 'panorama car rental',
+            'slug' => 'panorama-car-rental'
+        ]);
+
+        Tourpackagecat::firstOrCreate([
+            'id' => 1,
+            'name' => 'panorama tour package',
+            'slug' => 'panorama-tour-package'
         ]);
 
         Blog::firstOrCreate([

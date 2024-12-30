@@ -7,9 +7,9 @@ use App\Http\Controllers\CarrentalcatController;
 use App\Http\Controllers\CarrentalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\TourpackagecatController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
-
 
 Route::middleware([SetLocale::class])->group(function () {
     Route::get('/', [PublicController::class, 'index'])->name('home');
@@ -41,6 +41,7 @@ Route::middleware([SetLocale::class])->group(function () {
         Route::get('/users', [DashboardController::class, 'users'])->name('users');
         Route::resource('/blogcats', BlogcatController::class);
         Route::resource('/carrentalcats', CarrentalcatController::class);
+        Route::resource('/tourpackagecats', TourpackagecatController::class);
     });
 });
 

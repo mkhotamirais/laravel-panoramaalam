@@ -49,6 +49,9 @@
                                     <p class="font-semibold mt-3">Car Rentals</p>
                                     <a href="{{ route('carrentals.index') }}">Car Rental List</a>
                                     <a href="{{ route('carrentalcats.index') }}">Car Rental Categories</a>
+                                    <p class="font-semibold mt-3">Tour Packages</p>
+                                    {{-- <a href="{{ route('tourpackages.index') }}">Tour Package List</a> --}}
+                                    <a href="{{ route('tourpackagecats.index') }}">Tour Package Categories</a>
                                 </div>
                             </div>
                         </div>

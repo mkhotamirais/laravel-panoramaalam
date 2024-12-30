@@ -102,8 +102,9 @@ class PublicController extends Controller
     }
 
     // Tour Package
-    public function tourPackage()
+    public function tourPackage(Request $request)
     {
-        return view('pages.tour-package.index');
+        $search = $request->search;
+        return view('pages.tour-package.index', compact('search'));
     }
 }
