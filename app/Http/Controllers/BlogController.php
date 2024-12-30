@@ -18,8 +18,8 @@ class BlogController extends Controller implements HasMiddleware
     {
         return [
             // new Middleware('auth', only: ['store']),
-            // new Middleware('auth', except: ['index', 'store']),
-            new Middleware('auth'),
+            new Middleware('auth', except: ['show']),
+            // new Middleware('auth'),
         ];
     }
     /**

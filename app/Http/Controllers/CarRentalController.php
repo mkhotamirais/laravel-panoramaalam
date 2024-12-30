@@ -17,9 +17,9 @@ class CarrentalController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            // new Middleware('auth', only: ['store']),
-            // new Middleware('auth', except: ['index', 'store']),
-            new Middleware('auth'),
+            // new Middleware('auth', only: ['show']),
+            new Middleware('auth', except: ['show']),
+            // new Middleware('auth'),
         ];
     }
     public function index()
