@@ -2,15 +2,15 @@
 
 namespace App\Policies;
 
-use App\Models\CarRental;
 use App\Models\User;
+use App\Models\Carrental;
 use Illuminate\Auth\Access\Response;
 
 class CarRentalPolicy
 {
-    public function modify(User $user, CarRental $carRental)
+    public function modify(User $user, Carrental $carrental)
     {
-        return $user->id === $carRental->user_id;
+        return $user->id === $carrental->user_id;
     }
     // /**
     //  * Determine whether the user can view any models.
@@ -23,7 +23,7 @@ class CarRentalPolicy
     // /**
     //  * Determine whether the user can view the model.
     //  */
-    // public function view(User $user, CarRental $carRental): bool
+    // public function view(User $user, blog $blog): bool
     // {
     //     return false;
     // }
@@ -39,7 +39,7 @@ class CarRentalPolicy
     // /**
     //  * Determine whether the user can update the model.
     //  */
-    // public function update(User $user, CarRental $carRental): bool
+    // public function update(User $user, blog $blog): bool
     // {
     //     return false;
     // }
@@ -47,7 +47,7 @@ class CarRentalPolicy
     // /**
     //  * Determine whether the user can delete the model.
     //  */
-    // public function delete(User $user, CarRental $carRental): bool
+    // public function delete(User $user, blog $blog): bool
     // {
     //     return false;
     // }
@@ -55,7 +55,7 @@ class CarRentalPolicy
     // /**
     //  * Determine whether the user can restore the model.
     //  */
-    // public function restore(User $user, CarRental $carRental): bool
+    // public function restore(User $user, blog $blog): bool
     // {
     //     return false;
     // }
@@ -63,7 +63,7 @@ class CarRentalPolicy
     // /**
     //  * Determine whether the user can permanently delete the model.
     //  */
-    // public function forceDelete(User $user, CarRental $carRental): bool
+    // public function forceDelete(User $user, blog $blog): bool
     // {
     //     return false;
     // }

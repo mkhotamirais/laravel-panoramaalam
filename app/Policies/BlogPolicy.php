@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\blog;
+use App\Models\Blog;
 use Illuminate\Auth\Access\Response;
 
 class BlogPolicy

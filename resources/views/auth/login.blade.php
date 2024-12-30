@@ -1,5 +1,5 @@
 <x-authlayout>
-    <div class="py-16 -translate-x-36">
+    <div class="py-16 translate-x-0 lg:-translate-x-36">
         <div class="shadow-none sm:shadow-lg p-6 rounded-lg max-w-lg mx-auto">
             <h1 class="font-montserrat text-3xl font-semibold">Login</h1>
 

@@ -4,9 +4,9 @@ return [
     'header' => [
         'main-menu' => [
             ['name' => 'home', 'label' => 'Home'],
-            ['name' => 'sewa-mobil', 'label' => 'Car Rental'],
-            ['name' => 'paket-wisata', 'label' => 'Travel Package'],
-            ['name' => 'blog-wisata', 'label' => 'Travel Blog'],
+            ['name' => 'car-rental', 'label' => 'Car Rental'],
+            ['name' => 'tour-package', 'label' => 'Tour Package'],
+            ['name' => 'blog', 'label' => 'Blog'],
         ],
         'contact-btn' => 'Contact Us',
     ],
@@ -19,8 +19,8 @@ return [
             'title' => 'Our Products and Services',
             'big-title' => 'Choose the Package You Need',
             'offers' => [
-                ['title' => 'Car Rental', 'description' => 'Easy, fast, and affordable car rental! Choose your favorite vehicle for a comfortable journey with us.'],
-                ['title' => 'Travel Packages', 'description' => 'Explore your dream destinations with the best travel packages! Enjoy exciting and affordable vacations with us.'],
+                ['title' => 'Car Rental', 'href' => 'car-rental', 'image' => 'storage/img/storyset-driving-bro.png',  'description' => 'Easy, fast, and affordable car rental! Choose your favorite vehicle for a comfortable journey with us.'],
+                ['title' => 'Tour Packages', 'href' => 'tour-package', 'image' => 'storage/img/storyset-Journey-amico.png', 'description' => 'Explore your dream destinations with the best travel packages! Enjoy exciting and affordable vacations with us.'],
             ],
             'detail-btn' => 'Check Details'
         ],
@@ -43,10 +43,10 @@ return [
     'car-rental' => [
         'title' => 'Car Rental'
     ],
-    'travel-package' => [
-        'title' => 'Travel Package'
+    'tour-package' => [
+        'title' => 'Tour Package'
     ],
-    'travel-blog' => [
-        'title' => 'Travel Blog'
+    'blog' => [
+        'title' => 'Blog'
     ]
 ];

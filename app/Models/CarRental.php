@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CarRental extends Model
+class Carrental extends Model
 {
-    /** @use HasFactory<\Database\Factories\CarRentalFactory> */
+    /** @use HasFactory<\Database\Factories\CarrentalFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -17,8 +17,11 @@ class CarRental extends Model
         'license_plate',
         'rental_price',
         'color',
+        'policy',
+        'information',
         'banner',
-        'car_rental_category_id'
+        'carrentalcat_id',
+        // 'user_id'
     ];
 
     public function getRouteKeyName()
@@ -26,13 +29,13 @@ class CarRental extends Model
         return 'slug';
     }
 
+    public function carrentalcat(): BelongsTo
+    {
+        return $this->belongsTo(Carrentalcat::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function carRentalCategory(): BelongsTo
-    {
-        return $this->belongsTo(CarRentalCategory::class);
     }
 }

@@ -1,31 +1,27 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogcatController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CarRentalCategoryController;
-use App\Http\Controllers\CarRentalController;
+use App\Http\Controllers\CarrentalcatController;
+use App\Http\Controllers\CarrentalController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware([SetLocale::class])->group(function () {
+    Route::get('/', [PublicController::class, 'index'])->name('home');
+    Route::get('/car-rental', [PublicController::class, 'carRental'])->name('car-rental');
+    Route::get('/tour-package', [PublicController::class, 'tourPackage'])->name('tour-package');
+    Route::get('/blog', [PublicController::class, 'blog'])->name('blog');
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/blog-wisata', [HomeController::class, 'blogWisata'])->name('blog-wisata');
-    Route::get('/paket-wisata', [HomeController::class, 'paketWisata'])->name('paket-wisata');
-    Route::get('/sewa-mobil', [HomeController::class, 'sewaMobil'])->name('sewa-mobil');
+    Route::get('/{user:username}/userblogs', [PublicController::class, 'userBlogs'])->name('user-blogs');
+    Route::get('/{blogcat:slug}/categoryblogs', [PublicController::class, 'categoryBlogs'])->name('category-blogs');
 
-    Route::resource('blogs', BlogController::class);
-    Route::resource('sewas', CarRentalController::class);
-
-    Route::get('/{user:username}/user-blogs', [HomeController::class, 'userBlogs'])->name('user.blogs');
-    Route::get('/{blogCategory:name}/category-blogs', [HomeController::class, 'categoryBlogs'])->name('blog-category.blogs');
-
-    Route::resource('/blog-categories', BlogCategoryController::class);
-    Route::resource('/sewa-categories', CarRentalCategoryController::class);
+    Route::resource('/blogs', BlogController::class);
+    Route::resource('/carrentals', CarrentalController::class);
 
     Route::middleware('guest')->group(function () {
         // Route::view('/basmalah', 'auth.register')->name('register');
@@ -41,9 +37,10 @@ Route::middleware([SetLocale::class])->group(function () {
 
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::view('/lauhah', 'dashboard.index')->name('dashboard');
-
+        Route::get('/lauhah', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::get('/users', [DashboardController::class, 'users'])->name('users');
+        Route::resource('/blogcats', BlogcatController::class);
+        Route::resource('/carrentalcats', CarrentalcatController::class);
     });
 });
 

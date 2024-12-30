@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CarRental;
-use App\Models\CarRentalCategory;
-use Illuminate\Http\Request;
+use App\Models\Carrental;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Str;
+use App\Models\Carrentalcat;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-use function Pest\Laravel\post;
-
-class CarRentalController extends Controller implements HasMiddleware
+class CarrentalController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -24,143 +22,109 @@ class CarRentalController extends Controller implements HasMiddleware
             new Middleware('auth'),
         ];
     }
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $carRentals = CarRental::latest()->paginate(6);
-        $myCarRentals = CarRental::where('user_id', Auth::id())->latest()->paginate(3);
+        $carrentals = Carrental::latest()->paginate(6);
+        $myCarrentals = Carrental::where('user_id', Auth::id())->latest()->paginate(3);
 
-        return view('dashboard.sewa-mobil.index', compact('carRentals', 'myCarRentals'));
+        return view('dashboard.car-rental.index', compact('carrentals', 'myCarrentals'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $carRentalCategories = CarRentalCategory::all();
-        return view('dashboard.sewa-mobil.create', compact('carRentalCategories'));
+        $carrentalCategories = Carrentalcat::all();
+        return view('dashboard.car-rental.create', compact('carrentalCategories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validate
         $fields = $request->validate([
-            'brandName' => 'required|max:255',
-            'licensePlate' => 'required|max:255',
-            'totalPrice' => 'required|max:255',
-            'color' => 'required|max:255',
+            'brand_name' => 'required|max:255|unique:carrentals',
+            'license_plate' => 'nullable',
+            'rental_price' => 'required|integer',
+            'color' => 'required',
             'banner' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:1024',
-            'carRentalCategory' => 'requiredinteger|exists:car_rental_categories,id'
+            'policy' => 'required',
+            'information' => 'nullable',
+            'carrentalcat_id' => 'nullable|integer|exists:carrentalcats,id',
         ]);
 
-        $slug = Str::slug($fields['brandName']);
+        $slug = Str::slug($fields['brand_name']);
 
         // Upload image if file exist
         $path = null;
-        if ($request->hasFile('image')) {
-            $path = Storage::disk('public')->put('car_rentals_images', $request->image);
+        if ($request->hasFile('banner')) {
+            $path = Storage::disk('public')->put('carrentals-images', $request->banner);
         }
 
-        // Create carRental
-        // $carRental = CarRental::create([...$fields, 'user_id' => Auth::id()]);
-        // Auth::user()->carRentals()->create($fields);
-        Auth::user()->carRentals()->create([
-            'brand_name' => $request->brandName,
-            'slug' => $slug,
-            'license_plate' => $request->licensePlate,
-            'total_price' => $request->totalPrice,
-            'color' => $request->color,
-            'banner' => $path,
-            'car_rental_category' => $request->carRentalCategory
-        ]);
+        // Create carrental
+        // $carrental = Carrental::create([...$fields, 'user_id' => Auth::id()]);
+        // Auth::user()->carrentals()->create($fields);
+        Auth::user()->carrentals()->create([...$fields, 'slug' => $slug, 'banner' => $path]);
 
         // Redirect
-        // return back()->with('success', 'CarRental created successfully');
-        return redirect('/sewas')->with('success', 'Car Rental created successfully');
+        // return back()->with('success', 'Carrental created successfully');
+        return redirect('/carrentals')->with('success', 'Carrental created successfully');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(CarRental $carRental)
+    public function show(Carrental $carrental)
     {
-        $latestThreeCarRentals = CarRental::latest()->where('id', '!=', $carRental->id)->take(3)->get();
-        return view('dashboard.sewa-mobil.show', compact('carRental', 'latestThreeCarRentals'));
+        $latestThreeCarrentals = Carrental::latest()->where('id', '!=', $carrental->id)->take(3)->get();
+        return view('pages.car-rental.show', compact('carrental', 'latestThreeCarrentals'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(CarRental $carRental)
+    public function edit(Carrental $carrental)
     {
         // authorize
-        Gate::authorize('modify', $carRental);
-        return view('dashboard.sewa-mobil.edit', compact('carRental'));
+        Gate::authorize('modify', $carrental);
+        $carrentalCategories = Carrentalcat::all();
+        return view('dashboard.car-rental.edit', compact('carrental', 'carrentalCategories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, CarRental $carRental)
+    public function update(Request $request, Carrental $carrental)
     {
         // authorize
-        Gate::authorize('modify', $carRental);
-
+        Gate::authorize('modify', $carrental);
         // Validate
         $fields = $request->validate([
-            'brandName' => 'required|max:255',
-            'licensePlate' => 'required|max:255',
-            'totalPrice' => 'required|max:255',
-            'color' => 'required|max:255',
+            'brand_name' => 'required|max:255',
+            'license_plate' => 'nullable',
+            'rental_price' => 'required|integer',
+            'color' => 'required',
             'banner' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:1024',
-            'carRentalCategory' => 'required|integer|exists:car_rental_categories,id'
+            'policy' => 'required',
+            'information' => 'nullable',
+            'carrentalcat_id' => 'nullable|integer|exists:carrentalcats,id',
         ]);
 
-        $slug = Str::slug($fields['brandName']);
+        $slug = Str::slug($fields['brand_name']);
 
         // Upload image if file exist
-        $path = $carRental->image ?? null;
-        if ($request->hasFile('image')) {
-            if ($carRental->image) {
-                Storage::disk('public')->delete($carRental->image);
+        $path = $carrental->banner ?? null;
+        if ($request->hasFile('banner')) {
+            if ($carrental->banner) {
+                Storage::disk('public')->delete($carrental->banner);
             }
-            $path = Storage::disk('public')->put('car_rentals_images', $request->image);
+            $path = Storage::disk('public')->put('carrentals-images', $request->banner);
         }
-        // Update the carRental
-        $carRental->update([
-            'brand_name' => $request->brandName,
-            'slug' => $slug,
-            'license_plate' => $request->licensePlate,
-            'total_price' => $request->totalPrice,
-            'color' => $request->color,
-            'banner' => $path,
-            'car_rental_category' => $request->carRentalCategory
-        ]);
+
+        // Update the carrental
+        $carrental->update([...$fields, 'slug' => $slug, 'banner' => $path]);
 
         // Redirect
-        // return back()->with('success', 'CarRental updated successfully');
-        return redirect('/sewas')->with('success', 'Car Rental updated successfully');
+        // return back()->with('success', 'Carrental updated successfully');
+        return redirect('/carrentals')->with('success', 'Carrental updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CarRental $carRental)
+    public function destroy(Carrental $carrental)
     {
         // authorize
-        Gate::authorize('modify', $carRental);
+        Gate::authorize('modify', $carrental);
 
-        if ($carRental->image) {
-            Storage::disk('public')->delete($carRental->image);
+        if ($carrental->banner) {
+            Storage::disk('public')->delete($carrental->banner);
         }
 
-        $carRental->delete();
+        $carrental->delete();
 
         return back()->with('delete', 'Car Rental deleted successfully');
     }

@@ -1,5 +1,7 @@
+@props(['title' => 'Home'])
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{{ asset('storage/svg/panorama_icon.svg') }}" type="image/x-icon">
 
-    <title>{{ env('APP_NAME', 'Laravel') }}</title>
+    <title>{{ $title ?? env('APP_NAME') }} - Panorama Alam</title>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,8 +29,7 @@
                     @endforeach
                 </nav>
                 {{-- contact us --}}
-                <a href="http://api.whatsapp.com/send?phone=6281319573240"
-                    class="min-w-fit hidden lg:flex px-5 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition items-center justify-center text-white">
+                <a href="http://api.whatsapp.com/send?phone=6281319573240" class="btn">
                     <x-si-whatsapp class="mr-2 w-5 h-5" />
                     <span>{{ __('menu.header.contact-btn') }}</span>
                 </a>

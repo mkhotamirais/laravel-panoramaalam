@@ -45,10 +45,10 @@
                                     <a href="{{ route('users') }}">User List</a>
                                     <p class="font-semibold mt-3">Blogs</p>
                                     <a href="{{ route('blogs.index') }}">Blog List</a>
-                                    <a href="{{ route('blog-categories.index') }}">Blog Categories</a>
+                                    <a href="{{ route('blogcats.index') }}">Blog Categories</a>
                                     <p class="font-semibold mt-3">Car Rentals</p>
-                                    <a href="{{ route('sewas.index') }}">Car Rental List</a>
-                                    <a href="{{ route('sewa-categories.index') }}">Car Rental Categories</a>
+                                    <a href="{{ route('carrentals.index') }}">Car Rental List</a>
+                                    <a href="{{ route('carrentalcats.index') }}">Car Rental Categories</a>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
         {{ $slot }}
     </main>
 
-    <footer class="h-16 ml-0 lg:ml-72">
+    {{-- <footer class="h-16 ml-0 lg:ml-72">
         <div class="container h-full">
             <div class="flex items-center justify-center h-full">
                 <a href="{{ route('home') }}" class="text-orange-500 hover:underline inline-block">
@@ -109,7 +109,7 @@
                 </a>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 </body>
 
 </html>

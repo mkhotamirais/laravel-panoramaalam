@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\blog>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blogcat>
  */
-class BlogFactory extends Factory
+class BlogcatFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'user_id' => 1,
-            // 'title' => fake()->sentence(),
-            // 'body' => fake()->paragraph(),
+            //
         ];
     }
 }

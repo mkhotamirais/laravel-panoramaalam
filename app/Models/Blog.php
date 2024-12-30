@@ -14,9 +14,9 @@ class Blog extends Model
     protected $fillable = [
         'title',
         'slug',
-        'body',
-        'image',
-        'blog_category_id',
+        'content',
+        'banner',
+        'blogcat_id',
         // 'user_id'
     ];
 
@@ -25,13 +25,13 @@ class Blog extends Model
         return 'slug';
     }
 
+    public function blogcat(): BelongsTo
+    {
+        return $this->belongsTo(Blogcat::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function blogCategory(): BelongsTo
-    {
-        return $this->belongsTo(BlogCategory::class);
     }
 }

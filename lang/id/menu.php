@@ -4,23 +4,23 @@ return [
     'header' => [
         'main-menu' => [
             ['name' => 'home', 'label' => 'Home'],
-            ['name' => 'sewa-mobil', 'label' => 'Sewa Mobil'],
-            ['name' => 'paket-wisata', 'label' => 'Paket Wisata'],
-            ['name' => 'blog-wisata', 'label' => 'Blog Wisata'],
+            ['name' => 'car-rental', 'label' => 'Sewa Mobil'],
+            ['name' => 'tour-package', 'label' => 'Paket Wisata'],
+            ['name' => 'blog', 'label' => 'Blog'],
         ],
         'contact-btn' => 'Hubungi Kami',
     ],
     'home' => [
         'hero' => [
-            'description' => 'Dapatkan kenyamanan Sewa Mobil dan Paket Wisata di Lombok dengan layanan profesional dan ramah dari kami. Jelajahi keindahan Lombok dengan mudah dan nikmati perjalanan yang menyenangkan.',
+            'description' => 'Dapatkan kenyamanan <span>Sewa Mobil</span> dan <span>Paket Wisata</span> di Lombok dengan layanan profesional dan ramah dari kami. Jelajahi keindahan Lombok dengan mudah dan nikmati perjalanan yang menyenangkan.',
             'hero-btn' => 'Pesan Sekarang',
         ],
         'products' => [
             'title' => 'Produk dan Layanan Kami',
             'big-title' => 'Pilih Paket yang Kamu Butuhkan',
             'offers' => [
-                ['title' => 'Sewa Mobil', 'description' => 'Sewa mobil mudah, cepat, dan hemat! Pilih kendaraan favorit Anda untuk perjalanan nyaman bersama kami.'],
-                ['title' => 'Paket Wisata', 'description' => 'Jelajahi destinasi impian Anda dengan paket wisata terbaik! Nikmati liburan seru dan hemat bersama kami.']
+                ['title' => 'Sewa Mobil', 'href' => 'car-rental', 'image' => 'storage/img/storyset-driving-bro.png', 'description' => 'Sewa mobil mudah, cepat, dan hemat! Pilih kendaraan favorit Anda untuk perjalanan nyaman bersama kami.'],
+                ['title' => 'Paket Wisata', 'href' => 'tour-package', 'image' => 'storage/img/storyset-Journey-amico.png', 'description' => 'Jelajahi destinasi impian Anda dengan paket wisata terbaik! Nikmati liburan seru dan hemat bersama kami.']
             ],
             'detail-btn' => 'Cek Detail'
         ],
@@ -43,10 +43,10 @@ return [
     'car-rental' => [
         'title' => 'Sewa Mobil'
     ],
-    'travel-package' => [
+    'tour-package' => [
         'title' => 'Paket Wisata'
     ],
-    'travel-blog' => [
-        'title' => 'Blog Wisata'
+    'blog' => [
+        'title' => 'Blog'
     ]
 ];
