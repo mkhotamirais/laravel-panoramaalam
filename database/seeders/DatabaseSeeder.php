@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Blogcat;
 use App\Models\Carrental;
 use App\Models\Carrentalcat;
+use App\Models\Tourpackage;
 use App\Models\Tourpackagecat;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -71,6 +72,23 @@ class DatabaseSeeder extends Seeder
             'policy' => 'brand name policy',
             'information' => 'brand name information',
             'carrentalcat_id' => 1,
+            'user_id' => 1
+        ]);
+
+        $tour1 = Tourpackage::Create([
+            'id' => 1,
+            'name' => 'panorama alam tour package',
+            'slug' => 'panorama-alam-tour-package',
+            'price' => 2000000,
+            'detail' => 'panorama alam tour detail',
+            'status' => 'active',
+            'itenary_description' => 'panorama alam itenary description',
+            'itenary_detail' => 'panorama alam itenary detail',
+            'policy_description' => 'panorama alam policy description',
+            'policy_detail' => 'panorama alam policy detail',
+            'info_description' => 'panorama alam info description',
+            'info_detail' => 'panorama alam info detail',
+            'tourpackagecat_id' => 1,
             'user_id' => 1
         ]);
     }

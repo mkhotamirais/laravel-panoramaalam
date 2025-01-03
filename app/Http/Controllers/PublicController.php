@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Blogcat;
 use App\Models\Carrental;
+use App\Models\Carrentalcat;
+use App\Models\Tourpackage;
+use App\Models\Tourpackagecat;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +16,6 @@ class PublicController extends Controller
     public function index()
     {
         $latestThreeBlogs = Blog::latest()->take(3)->get();
-        // dd('halo', $latestThreeBlogs);
         return view('home', compact('latestThreeBlogs'));
     }
 
@@ -28,7 +30,9 @@ class PublicController extends Controller
         }
 
         $blogs = $blogs->paginate(6);
-        return view('pages.blog.index', compact('blogs', 'search'));
+        $blogcats = Blogcat::all();
+
+        return view('pages.blog.index', compact('blogs', 'search', 'blogcats'));
     }
 
     public function userBlogs(User $user, Request $request)
@@ -55,12 +59,13 @@ class PublicController extends Controller
         }
 
         $categoryBlogs = $categoryBlogs->paginate(6);
+        $blogcats = Blogcat::all();
 
-        return view('pages.blog.cat-blog', compact('categoryBlogs', 'blogcat', 'search'));
+        return view('pages.blog.cat-blog', compact('categoryBlogs', 'blogcat', 'blogcats', 'search'));
     }
 
     // Car Rental
-    public function carRental(Request $request)
+    public function carrental(Request $request)
     {
         $carrentals = Carrental::latest();
         $search = $request->search;
@@ -70,41 +75,53 @@ class PublicController extends Controller
         }
 
         $carrentals = $carrentals->paginate(6);
+        $carrentalcats = Carrentalcat::all();
 
-        return view('pages.car-rental.index', compact('carrentals', 'search'));
+        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search'));
     }
-    public function userCarRentals(User $user, Request $request)
+
+    public function categoryCarrentals(Carrentalcat $carrentalcat, Request $request)
     {
-        $userCarRentals = $user->carRentals()->latest();
+        $categoryCarrentals = $carrentalcat->carrentals();
 
         $search = $request->search;
         if ($search) {
-            $userCarRentals = $userCarRentals->where('title', 'like', '%' . $request->search . '%');
+            $categoryCarrentalcats = $categoryCarrentals->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $userCarRentals = $userCarRentals->paginate(6);
+        $categoryCarrentals = $categoryCarrentals->paginate(6);
+        $carrentalcats = Carrentalcat::all();
 
-        return view('dashboard.sewa-mobil.user-sewas', compact('userCarRentals', 'user', 'search'));
-    }
-
-    public function categoryCarRentals(CarRental $carRental, Request $request)
-    {
-        $categoryCarRentals = $carRental->blogs();
-
-        $search = $request->search;
-        if ($search) {
-            $categoryCarRentals = $categoryCarRentals->where('title', 'like', '%' . $request->search . '%');
-        }
-
-        $categoryCarRentals = $categoryCarRentals->paginate(6);
-
-        return view('dashboard.sewa-mobil-categories.category-sewas', compact('categoryCarRentals', 'carRental', 'search'));
+        return view('pages.car-rental.cat-car-rental', compact('categoryCarrentals', 'carrentalcat', 'carrentalcats', 'search'));
     }
 
     // Tour Package
-    public function tourPackage(Request $request)
+    public function tourpackage(Request $request)
     {
+        $tourpackages = Tourpackage::latest();
         $search = $request->search;
-        return view('pages.tour-package.index', compact('search'));
+
+        if ($search) {
+            $tourpackages = $tourpackages->where('brand_name', 'like', '%' . $request->search . '%');
+        }
+
+        $tourpackages = $tourpackages->paginate(6);
+        $tourpackagecats = Tourpackagecat::all();
+        return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search'));
+    }
+
+    public function categoryTourpackages(Tourpackagecat $tourpackagecat, Request $request)
+    {
+        $categoryTourpackages = $tourpackagecat->tourpackages();
+
+        $search = $request->search;
+        if ($search) {
+            $categoryTourpackagecats = $categoryTourpackages->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        $categoryTourpackages = $categoryTourpackages->paginate(6);
+        $tourpackagecats = Tourpackagecat::all();
+
+        return view('pages.tour-package.cat-tour-package', compact('categoryTourpackages', 'tourpackagecat', 'tourpackagecats', 'search'));
     }
 }

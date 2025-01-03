@@ -13,7 +13,8 @@ return [
     'home' => [
         'hero' => [
             'description' => 'Get the comfort of <span>Car Rental</span> and <span>Tour Packages</span> in Lombok with professional and friendly service from us. Explore the beauty of Lombok with ease and enjoy a pleasant journey.',
-            'hero-btn' => 'Order Now',
+            'hero-btn-car-rental' => 'Car Rental',
+            'hero-btn-tour-package' => 'Tour Package',
         ],
         'products' => [
             'title' => 'Our Products and Services',
@@ -37,8 +38,10 @@ return [
     ],
     'footer' => [
         'description' => 'Find Lombok tour packages, car rentals, and motorbike rentals at the best prices in Lombok',
+        'address-title' => 'Address',
         'address' => 'Jln Raya Lembar-Gerung West Lombok (Near the Gerung roundabout).',
         'contact-title' => 'Contact Us',
+        'language-title' => 'Language',
     ],
     'car-rental' => [
         'title' => 'Car Rental'

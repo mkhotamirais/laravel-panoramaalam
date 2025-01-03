@@ -1,61 +1,65 @@
-<x-authlayout>
-    <div class="container py-4">
-        <h1 class="title">Car Rental Category List</h1>
+<x-layout :title="$carrentalcat->name . ' Car Rentals'">
+    <x-section-hero :title="$carrentalcat->name . ' Car Rentals ' . '(' . $categoryCarrentals->total() . ')'">
+        {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
+        {{-- search form --}}
+        <form class="mt-8">
+            {{-- @if (request('category'))
+                <input type="hidden" name="category" value="{{ request('category') }}">
+            @endif
 
-        <h2 class="text-2xl mt-4 py-2 font-semibold">Car Rental Category</h2>
-        {{-- Session Messages --}}
-        @if (session('delete'))
-            <x-flash-msg message="{{ session('delete') }}" bg="bg-green-500"></x-flash-msg>
-        @endif
+            @if (request('author'))
+                <input type="hidden" name="author" value="{{ request('author') }}">
+            @endif --}}
 
-        @if (session('success'))
-            <x-flash-msg message="{{ session('success') }}" bg="bg-green-500"></x-flash-msg>
-        @endif
-        <div class="mb-4">
-            <h3 class="text-xl mt-4 py-2">Add Car Rental Category</h3>
-            <form action="{{ route('sewa-categories.store') }}" method="POST" class="">
-                @csrf
-
-                <div class="mb-4">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" value="{{ old('name') }}"
-                        class="input @error('name') !ring-red-500 @enderror">
-                    @error('name')
-                        <p class="error">{{ $message }}</p>
-                    @enderror
-                </div>
-                <button type="submit"
-                    class="bg-orange-500 hover:bg-orange-600 transition py-2 px-6 rounded-full text-white">Create</button>
-            </form>
-        </div>
-        <div class="mb-4">
-            <h3 class="text-xl mt-4 py-2">Car Rental List ({{ $carRentalCategories->count() }})</h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
-                @foreach ($carRentalCategories as $crc)
-                    <div class="py-2" x-data="{ ubah: false }">
-                        <p x-show="!ubah">{{ $crc->name }}</p>
-                        <form x-show="ubah" action="{{ route('sewa-categories.update', $crc) }}" method="POST"
-                            class="w-full">
-                            @csrf
-                            @method('PUT')
-                            <input type="text" name="name" id="name" value="{{ $crc->name }}" autofocus
-                                x-ref="inputUbah" class="w-32" />
-                            <button type="submit"
-                                class="text-xs bg-green-500 text-white rounded-lg px-2 py-1">simpan</button>
-                        </form>
-                        <div class="text-xs flex gap-2">
-                            <button class="text-green-500"
-                                @click="ubah = !ubah; if (ubah) $nextTick(() => $refs.inputUbah.focus())"
-                                x-text="ubah ? 'kembali' : 'ubah'"></button> |
-                            <form action="{{ route('sewa-categories.destroy', $crc) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline">hapus</button>
-                            </form>
-                        </div>
+            <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
+                <div class="relative w-full">
+                    <label for="search"
+                        class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search</label>
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <x-bi-search class="w-5 h-5 text-gray-500 dark:text-gray-400"></x-bi-search>
                     </div>
-                @endforeach
+                    <input name="search" autocomplete="off" value="{{ $search }}"
+                        class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="Search carrentals" type="text" id="search">
+                </div>
+                <div>
+                    <button type="submit"
+                        class="rounded-l-none py-3 px-5 text-sm font-medium text-center text-white border cursor-pointer bg-orange-500 transition hover:bg-orange-600  rounded-r-lg focus:ring-4 focus:ring-orange-300">
+                        Cari
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <x-badge-cat :cats="$carrentalcats" :route="'category-carrentals'" :current="$carrentalcat->slug" />
+    </x-section-hero>
+
+    @if ($search)
+        <div class="container py-6">
+            <p class="text-xl">
+                Hasil pencarian <span class="text-orange-500 font-semibold italic">"{{ $search }}"</span> dari
+                Semua carrental <span class="capitalize">{{ $carrentalcat->name }}</span> (
+                {{ $categoryCarrentals->total() }} )
+            </p>
+        </div>
+    @endif
+
+    @if ($categoryCarrentals->total() == 0)
+        <div class="container mt-8">
+            <p class="text-3xl italic font-semibold">Car Rental tidak ditemukan</p>
+        </div>
+    @else
+        <div class="container py-12">
+            <div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    @foreach ($categoryCarrentals as $carrental)
+                        <x-carrental-card :carrental="$carrental"></x-carrental-card>
+                    @endforeach
+                </div>
+                <div class="mt-4">
+                    {{ $categoryCarrentals->links() }}
+                </div>
             </div>
         </div>
-    </div>
-</x-authlayout>
+    @endif
+</x-layout>

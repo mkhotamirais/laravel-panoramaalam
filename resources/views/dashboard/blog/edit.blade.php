@@ -47,6 +47,14 @@
                 @enderror
             </div>
 
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#content'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+
             {{-- current cover photo if exist --}}
             @if ($blog->banner)
                 <label>Current banner</label>

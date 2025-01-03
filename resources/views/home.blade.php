@@ -3,8 +3,12 @@
         <h3 class="font-semibold text-2xl text-orange-400">Tour and Travel</h3>
         <div class="mt-8 space-y-8">
             <p class="deskripsi max-w-screen-sm">{!! __('menu.home.hero.description') !!}</p>
-            <a href="#produk"
-                class="lg:px-6 lg:py-4 uppercase btn w-fit"><span>{{ __('menu.home.hero.hero-btn') }}</span></a>
+            <div class="flex flex-col lg:flex-row gap-2">
+                <a href="{{ route('car-rental') }}"
+                    class="lg:px-6 lg:py-4 uppercase btn w-44">{{ __('menu.home.hero.hero-btn-car-rental') }}</a>
+                <a href="{{ route('tour-package') }}"
+                    class="lg:px-6 lg:py-4 uppercase btn w-44 !bg-transparent border border-orange-500 hover:text-orange-600">{{ __('menu.home.hero.hero-btn-tour-package') }}</a>
+            </div>
         </div>
     </x-section-hero>
 

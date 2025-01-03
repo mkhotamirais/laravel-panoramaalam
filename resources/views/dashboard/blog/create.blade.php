@@ -46,6 +46,14 @@
                 @enderror
             </div>
 
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#content'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+
             {{-- blog banner --}}
             <div class="mb-4">
                 <label for="banner">Banner</label>

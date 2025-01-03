@@ -93,6 +93,19 @@
                 @enderror
             </div>
 
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#policy'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+                ClassicEditor
+                    .create(document.querySelector('#information'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+
             {{-- current cover photo if exist --}}
             @if ($carrental->banner)
                 <label>Current banner</label>

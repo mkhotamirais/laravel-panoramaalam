@@ -3,9 +3,10 @@
         <h1 class="title">Tour Package Category List</h1>
 
         <h2 class="text-2xl mt-4 py-2 font-semibold">Tour Package Category</h2>
+
         {{-- Session Messages --}}
-        @if (session('delete'))
-            <x-flash-msg message="{{ session('delete') }}" bg="bg-green-500"></x-flash-msg>
+        @if (session('error'))
+            <x-flash-msg message="{{ session('error') }}" bg="bg-red-500"></x-flash-msg>
         @endif
 
         @if (session('success'))

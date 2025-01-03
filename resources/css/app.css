@@ -8,8 +8,49 @@ section {
     @apply min-h-[30vh];
 }
 
+.ck-editor__editable {
+    @apply h-36 resize-y;
+}
+
+.ck-editor__editable p {
+    @apply mb-4;
+}
+
+.ck-editor__editable h2,
+.text-content h2 {
+    @apply font-semibold text-lg mb-2 text-gray-800;
+}
+
+.text-content {
+    @apply leading-relaxed text-gray-600 space-y-4 mt-4;
+}
+
+.ck-editor__editable ol,
+.text-content ol {
+    @apply list-decimal mb-4 ml-8;
+}
+
+.ck-editor__editable ol li,
+.text-content ol li {
+    @apply pl-2;
+}
+
+.ck-editor__editable ul,
+.text-content ul {
+    @apply list-disc mb-4 ml-8;
+}
+
+.ck-editor__editable ul li,
+.text-content ul li {
+    @apply pl-2;
+}
+
 .btn {
-    @apply font-medium rounded-full px-5 py-3 bg-orange-500 hover:bg-orange-600 flex items-center justify-center transition text-white;
+    @apply font-medium rounded-full px-5 py-3 bg-orange-500 hover:bg-orange-600 flex gap-2 items-center justify-center transition text-white;
+}
+
+.text-content p {
+    @apply mb-4;
 }
 
 h1,
@@ -50,4 +91,35 @@ label {
 table td,
 table th {
     @apply p-2;
+}
+
+.text-price ol li,
+.text-price ul li {
+    @apply border p-2 rounded-lg border-orange-500 mb-2;
+}
+
+/* swiper */
+.card-wrapper .swiper-pagination-bullet {
+    height: 13px;
+    width: 13px;
+    opacity: 0.5;
+    @apply bg-orange-500;
+}
+
+.card-wrapper .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* .card-wrapper .swiper-slide-button {
+    @apply text-orange-500 w-8 h-8;
+} */
+
+.card-wrapper .swiper-slide-button::after {
+    @apply text-orange-500 text-4xl font-medium;
+}
+
+@media screen and (max-width: 768px) {
+    .card-wrapper .swiper-slide-button {
+        display: none;
+    }
 }

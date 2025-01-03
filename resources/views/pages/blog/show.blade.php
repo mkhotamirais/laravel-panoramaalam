@@ -30,7 +30,7 @@
                     </div>
 
                     {{-- content --}}
-                    <p class="text-gray-800 mt-4 grow leading-loose">{{ $blog->content }}</p>
+                    <div class="text-content">{!! $blog->content !!}</div>
                 </div>
             </div>
 

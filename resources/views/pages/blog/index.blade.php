@@ -30,7 +30,11 @@
                 </div>
             </div>
         </form>
+
+        <x-badge-cat :cats="$blogcats" />
     </x-section-hero>
+
+
 
     @if ($search)
         <div class="container py-6">

@@ -1,5 +1,5 @@
-<x-layout :title="__('menu.car-rental.title')">
-    <x-section-hero :title="__('menu.car-rental.title')">
+<x-layout :title="$tourpackagecat->name . ' Tour Packages'">
+    <x-section-hero :title="$tourpackagecat->name . ' Tour Packages ' . '(' . $categoryTourpackages->total() . ')'">
         {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
         {{-- search form --}}
         <form class="mt-8">
@@ -20,7 +20,7 @@
                     </div>
                     <input name="search" autocomplete="off" value="{{ $search }}"
                         class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
-                        placeholder="Search blogs" type="text" id="search">
+                        placeholder="Search tourpackages" type="text" id="search">
                 </div>
                 <div>
                     <button type="submit"
@@ -31,17 +31,35 @@
             </div>
         </form>
 
-        <x-badge-cat :cats="$carrentalcats" :route="'category-carrentals'" />
-
+        <x-badge-cat :cats="$tourpackagecats" :route="'category-tourpackages'" :current="$tourpackagecat->slug" />
     </x-section-hero>
-    {{-- sewa mobil list --}}
-    <section class="py-16">
-        <div class="container">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                @foreach ($carrentals as $carrental)
-                    <x-carrental-card :carrental="$carrental"></x-carrental-card>
-                @endforeach
+
+    @if ($search)
+        <div class="container py-6">
+            <p class="text-xl">
+                Hasil pencarian <span class="text-orange-500 font-semibold italic">"{{ $search }}"</span> dari
+                Semua tourpackage <span class="capitalize">{{ $tourpackagecat->name }}</span> (
+                {{ $categoryTourpackages->total() }} )
+            </p>
+        </div>
+    @endif
+
+    @if ($categoryTourpackages->total() == 0)
+        <div class="container mt-8">
+            <p class="text-3xl italic font-semibold">Tour Package tidak ditemukan</p>
+        </div>
+    @else
+        <div class="container py-12">
+            <div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    @foreach ($categoryTourpackages as $tourpackage)
+                        <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
+                    @endforeach
+                </div>
+                <div class="mt-4">
+                    {{ $categoryTourpackages->links() }}
+                </div>
             </div>
         </div>
-    </section>
+    @endif
 </x-layout>

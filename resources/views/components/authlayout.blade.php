@@ -9,6 +9,8 @@
 
     <title>{{ env('APP_NAME', 'Laravel') }}</title>
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -50,7 +52,7 @@
                                     <a href="{{ route('carrentals.index') }}">Car Rental List</a>
                                     <a href="{{ route('carrentalcats.index') }}">Car Rental Categories</a>
                                     <p class="font-semibold mt-3">Tour Packages</p>
-                                    {{-- <a href="{{ route('tourpackages.index') }}">Tour Package List</a> --}}
+                                    <a href="{{ route('tourpackages.index') }}">Tour Package List</a>
                                     <a href="{{ route('tourpackagecats.index') }}">Tour Package Categories</a>
                                 </div>
                             </div>
@@ -100,7 +102,7 @@
         </div>
     </header>
 
-    <main class="grow ml-0 lg:ml-72">
+    <main class="grow ml-0 lg:ml-72 pb-16">
         {{ $slot }}
     </main>
 

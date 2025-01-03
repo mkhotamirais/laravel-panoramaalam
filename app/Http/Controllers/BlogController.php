@@ -29,7 +29,6 @@ class BlogController extends Controller implements HasMiddleware
     {
         $blogs = Blog::latest()->paginate(6);
         $myBlogs = Blog::where('user_id', Auth::id())->latest()->paginate(3);
-
         return view('dashboard.blog.index', compact('blogs', 'myBlogs'));
     }
 

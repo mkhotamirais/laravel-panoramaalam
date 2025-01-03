@@ -10,8 +10,8 @@ class CarrentalcatController extends Controller
 {
     public function index()
     {
-        $carrentalCats = Carrentalcat::latest()->get();
-        return view('dashboard.car-rental.car-rental-cat', compact('carrentalCats'));
+        $carrentalcats = Carrentalcat::latest()->get();
+        return view('dashboard.car-rental.car-rental-cat', compact('carrentalcats'));
     }
     public function store(Request $request)
     {

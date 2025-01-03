@@ -47,13 +47,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function blogs(): HasMany
+    public function blogs()
     {
         return $this->hasMany(Blog::class);
     }
 
-    public function carrentals(): HasMany
+    public function carrentals()
     {
         return $this->hasMany(Carrental::class);
+    }
+
+    public function tourpackages()
+    {
+        return $this->hasMany(Tourpackage::class);
     }
 }

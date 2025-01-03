@@ -13,7 +13,8 @@ return [
     'home' => [
         'hero' => [
             'description' => 'Dapatkan kenyamanan <span>Sewa Mobil</span> dan <span>Paket Wisata</span> di Lombok dengan layanan profesional dan ramah dari kami. Jelajahi keindahan Lombok dengan mudah dan nikmati perjalanan yang menyenangkan.',
-            'hero-btn' => 'Pesan Sekarang',
+            'hero-btn-car-rental' => 'Sewa Mobil',
+            'hero-btn-tour-package' => 'Paket Wisata',
         ],
         'products' => [
             'title' => 'Produk dan Layanan Kami',
@@ -37,8 +38,10 @@ return [
     ],
     'footer' => [
         'description' => 'Cari paket wisata lombok, rental mobil lombok, rental motor lombok dengan harga terbaik di lombok',
+        'address-title' => 'Alamat',
         'address' => 'Jln Raya Lembar-Gerung Lombok Barat (Dekat dengan bundaran Gerung).',
         'contact-title' => 'Hubugi Kami',
+        'language-title' => 'Bahasa',
     ],
     'car-rental' => [
         'title' => 'Sewa Mobil'

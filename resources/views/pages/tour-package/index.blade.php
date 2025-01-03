@@ -1,4 +1,17 @@
 <x-layout :title="__('menu.tour-package.title')">
+    {{-- untuk single tour package (nanti dipindah) --}}
+
+    {{-- <section>
+        <div>carousel</div>
+        <div>
+            <h3>topjudul</h3>
+            <h2>big judul</h2>
+        </div>
+        <div>
+            <p>harga</p>
+            <button>tombol pesan</button>
+        </div>
+    </section> --}}
     <x-section-hero :title="__('menu.tour-package.title')">
         {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
         {{-- search form --}}
@@ -30,20 +43,16 @@
                 </div>
             </div>
         </form>
+
+        <x-badge-cat :cats="$tourpackagecats" :route="'category-tourpackages'" />
     </x-section-hero>
     {{-- paket wisata list --}}
     <section class="py-16">
         <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden">
-                    <img src="https://picsum.photos/500" alt="" class="object-cover object-center w-full h-64">
-                    <div class="p-6 space-y-4">
-                        <h2 class="text-3xl font-semibold mb-2">Judul</h2>
-                        <h1>Harga</h1>
-                        <p>Tags</p>
-                        <a href="" class="inline-block rounded-full bg-orange-500 py-3 px-5 text-white">Pesan</a>
-                    </div>
-                </div>
+                @foreach ($tourpackages as $tourpackage)
+                    <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
+                @endforeach
             </div>
         </div>
     </section>

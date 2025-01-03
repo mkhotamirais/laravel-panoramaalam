@@ -1,5 +1,3 @@
-{{-- <h1 class="text-4xl lg:text-5xl font-semibold capitalize">{{ $blogcat->name }}'s Blogs
-    ({{ $categoryBlogs->total() }})</h1> --}}
 <x-layout :title="$blogcat->name . ' Blogs'">
     <x-section-hero :title="$blogcat->name . ' Blogs ' . '(' . $categoryBlogs->total() . ')'">
         {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
@@ -32,6 +30,8 @@
                 </div>
             </div>
         </form>
+
+        <x-badge-cat :cats="$blogcats" :current="$blogcat->slug" />
     </x-section-hero>
 
     @if ($search)
@@ -44,7 +44,7 @@
     @endif
 
     @if ($categoryBlogs->total() == 0)
-        <div class="container">
+        <div class="container mt-8">
             <p class="text-3xl italic font-semibold">Blog tidak ditemukan</p>
         </div>
     @else

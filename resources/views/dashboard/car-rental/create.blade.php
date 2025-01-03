@@ -92,6 +92,19 @@
                 @enderror
             </div>
 
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#policy'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+                ClassicEditor
+                    .create(document.querySelector('#information'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+
             {{-- banner --}}
             <div class="mb-4">
                 <label for="banner">Banner</label>
