@@ -13,16 +13,23 @@
             <h2 class="text-xl lg:text-2xl hover:underline font-semibold capitalize">{{ $blog->title }}</h2>
         </a>
         {{-- author and date --}}
-        <div class="text-xs text-gray-500 mt-2">Posted by <a href="{{ route('user-blogs', $blog->user->username) }}"
-                class="text-orange-500 capitalize hover:underline">{{ $blog->user->username }}</a>
-            in
-            @if ($blog->blogcat)
-                <a href="{{ route('category-blogs', $blog->blogcat->slug) }}"
-                    class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
-            @else
-                <span>no category</span>
-            @endif
-            {{ $blog->created_at->diffForHumans() }}
+        <div class="text-xs text-gray-500 mt-2">
+            <span>
+                Posted by <a href="{{ route('user-blogs', $blog->user->username) }}"
+                    class="text-orange-500 capitalize hover:underline">{{ $blog->user->username }}</a>
+            </span>
+
+            <span>
+                in
+                @if ($blog->blogcat)
+                    <a href="{{ route('category-blogs', $blog->blogcat->slug) }}"
+                        class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
+                @else
+                    <span>no category</span>
+                @endif
+            </span>
+
+            <span>{{ $blog->created_at->diffForHumans() }}</span>
         </div>
         {{-- content --}}
         @if ($full)
@@ -34,7 +41,7 @@
                 </div>
                 {{-- @if (Str::wordCount($blog->content) > 24) --}}
                 <a href="{{ route('blogs.show', $blog) }}"
-                    class="text-orange-500 hover:underline block text-sm mt-4">Baca
+                    class="text-orange-500 hover:underline block text-sm mt-4 w-fit">Baca
                     Selengkapnya</a>
                 {{-- @endif --}}
         @endif

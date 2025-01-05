@@ -6,8 +6,10 @@ use App\Models\Blog;
 use App\Models\Blogcat;
 use App\Models\Carrental;
 use App\Models\Carrentalcat;
+use App\Models\Destinationblog;
 use App\Models\Tourpackage;
 use App\Models\Tourpackagecat;
+use App\Models\Tourroute;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,8 @@ class PublicController extends Controller
     public function index()
     {
         $latestThreeBlogs = Blog::latest()->take(3)->get();
-        return view('home', compact('latestThreeBlogs'));
+        $destinationblogs = Destinationblog::all();
+        return view('home', compact('latestThreeBlogs', 'destinationblogs'));
     }
 
     // Blog
@@ -98,16 +101,27 @@ class PublicController extends Controller
     // Tour Package
     public function tourpackage(Request $request)
     {
-        $tourpackages = Tourpackage::latest();
-        $search = $request->search;
+        $selectedTourroutes = $request->input('tourroutes', []);
 
+        $tourpackages = Tourpackage::when($selectedTourroutes, function ($query) use ($selectedTourroutes) {
+            // Filter buku yang memiliki semua tourroute yang dipilih
+            $query->whereHas('tourroutes', function ($query) use ($selectedTourroutes) {
+                $query->whereIn('tourroutes.slug', $selectedTourroutes);
+            }, '=', count($selectedTourroutes)); // Cek jumlah tourroute yang cocok harus sama dengan yang dipilih
+        })->latest();
+
+
+        $search = $request->search;
         if ($search) {
-            $tourpackages = $tourpackages->where('brand_name', 'like', '%' . $request->search . '%');
+            $tourpackages = $tourpackages->where('name', 'like', '%' . $request->search . '%');
         }
 
         $tourpackages = $tourpackages->paginate(6);
+
         $tourpackagecats = Tourpackagecat::all();
-        return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search'));
+        $tourroutes = Tourroute::all();
+
+        return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search', 'tourroutes', 'selectedTourroutes'));
     }
 
     public function categoryTourpackages(Tourpackagecat $tourpackagecat, Request $request)

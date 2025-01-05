@@ -28,7 +28,7 @@
 
         <div class="flex flex-col px-4 space-y-4 leading-relaxed mt-8">
             {{-- title --}}
-            <div class="    flex flex-col space-y-4 lg:space-y-0 lg:flex-row justify-between items-start">
+            <div class="flex flex-col space-y-4 lg:space-y-0 lg:flex-row justify-between items-start">
                 <div>
                     {{-- <h3 class="w-fit">{{ $tourpackage->tourpackagecat->name ?? 'cat' }}</h3> --}}
                     <h2 class="text-2xl lg:text-3xl font-semibold capitalize mb-2">{{ $tourpackage->name }}</h2>
@@ -41,10 +41,12 @@
                 <a href="#pesan" class="btn">Book Now</a>
             </div>
 
-            <div class="pb-8">
-                <h2 class="text-xl font-semibold mb-2">Detail Harga</h2>
+            <details class="pb-6">
+                <summary class="text-lg text-orange-500 hover:underline cursor-pointer w-fit font-semibold mb-2">Detail
+                    Harga
+                </summary>
                 <div class="text-price">{!! $tourpackage->price_detail !!}</div>
-            </div>
+            </details>
 
             {{-- itenary --}}
             <x-details title="Itenary" bg="bg-green-50" :description="$tourpackage->itenary_description" detail_title="Detail Itenary"
@@ -85,7 +87,7 @@
     </div>
 
     <!-- swiper -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
     <script>
         new Swiper(".card-wrapper", {
             loop: true,

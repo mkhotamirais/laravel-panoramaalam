@@ -6,9 +6,11 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CarrentalcatController;
 use App\Http\Controllers\CarrentalController;
 use App\Http\Controllers\DashController;
+use App\Http\Controllers\DestinationblogController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TourpackagecatController;
 use App\Http\Controllers\TourpackageController;
+use App\Http\Controllers\TourrouteController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,8 @@ Route::middleware([SetLocale::class])->group(function () {
 
     Route::resource('/tourpackages', TourpackageController::class);
     Route::get('/{tourpackagecat:slug}/categorytourpackages', [PublicController::class, 'categoryTourpackages'])->name('category-tourpackages');
+
+    Route::resource('/destinationblogs', DestinationblogController::class);
 
     Route::middleware('guest')->group(function () {
         // Route::view('/basmalah', 'auth.register')->name('register');
@@ -47,6 +51,7 @@ Route::middleware([SetLocale::class])->group(function () {
         Route::resource('/blogcats', BlogcatController::class);
         Route::resource('/carrentalcats', CarrentalcatController::class);
         Route::resource('/tourpackagecats', TourpackagecatController::class);
+        Route::resource('/tourroutes', TourrouteController::class);
     });
 });
 

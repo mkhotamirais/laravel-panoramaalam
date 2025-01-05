@@ -3,8 +3,7 @@
 <div class="relative shadow hover:shadow-lg transition rounded overflow-hidden flex flex-col">
     {{-- cover photo --}}
     <img src="{{ $tourpackage->banner ? asset('storage/' . $tourpackage->banner) : asset('storage/svg/panorama_icon.svg') }}"
-        alt="{{ $tourpackage->title ?? 'tourpackage banner' }}"
-        class="object-cover object-center w-full h-56 bg-gray-100">
+        alt="{{ $tourpackage->title ?? 'tourpackage banner' }}" class="object-contain object-center w-full bg-gray-100">
 
     <x-badge-cat-corner :route="'category-tourpackages'" :cat="$tourpackage->tourpackagecat" />
 
@@ -20,6 +19,11 @@
         <span class="text-gray-600 mt-2">Mulai dari:</span>
         <p class="text-2xl mb-4 grow font-semibold">Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span
                 class="text-sm text-gray-600">/ Orang</span></p>
+        <div>
+            @foreach ($tourpackage->tourroutes as $tourroute)
+                <div>{{ $tourroute->name }}</div>
+            @endforeach
+        </div>
         <a href="{{ route('tourpackages.show', $tourpackage) }}" class="btn">Book</a>
     </div>
 

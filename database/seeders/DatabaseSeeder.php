@@ -9,6 +9,7 @@ use App\Models\Carrentalcat;
 use App\Models\Tourpackage;
 use App\Models\Tourpackagecat;
 use App\Models\User;
+use App\Models\Destinationblog;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -89,6 +90,14 @@ class DatabaseSeeder extends Seeder
             'info_description' => 'panorama alam info description',
             'info_detail' => 'panorama alam info detail',
             'tourpackagecat_id' => 1,
+            'user_id' => 1
+        ]);
+
+        Destinationblog::firstOrCreate([
+            'id' => 1,
+            'title' => 'panorama alam destination blog',
+            'slug' => 'panorama-alam-destination-blog',
+            'content' => 'panorama alam destination blog content',
             'user_id' => 1
         ]);
     }

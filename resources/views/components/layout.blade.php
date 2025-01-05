@@ -13,6 +13,7 @@
 
     {{-- Swiper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     {{-- Alpine --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -60,7 +61,7 @@
                         </div>
                         @foreach (__('menu.header.main-menu') as $menu)
                             <a href="{{ route($menu['name']) }}"
-                                class="font-montserrat text-2xl p-4 text-white hover:text-orange-500 transition">{{ $menu['label'] }}</a>
+                                class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-white' }} font-montserrat text-2xl p-4 hover:text-orange-500 transition">{{ $menu['label'] }}</a>
                         @endforeach
                         <div class="mt-8">
                             <h3 class="text-center text-orange-500 mb-4">{{ __('menu.header.contact-btn') }}</h3>
@@ -115,7 +116,7 @@
                     <nav class="flex flex-col gap-2 mt-4">
                         @foreach (__('menu.header.main-menu') as $menu)
                             <a href="{{ route($menu['name']) }}"
-                                class="text-gray-600 hover:text-orange-400 transition w-fit">{{ $menu['label'] }}</a>
+                                class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600' }} hover:text-orange-400 transition w-fit">{{ $menu['label'] }}</a>
                         @endforeach
                     </nav>
                 </div>

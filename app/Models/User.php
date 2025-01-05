@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tourpackage::class);
     }
+
+    public function destinationblogs()
+    {
+        return $this->hasMany(Destinationblog::class);
+    }
 }

@@ -146,6 +146,23 @@
                 @enderror
             </div>
 
+            {{-- tourroute --}}
+            <div class="mb-4">
+                <label for="">Tour Routes</label>
+                <a href="{{ route('tourroutes.index') }}" class="text-sm text-orange-500 hover:underline">tambah
+                    tour route</a>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                    @foreach ($tourroutes as $tourroute)
+                        <div class="input">
+                            <input type="checkbox" id="tourroute_{{ $tourroute->id }}" name="tourroutes[]"
+                                value="{{ $tourroute->id }}"
+                                {{ in_array($tourroute->id, old('tourroutes', [])) ? 'checked' : '' }}>
+                            <label for="tourroute_{{ $tourroute->id }}">{{ $tourroute->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             {{-- banner --}}
             <div class="mb-4">
                 <label for="banner">Banner</label>

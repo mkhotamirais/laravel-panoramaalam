@@ -9,8 +9,14 @@
 
     <title>{{ env('APP_NAME', 'Laravel') }}</title>
 
+    {{-- Swiper --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    {{-- CKEditor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
+    {{-- Alpine --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -39,21 +45,17 @@
                                 x-transition:leave-start="translate-x-0 opacity-100"
                                 x-transition:leave-end="-translate-x-full opacity-0"
                                 @click.outside="if (window.innerWidth < 1024) open = false"
-                                class="fixed w-72 left-0 top-16 bottom-0 bg-white p-4 border-r lg:translate-x-0">
+                                class="fixed w-72 left-0 top-16 bottom-0 bg-white p-4 border-r lg:translate-x-0 overflow-auto">
                                 <div class="flex flex-col gap-2">
                                     <h2 class="text-xl font-semibold">Admin Dashboard</h2>
-                                    <a href="{{ route('dashboard') }}">Dashboard</a>
-                                    <p class="font-semibold mt-3">Users</p>
-                                    <a href="{{ route('users') }}">User List</a>
-                                    <p class="font-semibold mt-3">Blogs</p>
-                                    <a href="{{ route('blogs.index') }}">Blog List</a>
-                                    <a href="{{ route('blogcats.index') }}">Blog Categories</a>
-                                    <p class="font-semibold mt-3">Car Rentals</p>
-                                    <a href="{{ route('carrentals.index') }}">Car Rental List</a>
-                                    <a href="{{ route('carrentalcats.index') }}">Car Rental Categories</a>
-                                    <p class="font-semibold mt-3">Tour Packages</p>
-                                    <a href="{{ route('tourpackages.index') }}">Tour Package List</a>
-                                    <a href="{{ route('tourpackagecats.index') }}">Tour Package Categories</a>
+                                    @foreach (__('menudash.aside.main-menu') as $menu)
+                                        @if ($menu['name'] !== '')
+                                            <a href="{{ route($menu['name']) }}"
+                                                class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>
+                                        @else
+                                            <p class="font-semibold mt-3">{{ $menu['label'] }}</p>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -115,6 +117,8 @@
             </div>
         </div>
     </footer> --}}
+
+
 </body>
 
 </html>

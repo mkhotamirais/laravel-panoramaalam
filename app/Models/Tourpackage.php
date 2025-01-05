@@ -51,4 +51,9 @@ class Tourpackage extends Model
     {
         return $this->hasMany(Tourimage::class);
     }
+
+    public function tourroutes()
+    {
+        return $this->belongsToMany(Tourroute::class, 'tourpackage_tourroute');
+    }
 }

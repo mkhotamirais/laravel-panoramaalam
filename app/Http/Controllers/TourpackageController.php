@@ -6,6 +6,7 @@ use App\Models\Tourpackage;
 use Illuminate\Support\Str;
 use App\Models\Tourpackagecat;
 use App\Models\Tourimage;
+use App\Models\Tourroute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -39,7 +40,8 @@ class TourpackageController extends Controller implements HasMiddleware
     public function create()
     {
         $tourpackagecats = Tourpackagecat::all();
-        return view('dashboard.tour-package.create', compact('tourpackagecats'));
+        $tourroutes = Tourroute::all();
+        return view('dashboard.tour-package.create', compact('tourpackagecats', 'tourroutes'));
     }
 
     /**
@@ -60,6 +62,8 @@ class TourpackageController extends Controller implements HasMiddleware
             'policy_detail' => 'nullable',
             'info_description' => 'required',
             'info_detail' => 'nullable',
+            'tourroutes' => 'required|array|min:1',
+            'tourroutes.*' => 'exists:tourroutes,id',
             'banner' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'tourpackagecat_id' => 'nullable|integer|exists:tourpackagecats,id',
         ]);
@@ -88,6 +92,8 @@ class TourpackageController extends Controller implements HasMiddleware
             }
         }
 
+        $tourpackage->tourroutes()->attach($fields['tourroutes']);
+
         // Redirect
         // return back()->with('success', 'Tourpackage created successfully');
         return redirect('/tourpackages')->with('success', 'Tourpackage created successfully');
@@ -109,8 +115,10 @@ class TourpackageController extends Controller implements HasMiddleware
     {
         // authorize
         Gate::authorize('modify', $tourpackage);
+
+        $tourroutes = Tourroute::all();
         $tourpackagecats = Tourpackagecat::all();
-        return view('dashboard.tour-package.edit', compact('tourpackage', 'tourpackagecats'));
+        return view('dashboard.tour-package.edit', compact('tourpackage', 'tourpackagecats', 'tourroutes'));
     }
 
     /**
@@ -133,6 +141,8 @@ class TourpackageController extends Controller implements HasMiddleware
             'policy_detail' => 'nullable',
             'info_description' => 'required',
             'info_detail' => 'nullable',
+            'tourroutes' => 'required|array|min:1',
+            'tourroutes.*' => 'exists:tourroutes,id',
             'banner' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'delete_images' => 'nullable|array',
@@ -157,6 +167,11 @@ class TourpackageController extends Controller implements HasMiddleware
         }
         // Update the tourpackage
         $tourpackage->update([...$fields, 'slug' => $slug, 'banner' => $path]);
+
+        // Sinkronisasi tourroutes jika ada
+        if ($request->has('tourroutes')) {
+            $tourpackage->tourroutes()->sync($fields['tourroutes']);
+        }
 
         // Hapus gambar yang dipilih
         if ($request->has('delete_images')) {

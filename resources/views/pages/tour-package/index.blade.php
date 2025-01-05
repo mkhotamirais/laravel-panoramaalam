@@ -1,28 +1,12 @@
 <x-layout :title="__('menu.tour-package.title')">
-    {{-- untuk single tour package (nanti dipindah) --}}
-
-    {{-- <section>
-        <div>carousel</div>
-        <div>
-            <h3>topjudul</h3>
-            <h2>big judul</h2>
-        </div>
-        <div>
-            <p>harga</p>
-            <button>tombol pesan</button>
-        </div>
-    </section> --}}
     <x-section-hero :title="__('menu.tour-package.title')">
-        {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
-        {{-- search form --}}
         <form class="mt-8">
-            {{-- @if (request('category'))
-                <input type="hidden" name="category" value="{{ request('category') }}">
+            {{-- Mempertahankan nilai dari parameter "tourroutes" --}}
+            @if (request('tourroutes'))
+                @foreach ((array) request('tourroutes') as $tourroute)
+                    <input type="hidden" name="tourroutes[]" value="{{ $tourroute }}">
+                @endforeach
             @endif
-
-            @if (request('author'))
-                <input type="hidden" name="author" value="{{ request('author') }}">
-            @endif --}}
 
             <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
                 <div class="relative w-full">
@@ -45,7 +29,31 @@
         </form>
 
         <x-badge-cat :cats="$tourpackagecats" :route="'category-tourpackages'" />
+
+        @if (!empty($selectedTourroutes))
+            <form id="filterForm" action="{{ route('tour-package') }}" method="GET" class="flex mt-2 items-center">
+                {{-- Mempertahankan nilai dari parameter "search" --}}
+                @if (request('search'))
+                    <input type="hidden" name="search" value="{{ request('search') }}">
+                @endif
+                <label class="mr-2 text-sm">Routes :</label>
+                <div class="flex gap-1">
+                    @foreach ($tourroutes as $tourroute)
+                        <input class="hidden" type="checkbox" id="filter_tourroute_{{ $tourroute->slug }}"
+                            name="tourroutes[]" value="{{ $tourroute->slug }}"
+                            {{ in_array($tourroute->slug, $selectedTourroutes) ? 'checked' : '' }}
+                            onchange="document.getElementById('filterForm').submit()">
+                        <label for="filter_tourroute_{{ $tourroute->slug }}"
+                            class="font-light border backdrop-blur border-gray-700 rounded-lg hover:border-orange-500 text-xs py-[0.10rem] px-2 {{ in_array($tourroute->slug, $selectedTourroutes) ? 'bg-orange-500' : '' }}">{{ $tourroute->name }}</label>
+                    @endforeach
+                </div>
+            </form>
+        @endif
+
     </x-section-hero>
+    <div class="container">
+
+    </div>
     {{-- paket wisata list --}}
     <section class="py-16">
         <div class="container">

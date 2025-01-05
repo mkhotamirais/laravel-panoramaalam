@@ -113,4 +113,9 @@
             </div>
         </div>
     </section> --}}
+
+    {{-- destination blog --}}
+    <section class="container py-16">
+        <x-blog-destination :destinationblogs="$destinationblogs"></x-blog-destination>
+    </section>
 </x-layout>
