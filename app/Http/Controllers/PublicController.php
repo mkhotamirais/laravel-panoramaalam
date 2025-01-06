@@ -25,6 +25,7 @@ class PublicController extends Controller
     // Blog
     public function blog(Request $request)
     {
+        $destinationblogs = Destinationblog::all();
         $blogs = Blog::latest();
 
         $search = $request->search;
@@ -35,7 +36,7 @@ class PublicController extends Controller
         $blogs = $blogs->paginate(6);
         $blogcats = Blogcat::all();
 
-        return view('pages.blog.index', compact('blogs', 'search', 'blogcats'));
+        return view('pages.blog.index', compact('blogs', 'search', 'blogcats', 'destinationblogs'));
     }
 
     public function userBlogs(User $user, Request $request)
@@ -70,6 +71,7 @@ class PublicController extends Controller
     // Car Rental
     public function carrental(Request $request)
     {
+        $destinationblogs = Destinationblog::all();
         $carrentals = Carrental::latest();
         $search = $request->search;
 
@@ -80,7 +82,7 @@ class PublicController extends Controller
         $carrentals = $carrentals->paginate(6);
         $carrentalcats = Carrentalcat::all();
 
-        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search'));
+        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'destinationblogs'));
     }
 
     public function categoryCarrentals(Carrentalcat $carrentalcat, Request $request)
@@ -101,6 +103,7 @@ class PublicController extends Controller
     // Tour Package
     public function tourpackage(Request $request)
     {
+        $destinationblogs = Destinationblog::all();
         $selectedTourroutes = $request->input('tourroutes', []);
 
         $tourpackages = Tourpackage::when($selectedTourroutes, function ($query) use ($selectedTourroutes) {
@@ -121,7 +124,7 @@ class PublicController extends Controller
         $tourpackagecats = Tourpackagecat::all();
         $tourroutes = Tourroute::all();
 
-        return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search', 'tourroutes', 'selectedTourroutes'));
+        return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search', 'tourroutes', 'selectedTourroutes', 'destinationblogs'));
     }
 
     public function categoryTourpackages(Tourpackagecat $tourpackagecat, Request $request)
@@ -137,5 +140,19 @@ class PublicController extends Controller
         $tourpackagecats = Tourpackagecat::all();
 
         return view('pages.tour-package.cat-tour-package', compact('categoryTourpackages', 'tourpackagecat', 'tourpackagecats', 'search'));
+    }
+
+    public function destinationblog(Request $request)
+    {
+        $destinationblogs = Destinationblog::latest();
+
+        $search = $request->search;
+        if ($search) {
+            $destinationblogs = $destinationblogs->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        $destinationblogs = $destinationblogs->paginate(6);
+
+        return view('pages.destination-blog.index', compact('destinationblogs', 'search'));
     }
 }

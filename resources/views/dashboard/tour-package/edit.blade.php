@@ -207,21 +207,25 @@
                 @enderror
             </div>
             {{-- Current Images --}}
-            <div class="mb-4">
-                <label>Current Images</label>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
-                    @foreach ($tourpackage->tourimages as $image)
-                        <div>
-                            <img src="{{ asset('storage/' . $image->image_path) }}"
-                                alt="{{ $tourpackage->name ?? 'image' }}"
-                                class="w-full h-32 object-cover object-center rounded-lg">
-                            <label>
-                                <input type="checkbox" name="delete_images[]" value="{{ $image->id }}"> Delete
-                            </label>
-                        </div>
-                    @endforeach
+            @if ($tourpackage->tourimages->count() > 0)
+                <div class="mb-4">
+                    <label>Current Images</label>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
+                        @foreach ($tourpackage->tourimages as $image)
+                            <div>
+                                <img src="{{ asset('storage/' . $image->image_path) }}"
+                                    alt="{{ $tourpackage->name ?? 'image' }}"
+                                    class="w-full h-32 object-cover object-center rounded-lg">
+                                <label>
+                                    <input type="checkbox" name="delete_images[]" value="{{ $image->id }}">
+                                    Delete
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
+
             {{-- Tour Images --}}
             <div class="mb-4">
                 <label for="images">Add Tour Images</label>

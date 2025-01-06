@@ -64,4 +64,7 @@
             </div>
         </div>
     </section>
+
+    <x-section-destination :destinationblogs="$destinationblogs" />
+
 </x-layout>

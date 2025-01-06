@@ -34,18 +34,19 @@
         </div>
     </div>
 
-    {{-- <div class="container">
+    <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
             <h2 class="text-2xl font-semibold">Destinationblog lainnya</h2>
-            <a href="{{ route('destinationblog') }}" class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
+            <a href="{{ route('destination-blog') }}"
+                class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
                 <span>Lihat Semua</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
             @foreach ($latestThreeDestinationblogs as $destinationblog)
-                <x-destinationblog-card :destinationblog="$destinationblog"></x-destinationblog-card>
+                <x-blog-card :blog="$destinationblog" route="destinationblogs.show" :fullblog="false"></x-blog-card>
             @endforeach
         </div>
-    </div> --}}
+    </div>
 </x-layout>

@@ -34,8 +34,6 @@
         <x-badge-cat :cats="$blogcats" />
     </x-section-hero>
 
-
-
     @if ($search)
         <div class="container py-6">
             <p class="text-xl">
@@ -62,6 +60,9 @@
             </div>
         </div>
     @endif
+
+    <x-section-destination :destinationblogs="$destinationblogs" />
+
 
     {{-- <x-section-contact /> --}}
 

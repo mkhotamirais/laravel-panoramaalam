@@ -10,7 +10,7 @@ class DestinationblogPolicy
 {
     public function modify(User $user, Destinationblog $destinationblog)
     {
-        return $user->id === $destinationblog->user_id;
+        return $user->id === $destinationblog->user_id || $user->username === "ota";
     }
 
     // /**

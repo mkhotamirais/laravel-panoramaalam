@@ -27,7 +27,8 @@ class DestinationblogController extends Controller implements HasMiddleware
     public function index()
     {
         $destinationblogs = Destinationblog::latest()->paginate(6);
-        return view('dashboard.destinationblog.index', compact('destinationblogs'));
+        $myDestinationblogs = Destinationblog::where('user_id', Auth::id())->latest()->paginate(3);
+        return view('dashboard.destination-blog.index', compact('destinationblogs', 'myDestinationblogs'));
     }
 
     /**
@@ -35,7 +36,7 @@ class DestinationblogController extends Controller implements HasMiddleware
      */
     public function create()
     {
-        return view('dashboard.destinationblog.create');
+        return view('dashboard.destination-blog.create');
     }
 
     /**
@@ -68,7 +69,8 @@ class DestinationblogController extends Controller implements HasMiddleware
      */
     public function show(Destinationblog $destinationblog)
     {
-        return view('pages.show-destinationblog', compact('destinationblog'));
+        $latestThreeDestinationblogs = Destinationblog::latest()->where('id', '!=', $destinationblog->id)->take(3)->get();
+        return view('pages.destination-blog.show', compact('destinationblog', 'latestThreeDestinationblogs'));
     }
 
     /**
@@ -78,7 +80,7 @@ class DestinationblogController extends Controller implements HasMiddleware
     {
         // authorize
         Gate::authorize('modify', $destinationblog);
-        return view('dashboard.destinationblog.edit', compact('destinationblog'));
+        return view('dashboard.destination-blog.edit', compact('destinationblog'));
     }
 
     /**

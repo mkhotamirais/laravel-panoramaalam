@@ -161,6 +161,9 @@
                         </div>
                     @endforeach
                 </div>
+                @error('tourroutes')
+                    <p class="error">{{ $message }}</p>
+                @enderror
             </div>
 
             {{-- banner --}}

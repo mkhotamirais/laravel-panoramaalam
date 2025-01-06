@@ -29,7 +29,7 @@
                             <form action="{{ route('carrentals.destroy', $carrental) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
+                                <button onclick="return confirm('Are you sure?')" type="submit"
                                     class="bg-red-500 hover:bg-red-600 py-1 px-3 rounded-full text-white text-sm">Hapus</button>
                             </form>
                         </div>

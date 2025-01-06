@@ -1,4 +1,6 @@
-<section class="min-h-[30vh]">
+@props(['bg' => 'bg-white'])
+
+<section class="min-h-[30vh] {{ $bg }}">
     <div class="container py-16">
         <div class="flex flex-col gap-2 items-center justify-center text-center">
             <h1 class="title">{{ __('menu.home.contact.big-title') }}</h1>

@@ -1,5 +1,5 @@
-<x-layout :title="__('menu.car-rental.title')">
-    <x-section-hero :title="__('menu.car-rental.title')">
+<x-layout :title="__('menu.destinationblog.title')">
+    <x-section-hero :title="__('menu.destinationblog.title')">
         {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
         {{-- search form --}}
         <form class="mt-8">
@@ -20,7 +20,7 @@
                     </div>
                     <input name="search" autocomplete="off" value="{{ $search }}"
                         class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
-                        placeholder="Search blogs" type="text" id="search">
+                        placeholder="Search destinationblogs" type="text" id="search">
                 </div>
                 <div>
                     <button type="submit"
@@ -30,21 +30,36 @@
                 </div>
             </div>
         </form>
-
-        <x-badge-cat :cats="$carrentalcats" :route="'category-carrentals'" />
     </x-section-hero>
 
-    {{-- sewa mobil list --}}
-    <section class="py-16">
+    @if ($search)
+        <div class="container py-6">
+            <p class="text-xl">
+                Hasil pencarian <span class="text-orange-500 font-semibold italic">"{{ $search }}"</span> dari
+                semua destinationblog ( {{ $destinationblogs->total() }} )
+            </p>
+        </div>
+    @endif
+
+    {{-- destinationblog list --}}
+    @if ($destinationblogs->total() == 0)
         <div class="container">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                @foreach ($carrentals as $carrental)
-                    <x-carrental-card :carrental="$carrental"></x-carrental-card>
+            <p class="text-3xl italic font-semibold mt-4">Destinationblog tidak ditemukan</p>
+        </div>
+    @else
+        <div class="container py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                @foreach ($destinationblogs as $destinationblog)
+                    <x-blog-card :blog="$destinationblog" route="destinationblogs.show" :fullblog="false"></x-blog-card>
                 @endforeach
             </div>
+            <div class="my-12">
+                {{ $destinationblogs->links() }}
+            </div>
         </div>
-    </section>
+    @endif
 
-    <x-section-destination :destinationblogs="$destinationblogs" />
+    {{-- <x-section-contact /> --}}
+
 
 </x-layout>

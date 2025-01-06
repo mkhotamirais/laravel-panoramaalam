@@ -19,13 +19,17 @@
         <span class="text-gray-600 mt-2">Mulai dari:</span>
         <p class="text-2xl mb-4 grow font-semibold">Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span
                 class="text-sm text-gray-600">/ Orang</span></p>
-        <div>
-            @foreach ($tourpackage->tourroutes as $tourroute)
-                <div>{{ $tourroute->name }}</div>
-            @endforeach
+        <div class="mb-4">
+            <span class="text-gray-600 min-w-fit font-semibold">Route :</span>
+            <span class="">
+                @foreach ($tourpackage->tourroutes as $index => $tourroute)
+                    <span class="min-w-fit text-sm capitalize">
+                        {{ $tourroute->name }}{{ $index < $tourpackage->tourroutes->count() - 1 ? ' -' : '' }}
+                    </span>
+                @endforeach
+            </span>
         </div>
         <a href="{{ route('tourpackages.show', $tourpackage) }}" class="btn">Book</a>
     </div>
-
     {{ $slot }}
 </div>

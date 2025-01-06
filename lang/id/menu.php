@@ -30,6 +30,11 @@ return [
             'big-title' => 'Blog Terkait Panorama Alam',
             'all-blog-btn' => 'Lihat Semua Blog'
         ],
+        'destination' => [
+            'title' => 'Destinasi Favorit',
+            'big-title' => 'Jelajahi Destinasi Favorit Untuk Anda',
+            'all-destination-btn' => 'Lihat Semua Destinasi'
+        ],
         'contact' => [
             'big-title' => 'Mau sewa mobil atau pilih paket liburan?',
             'description' => 'Hubungi kami untuk reservasi dan info lebih lengkap.',
@@ -51,5 +56,8 @@ return [
     ],
     'blog' => [
         'title' => 'Blog'
+    ],
+    'destinationblog' => [
+        'title' => 'Blog Destinasi'
     ]
 ];

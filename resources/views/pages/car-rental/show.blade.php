@@ -30,7 +30,7 @@
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
             <h2 class="text-2xl font-semibold">Carrental lainnya</h2>
-            <a href="{{ route('carrentals.index') }}"
+            <a href="{{ route('car-rental') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
                 <span>Lihat Semua</span>
                 <x-bi-arrow-right class="w-4 flex" />

@@ -1,6 +1,6 @@
 @props(['destinationblogs' => []])
 
-<div class="swiper mt-8 mb-4">
+<div class="swiper my-4">
     <div class="card-wrapper relative pb-8 pt-0 lg:pt-4">
         <div class="card-list swiper-wrapper">
             @foreach ($destinationblogs as $destinationblog)

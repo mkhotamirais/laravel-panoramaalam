@@ -17,7 +17,7 @@ class TourrouteController extends Controller
     {
         // dd($request);
         $fields = $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255|unique:tourroutes',
         ]);
 
         $slug = Str::slug($request->name);
@@ -33,9 +33,11 @@ class TourrouteController extends Controller
     public function update(Request $request, Tourroute $tourroute)
     {
         $fields = $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255|unique:tourroutes',
         ]);
-        $tourroute->update($fields);
+        $slug = Str::slug($request->name);
+
+        $tourroute->update([...$fields, 'slug' => $slug]);
         return back();
     }
 }

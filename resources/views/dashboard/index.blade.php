@@ -6,9 +6,10 @@
 
         {{-- cards --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-            <x-dash-card title="Blogs" total="{{ $blogs->count() }}" :links="$blogLinks" />
-            <x-dash-card title="Car Rental" total="{{ $carrentals->count() }}" :links="$carrentalLinks" />
-            <x-dash-card title="Tour Package" total="{{ $tourpackages->count() }}" :links="$tourpackageLinks" />
+            <x-dash-card title="Blog" total="{{ $blogs->count() }}" :links="$links['blog']" />
+            <x-dash-card title="Destination Blog" total="{{ $destinationblogs->count() }}" :links="$links['destinationblog']" />
+            <x-dash-card title="Car Rental" total="{{ $carrentals->count() }}" :links="$links['carrental']" />
+            <x-dash-card title="Tour Package" total="{{ $tourpackages->count() }}" :links="$links['tourpackage']" />
         </div>
     </div>
 </x-authlayout>

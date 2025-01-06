@@ -19,6 +19,8 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/car-rental', [PublicController::class, 'carrental'])->name('car-rental');
     Route::get('/tour-package', [PublicController::class, 'tourpackage'])->name('tour-package');
     Route::get('/blog', [PublicController::class, 'blog'])->name('blog');
+    // not in menu
+    Route::get('/destinationblog', [PublicController::class, 'destinationblog'])->name('destination-blog');
 
     Route::resource('/blogs', BlogController::class);
     Route::get('/{user:username}/userblogs', [PublicController::class, 'userBlogs'])->name('user-blogs');

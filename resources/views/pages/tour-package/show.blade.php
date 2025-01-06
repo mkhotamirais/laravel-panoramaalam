@@ -32,6 +32,7 @@
                 <div>
                     {{-- <h3 class="w-fit">{{ $tourpackage->tourpackagecat->name ?? 'cat' }}</h3> --}}
                     <h2 class="text-2xl lg:text-3xl font-semibold capitalize mb-2">{{ $tourpackage->name }}</h2>
+
                     <span class="text-gray-600">Mulai dari:</span>
                     <p class="text-2xl mb-2 font-semibold">
                         Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span class="text-sm text-gray-600">/
@@ -47,6 +48,18 @@
                 </summary>
                 <div class="text-price">{!! $tourpackage->price_detail !!}</div>
             </details>
+
+            {{-- route --}}
+            <div class="bg-green-50 px-6 py-2 rounded-xl">
+                <span class="text-gray-600 min-w-fit font-semibold">Route :</span>
+                <span class="">
+                    @foreach ($tourpackage->tourroutes as $index => $tourroute)
+                        <span class="min-w-fit text-sm capitalize">
+                            {{ $tourroute->name }}{{ $index < $tourpackage->tourroutes->count() - 1 ? ' -' : '' }}
+                        </span>
+                    @endforeach
+                </span>
+            </div>
 
             {{-- itenary --}}
             <x-details title="Itenary" bg="bg-green-50" :description="$tourpackage->itenary_description" detail_title="Detail Itenary"
@@ -73,7 +86,7 @@
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
             <h2 class="text-2xl font-semibold">Tourpackage lainnya</h2>
-            <a href="{{ route('tourpackages.index') }}"
+            <a href="{{ route('tour-package') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
                 <span>Lihat Semua</span>
                 <x-bi-arrow-right class="w-4 flex" />

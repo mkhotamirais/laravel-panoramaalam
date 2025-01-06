@@ -82,6 +82,9 @@
         </div>
     </section>
 
+    {{-- destination blog --}}
+    <x-section-destination :destinationblogs="$destinationblogs" />
+
     {{-- contact (tidak dipakai) --}}
     {{-- <section class="bg-[url('https://picsum.photos/1440/720')] bg-conver bg-center min-h-[30vh] bg-fixed">
         <div class="bg-gradient-to-t from-black/50 to-black/70 min-h-[30vh] flex flex-col items-center justify-center">
@@ -101,7 +104,7 @@
     </section> --}}
 
     {{-- contact --}}
-    <x-section-contact />
+    <x-section-contact bg="bg-gray-50" />
 
     {{-- galery --}}
     {{-- <section class="py-16">
@@ -113,9 +116,4 @@
             </div>
         </div>
     </section> --}}
-
-    {{-- destination blog --}}
-    <section class="container py-16">
-        <x-blog-destination :destinationblogs="$destinationblogs"></x-blog-destination>
-    </section>
 </x-layout>

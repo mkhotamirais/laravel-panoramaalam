@@ -23,7 +23,7 @@
             {{-- Car rental category --}}
             <div class="mb-4">
                 <label for="carrentalcat_id">Category</label>
-                <a href="{{ route('blogcats.index') }}" class="text-sm text-orange-500 hover:underline">tambah
+                <a href="{{ route('carrentalcats.index') }}" class="text-sm text-orange-500 hover:underline">tambah
                     category</a>
                 <select value="{{ old('carrentalcat_id') }}"
                     class="select @error('carrentalcat_id') !ring-red-500 @enderror" name="carrentalcat_id"

@@ -30,6 +30,11 @@ return [
             'big-title' => 'Blogs About Panorama Alam',
             'all-blog-btn' => 'View All Blogs'
         ],
+        'destination' => [
+            'title' => 'Favorite Destinations',
+            'big-title' => 'Explore Favorite Destinations for You',
+            'all-destination-btn' => 'View All Destinations'
+        ],
         'contact' => [
             'big-title' => 'Want to rent a car or choose a holiday package?',
             'description' => 'Contact us for reservations and more information.',
@@ -51,5 +56,8 @@ return [
     ],
     'blog' => [
         'title' => 'Blog'
+    ],
+    'destinationblog' => [
+        'title' => 'Destination Blog'
     ]
 ];

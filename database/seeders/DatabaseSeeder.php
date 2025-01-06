@@ -10,6 +10,7 @@ use App\Models\Tourpackage;
 use App\Models\Tourpackagecat;
 use App\Models\User;
 use App\Models\Destinationblog;
+use App\Models\Tourroute;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,11 +29,25 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::firstOrCreate([
+        User::Create([
             'id' => 1,
-            'username' => 'ahmad',
-            'email' => 'ahmad@gmail.com',
-            'password' => 'ahmad'
+            'username' => 'budi',
+            'email' => 'budi@panoramalalam.id',
+            'password' => 'Bismillah2025!'
+        ]);
+
+        User::Create([
+            'id' => 2,
+            'username' => 'aldi',
+            'email' => 'aldibedet03@gmail.com',
+            'password' => 'Bismillah2025'
+        ]);
+
+        User::Create([
+            'id' => 3,
+            'username' => 'ota',
+            'email' => 'ota@gmail.com',
+            'password' => 'ota'
         ]);
 
         // Blogcat::create(['name' => 'panorama alam', 'slug' => 'panorama-alam']);
@@ -76,7 +91,19 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1
         ]);
 
-        $tour1 = Tourpackage::Create([
+        Tourroute::create([
+            'id' => 1,
+            'name' => 'route 1',
+            'slug' => 'route-1'
+        ]);
+
+        Tourroute::create([
+            'id' => 2,
+            'name' => 'route 2',
+            'slug' => 'route-2'
+        ]);
+
+        Tourpackage::Create([
             'id' => 1,
             'name' => 'panorama alam tour package',
             'slug' => 'panorama-alam-tour-package',
@@ -93,11 +120,19 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1
         ]);
 
-        Destinationblog::firstOrCreate([
+        Destinationblog::Create([
             'id' => 1,
             'title' => 'panorama alam destination blog',
             'slug' => 'panorama-alam-destination-blog',
             'content' => 'panorama alam destination blog content',
+            'user_id' => 1
+        ]);
+
+        Destinationblog::Create([
+            'id' => 2,
+            'title' => 'panorama alam destination blog 2',
+            'slug' => 'panorama-alam-destination-blog-2',
+            'content' => 'panorama alam destination blog content 2',
             'user_id' => 1
         ]);
     }
