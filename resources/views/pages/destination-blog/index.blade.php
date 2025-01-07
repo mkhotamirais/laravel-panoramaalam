@@ -1,4 +1,8 @@
-<x-layout :title="__('menu.destinationblog.title')">
+<x-layout :meta="[
+    'title' => __('meta.destination-blog.title'),
+    'description' => __('meta.destination-blog.description'),
+    'keywords' => __('meta.destination-blog.keywords'),
+]">
     <x-section-hero :title="__('menu.destinationblog.title')">
         {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
         {{-- search form --}}

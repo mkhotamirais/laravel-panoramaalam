@@ -1,4 +1,8 @@
-<x-layout :title="__('menu.tour-package.title')">
+<x-layout :meta="[
+    'title' => __('meta.tour-package.title'),
+    'description' => __('meta.tour-package.description'),
+    'keywords' => __('meta.tour-package.keywords'),
+]">
     <x-section-hero :title="__('menu.tour-package.title')">
         <form class="mt-8">
             {{-- Mempertahankan nilai dari parameter "tourroutes" --}}

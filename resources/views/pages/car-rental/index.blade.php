@@ -1,4 +1,8 @@
-<x-layout :title="__('menu.car-rental.title')">
+<x-layout :meta="[
+    'title' => __('meta.car-rental.title'),
+    'description' => __('meta.car-rental.description'),
+    'keywords' => __('meta.car-rental.keywords'),
+]">
     <x-section-hero :title="__('menu.car-rental.title')">
         {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
         {{-- search form --}}

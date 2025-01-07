@@ -1,4 +1,10 @@
-@props(['title' => 'Home'])
+@props([
+    'meta' => [
+        'title' => __('meta.home.title'),
+        'description' => __('meta.home.description'),
+        'keywords' => __('meta.home.keywords'),
+    ],
+])
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -9,7 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{{ asset('storage/svg/panorama_icon.svg') }}" type="image/x-icon">
 
-    <title>{{ $title ?? env('APP_NAME') }} - Panorama Alam</title>
+    <title>{{ $meta['title'] ?? 'Panorama Alam' }}</title>
+    <meta name="description" content="{{ $meta['description'] ?? 'Paket wisata terbaik lombok' }}">
+    <meta name="keywords" content="{{ $meta['keywords'] ?? 'paket wisata Lombok, sewa mobil Lombok, travel Lombok' }}">
 
     {{-- Swiper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
