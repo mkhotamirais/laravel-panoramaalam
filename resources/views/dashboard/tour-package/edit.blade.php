@@ -197,6 +197,16 @@
                     });
             </script>
 
+            {{-- current cover photo if exist --}}
+            @if ($tourpackage->banner)
+                <label>Current banner</label>
+                <figure class="h-40 w-64 rounded-md mb-4 overflow-hidden">
+                    <img src="{{ asset('storage/' . $tourpackage->banner) }}"
+                        alt="{{ $tourpackage->name ?? 'carrental image' }}" width="400" height="400"
+                        class="w-full h-full object-cover origin-center">
+                </figure>
+            @endif
+
             {{-- banner --}}
             <div class="mb-4">
                 <label for="banner">Banner</label>

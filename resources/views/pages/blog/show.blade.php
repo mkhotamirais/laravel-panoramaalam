@@ -7,11 +7,12 @@
                     <h2 class="text-5xl font-semibold capitalize">{{ $blog->title }}</h2>
                     {{-- author and date --}}
                     <div class="text-gray-500 mt-2">
-                        <span>Posted {{ $blog->created_at->diffForHumans() }} by</span> <a
+                        <span>{{ __('menu.blog.show.post-detail.0') }} {{ $blog->created_at->diffForHumans() }}
+                            {{ __('menu.blog.show.post-detail.1') }}</span> <a
                             href="{{ route('user-blogs', $blog->user) }}"
                             class="text-orange-500 capitalize hover:underline">{{ $blog->user->username }}</a>
                         <span>
-                            in
+                            {{ __('menu.blog.show.post-detail.2') }}
                             @if ($blog->blogcat)
                                 <a href="{{ route('category-blogs', $blog->blogcat->slug) }}"
                                     class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
@@ -49,13 +50,13 @@
 
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
-            <h2 class="text-2xl font-semibold">Blog lainnya</h2>
+            <h2 class="text-2xl font-semibold mr-2">{{ __('menu.blog.show.others') }}</h2>
             <a href="{{ route('blog') }}" class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
-                <span>Lihat Semua</span>
+                <span>{{ __('menu.other.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mb-8">
             @foreach ($latestThreeBlogs as $blog)
                 <x-blog-card :blog="$blog"></x-blog-card>
             @endforeach

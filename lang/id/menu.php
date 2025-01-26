@@ -26,13 +26,13 @@ return [
             'detail-btn' => 'Cek Detail'
         ],
         'blogs' => [
-            'title' => 'Our Blogs',
+            'title' => 'Blog Kami',
             'big-title' => 'Temukan keindahan alam di setiap artikel',
             'all-blog-btn' => 'Lihat Semua Blog'
         ],
         'destination' => [
             'title' => 'Destinasi Favorit',
-            'big-title' => 'Temukan tempat terbaik untuk pengalaman tak terlupakan.',
+            'big-title' => 'Temukan tempat terbaik untuk pengalaman tak terlupakan',
             'all-destination-btn' => 'Lihat Semua Destinasi'
         ],
         'contact' => [
@@ -50,22 +50,53 @@ return [
     ],
     'car-rental' => [
         'title' => 'Sewa Mobil',
+        'rent-btn' => 'Sewa',
         'show' => [
-            'policy' => 'Kebijakan Rental Mobil',
-            'information' => 'Syarat Khusus'
+            'policy' => 'Kebijakan Sewa Mobil',
+            'information' => 'Syarat Khusus',
+            'others' => 'Sewa Mobil Lainnya'
         ]
     ],
     'tour-package' => [
         'title' => 'Paket Wisata',
+        'book-btn' => 'Pesan',
         'price' => [
             'start' => 'Mulai Dari',
             'end' => 'Orang'
+        ],
+        'show' => [
+            'others' => 'Paket Wisata Lainnya',
+            'book-btn' => 'Pesan Sekarang',
+            'price-details' => 'Detail Harga',
+            'itinerary' => 'Itinerary Perjalanan',
+            'policy' => 'Kebijakan',
+            'Information' => 'Informasi',
         ]
     ],
     'blog' => [
-        'title' => 'Blog'
+        'title' => 'Blog',
+        'read-more-btn' => 'Baca Selengkapnya',
+        'results' => [
+            'start' => 'Hasil Pencarian',
+            'end' => 'dari semua blog',
+            'not-found' => 'Blog tidak ditemukan'
+        ],
+        'show' => [
+            'others' => 'Blog Lainnya',
+            'post-detail' => ['Diposting', 'oleh', 'dalam'],
+        ]
     ],
     'destinationblog' => [
-        'title' => 'Blog Destinasi'
+        'title' => 'Blog Destinasi',
+        'show' => [
+            'others' => 'Blog Destinasi Lainnya'
+        ]
+    ],
+    'other' => [
+        'order' => 'Pesan Sekarang',
+        'order-btn' => 'Pesan / Hubungi via WhatsApp',
+        'payment' => 'Pembayaran',
+        'view-all' => 'Lihat Semua',
+        'search-btn' => 'Cari'
     ]
 ];

@@ -35,7 +35,8 @@
                 </span>
             @endif
         </div>
-        <a href="{{ route('tourpackages.show', $tourpackage) }}" class="btn">Book</a>
+        <a href="{{ route('tourpackages.show', $tourpackage) }}"
+            class="btn">{{ __('menu.tour-package.book-btn') }}</a>
     </div>
     {{ $slot }}
 </div>

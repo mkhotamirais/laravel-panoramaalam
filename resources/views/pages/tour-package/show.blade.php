@@ -33,47 +33,55 @@
                     {{-- <h3 class="w-fit">{{ $tourpackage->tourpackagecat->name ?? 'cat' }}</h3> --}}
                     <h2 class="text-2xl lg:text-3xl font-semibold capitalize mb-2">{{ $tourpackage->name }}</h2>
 
-                    <span class="text-gray-600">Mulai dari:</span>
+                    <span class="text-gray-600">{{ __('menu.tour-package.price.start') }}</span>
                     <p class="text-2xl mb-2 font-semibold">
                         Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span class="text-sm text-gray-600">/
-                            Orang</span></p>
+                            {{ __('menu.tour-package.price.end') }}</span></p>
 
                 </div>
-                <a href="#pesan" class="btn">Book Now</a>
+                <a href="#pesan" class="btn">{{ __('menu.tour-package.show.book-btn') }}</a>
             </div>
 
-            <details class="pb-6">
-                <summary class="text-lg text-orange-500 hover:underline cursor-pointer w-fit font-semibold mb-2">Detail
-                    Harga
-                </summary>
-                <div class="text-price">{!! $tourpackage->price_detail !!}</div>
-            </details>
+            @if ($tourpackage->price_detail)
+                <details class="pb-6">
+                    <summary class="text-lg text-orange-500 hover:underline cursor-pointer w-fit font-semibold mb-2">
+                        {{ __('menu.tour-package.show.price-details') }}
+                    </summary>
+                    <div class="text-price">{!! $tourpackage->price_detail !!}</div>
+                </details>
+            @endif
 
             {{-- route --}}
             <div class="bg-green-50 px-6 py-2 rounded-xl">
                 <span class="text-gray-600 min-w-fit font-semibold">Route :</span>
-                <span class="">
-                    @foreach ($tourpackage->tourroutes as $index => $tourroute)
-                        <span class="min-w-fit text-sm capitalize">
-                            {{ $tourroute->name }}{{ $index < $tourpackage->tourroutes->count() - 1 ? ' -' : '' }}
-                        </span>
-                    @endforeach
-                </span>
+                @if ($tourpackage->tourroutes->isEmpty())
+                    <span>-</span>
+                @else
+                    <span class="">
+                        @foreach ($tourpackage->tourroutes as $index => $tourroute)
+                            <span class="min-w-fit text-sm capitalize">
+                                {{ $tourroute->name }}{{ $index < $tourpackage->tourroutes->count() - 1 ? ' -' : '' }}
+                            </span>
+                        @endforeach
+                    </span>
+                @endif
             </div>
 
             {{-- itenary --}}
-            <x-details title="Itenary" bg="bg-green-50" :description="$tourpackage->itenary_description" detail_title="Detail Itenary"
-                :detail="$tourpackage->itenary_detail">
+            <x-details title="{{ __('menu.tour-package.show.itinerary') }}" bg="bg-green-50" :description="$tourpackage->itenary_description"
+                detail_title="Detail {{ __('menu.tour-package.show.itinerary') }}" :detail="$tourpackage->itenary_detail">
                 <x-slot:icon><x-bi-geo-alt class="w-6 h-6" /></x-slot:icon>
             </x-details>
 
             {{-- policy --}}
-            <x-details title="Policy" :description="$tourpackage->policy_description" detail_title="Detail Policy" :detail="$tourpackage->policy_detail">
+            <x-details title="{{ __('menu.tour-package.show.policy') }}" :description="$tourpackage->policy_description"
+                detail_title="Detail {{ __('menu.tour-package.show.policy') }}" :detail="$tourpackage->policy_detail">
                 <x-slot:icon><x-bi-shield-check class="w-6 h-6" /></x-slot:icon>
             </x-details>
 
             {{-- info --}}
-            <x-details title="Info" bg="bg-green-50" :description="$tourpackage->info_description" detail_title="Detail Info" :detail="$tourpackage->info_detail">
+            <x-details title="{{ __('menu.tour-package.show.Information') }}" bg="bg-green-50" :description="$tourpackage->info_description"
+                detail_title="Detail {{ __('menu.tour-package.show.Information') }}" :detail="$tourpackage->info_detail">
                 <x-slot:icon><x-bi-info-circle class="w-6 h-6" /></x-slot:icon>
             </x-details>
 
@@ -85,14 +93,14 @@
 
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
-            <h2 class="text-2xl font-semibold">Tourpackage lainnya</h2>
+            <h2 class="text-2xl font-semibold">{{ __('menu.tour-package.show.others') }}</h2>
             <a href="{{ route('tour-package') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
-                <span>Lihat Semua</span>
+                <span>{{ __('menu.other.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mb-8">
             @foreach ($latestThreeTourpackages as $tourpackage)
                 <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
             @endforeach

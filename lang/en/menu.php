@@ -32,7 +32,7 @@ return [
         ],
         'destination' => [
             'title' => 'Favorite Destinations',
-            'big-title' => 'Find the best places for unforgettable experiences.',
+            'big-title' => 'Find the best places for unforgettable experiences',
             'all-destination-btn' => 'View All Destinations'
         ],
         'contact' => [
@@ -50,24 +50,53 @@ return [
     ],
     'car-rental' => [
         'title' => 'Car Rental',
+        'rent-btn' => 'Rent',
         'show' => [
             'policy' => 'Car Rental Policy',
-            'information' => 'Important Terms'
+            'information' => 'Important Terms',
+            'others' => 'Other Car Rentals'
         ]
     ],
     'tour-package' => [
         'title' => 'Tour Package',
+        'book-btn' => 'Book',
         'price' => [
             'start' => 'Starting From',
             'end' => 'Person'
+        ],
+        'show' => [
+            'others' => 'Other Tour Packages',
+            'book-btn' => 'Book Now',
+            'price-details' => 'Price details',
+            'itinerary' => 'Itinerary',
+            'policy' => 'Policy',
+            'Information' => 'Information',
         ]
     ],
     'blog' => [
-        'title' => 'Blog'
+        'title' => 'Blog',
+        'read-more-btn' => 'Read More',
+        'results' => [
+            'start' => 'Search results',
+            'end' => 'from all blogs',
+            'not-found' => 'No blog found'
+        ],
+        'show' => [
+            'others' => 'Other Blogs',
+            'post-detail' => ['Posted', 'by', 'in'],
+        ],
     ],
     'destinationblog' => [
-        'title' => 'Destination Blog'
+        'title' => 'Destination Blog',
+        'show' => [
+            'others' => 'Other Destination Blogs'
+        ]
     ],
-    'order' => 'Order Now'
-
+    'other' => [
+        'order' => 'Order Now',
+        'order-btn' => 'Chat / Inquire via WhatsApp',
+        'payment' => 'Payment',
+        'view-all' => 'View All',
+        'search-btn' => 'Search'
+    ]
 ];

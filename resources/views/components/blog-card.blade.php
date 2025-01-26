@@ -44,8 +44,7 @@
                 </div>
                 {{-- @if (Str::wordCount($blog->content) > 24) --}}
                 <a href="{{ route($route, $blog) }}"
-                    class="text-orange-500 hover:underline block text-sm mt-4 w-fit">Baca
-                    Selengkapnya</a>
+                    class="text-orange-500 hover:underline block text-sm mt-4 w-fit">{{ __('menu.blog.read-more-btn') }}</a>
                 {{-- @endif --}}
         @endif
     </div>

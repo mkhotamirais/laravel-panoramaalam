@@ -77,7 +77,7 @@ class BlogController extends Controller implements HasMiddleware
      */
     public function show(Blog $blog)
     {
-        $latestThreeBlogs = Blog::latest()->where('id', '!=', $blog->id)->take(3)->get();
+        $latestThreeBlogs = Blog::latest()->where('id', '!=', $blog->id)->take(4)->get();
         return view('pages.blog.show', compact('blog', 'latestThreeBlogs'));
     }
 

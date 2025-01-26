@@ -18,7 +18,7 @@
             <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
                 <div class="relative w-full">
                     <label for="search"
-                        class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search</label>
+                        class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('menu.other.search-btn') }}</label>
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                         <x-bi-search class="w-5 h-5 text-gray-500 dark:text-gray-400"></x-bi-search>
                     </div>
@@ -29,7 +29,7 @@
                 <div>
                     <button type="submit"
                         class="rounded-l-none py-3 px-5 text-sm font-medium text-center text-white border cursor-pointer bg-orange-500 transition hover:bg-orange-600  rounded-r-lg focus:ring-4 focus:ring-orange-300">
-                        Cari
+                        {{ __('menu.other.search-btn') }}
                     </button>
                 </div>
             </div>

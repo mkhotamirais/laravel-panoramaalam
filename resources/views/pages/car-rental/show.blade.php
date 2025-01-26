@@ -34,14 +34,14 @@
 
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
-            <h2 class="text-2xl font-semibold">Carrental lainnya</h2>
+            <h2 class="text-2xl font-semibold">{{ __('menu.car-rental.show.others') }}</h2>
             <a href="{{ route('car-rental') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
-                <span>Lihat Semua</span>
+                <span>{{ __('menu.other.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             @foreach ($latestThreeCarrentals as $carrental)
                 <x-carrental-card :carrental="$carrental"></x-carrental-card>
             @endforeach
