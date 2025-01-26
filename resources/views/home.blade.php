@@ -71,7 +71,7 @@
                 <div class="h-[3px] bg-orange-500 w-16 rounded-full my-2"></div>
                 <h1 class="title leading-tight">{{ __('menu.home.blogs.big-title') }}</h1>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
                 @foreach ($latestThreeBlogs as $blog)
                     <x-blog-card :blog="$blog"></x-blog-card>
                 @endforeach

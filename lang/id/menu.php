@@ -56,7 +56,11 @@ return [
         ]
     ],
     'tour-package' => [
-        'title' => 'Paket Wisata'
+        'title' => 'Paket Wisata',
+        'price' => [
+            'start' => 'Mulai Dari',
+            'end' => 'Orang'
+        ]
     ],
     'blog' => [
         'title' => 'Blog'

@@ -56,7 +56,11 @@ return [
         ]
     ],
     'tour-package' => [
-        'title' => 'Tour Package'
+        'title' => 'Tour Package',
+        'price' => [
+            'start' => 'Starting From',
+            'end' => 'Person'
+        ]
     ],
     'blog' => [
         'title' => 'Blog'

@@ -110,7 +110,7 @@
         </div>
     </main>
 
-    <footer class="pt-16 pb-8 bg-gradient-to-b from-white to-gray-500/10">
+    <footer class="pt-16 pb-6 bg-gradient-to-b from-white to-gray-500/10">
         <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div class="space-y-4">
@@ -160,11 +160,13 @@
                 </div>
             </div>
             <p class="text-center font-bold mt-12">PT. Panorama Alam Bahagia</p>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
+            @auth
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
 
-                <button type="submit" href="" class="text-xs w-full text-gray-200">Logout</button>
-            </form>
+                    <button type="submit" href="" class="text-xs w-full text-gray-200">Logout</button>
+                </form>
+            @endauth
         </div>
     </footer>
 

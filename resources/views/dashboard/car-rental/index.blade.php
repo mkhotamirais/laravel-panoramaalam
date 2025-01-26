@@ -37,9 +37,9 @@
                 @endforeach
             </div>
 
-            {{-- <div class="mt-4">
+            <div class="mt-4">
                 {{ $myCarrentals->links() }}
-            </div> --}}
+            </div>
         </div>
 
         {{-- <h1 class="text-2xl font-semibold mt-3 py-2">Semua Carrental Wisata ({{ $carrentals->total() }})</h1> --}}
@@ -52,9 +52,9 @@
                 @endforeach
             </div>
 
-            {{-- <div class="mt-4">
+            <div class="mt-4">
                 {{ $carrentals->links() }}
-            </div> --}}
+            </div>
         </div>
     </div>
 </x-authlayout>

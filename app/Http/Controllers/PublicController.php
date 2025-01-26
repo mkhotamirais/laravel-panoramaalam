@@ -17,7 +17,7 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $latestThreeBlogs = Blog::latest()->take(3)->get();
+        $latestThreeBlogs = Blog::latest()->take(4)->get();
         $destinationblogs = Destinationblog::all();
         return view('home', compact('latestThreeBlogs', 'destinationblogs'));
     }
@@ -33,7 +33,7 @@ class PublicController extends Controller
             $blogs = $blogs->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $blogs = $blogs->paginate(6);
+        $blogs = $blogs->paginate(8);
         $blogcats = Blogcat::all();
 
         return view('pages.blog.index', compact('blogs', 'search', 'blogcats', 'destinationblogs'));
@@ -48,7 +48,7 @@ class PublicController extends Controller
             $userBlogs = $userBlogs->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $userBlogs = $userBlogs->paginate(6);
+        $userBlogs = $userBlogs->paginate(8);
 
         return view('pages.blog.user-blog', compact('userBlogs', 'user', 'search'));
     }
@@ -62,7 +62,7 @@ class PublicController extends Controller
             $categoryBlogs = $categoryBlogs->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $categoryBlogs = $categoryBlogs->paginate(6);
+        $categoryBlogs = $categoryBlogs->paginate(8);
         $blogcats = Blogcat::all();
 
         return view('pages.blog.cat-blog', compact('categoryBlogs', 'blogcat', 'blogcats', 'search'));
@@ -79,7 +79,7 @@ class PublicController extends Controller
             $carrentals = $carrentals->where('brand_name', 'like', '%' . $request->search . '%');
         }
 
-        $carrentals = $carrentals->paginate(6);
+        $carrentals = $carrentals->paginate(8);
         $carrentalcats = Carrentalcat::all();
 
         return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'destinationblogs'));
@@ -119,7 +119,7 @@ class PublicController extends Controller
             $tourpackages = $tourpackages->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $tourpackages = $tourpackages->paginate(6);
+        $tourpackages = $tourpackages->paginate(8);
 
         $tourpackagecats = Tourpackagecat::all();
         $tourroutes = Tourroute::all();
@@ -136,7 +136,7 @@ class PublicController extends Controller
             $categoryTourpackagecats = $categoryTourpackages->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $categoryTourpackages = $categoryTourpackages->paginate(6);
+        $categoryTourpackages = $categoryTourpackages->paginate(8);
         $tourpackagecats = Tourpackagecat::all();
 
         return view('pages.tour-package.cat-tour-package', compact('categoryTourpackages', 'tourpackagecat', 'tourpackagecats', 'search'));
@@ -151,7 +151,7 @@ class PublicController extends Controller
             $destinationblogs = $destinationblogs->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $destinationblogs = $destinationblogs->paginate(6);
+        $destinationblogs = $destinationblogs->paginate(8);
 
         return view('pages.destination-blog.index', compact('destinationblogs', 'search'));
     }

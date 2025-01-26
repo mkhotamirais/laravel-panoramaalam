@@ -9,10 +9,10 @@
         <x-badge-cat-corner :route="'category-blogs'" :cat="$blog->blogcat" />
     @endif
 
-    <div class="p-6 flex flex-col grow bg-white">
+    <div class="p-4 flex flex-col grow bg-white">
         {{-- title --}}
         <a href="{{ route($route, $blog) }}">
-            <h2 class="text-xl lg:text-2xl hover:underline font-semibold capitalize">{{ $blog->title }}</h2>
+            <h2 class="text-base sm:text-lg lg:text-xl hover:underline font-semibold capitalize">{{ $blog->title }}</h2>
         </a>
         {{-- author and date --}}
         <div class="text-xs text-gray-500 mt-2">
@@ -40,7 +40,7 @@
             @else
                 <div class="text-content text-sm grow">
                     {{-- {{ Str::words($blog->content, 24, '...') }} --}}
-                    {!! Str::words($blog->content, 24, '...') !!}
+                    {!! Str::words($blog->content, 16, '...') !!}
                 </div>
                 {{-- @if (Str::wordCount($blog->content) > 24) --}}
                 <a href="{{ route($route, $blog) }}"
