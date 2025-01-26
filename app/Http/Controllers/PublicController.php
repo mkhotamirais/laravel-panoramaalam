@@ -91,7 +91,7 @@ class PublicController extends Controller
 
         $search = $request->search;
         if ($search) {
-            $categoryCarrentalcats = $categoryCarrentals->where('title', 'like', '%' . $request->search . '%');
+            $categoryCarrentalcats = $categoryCarrentals->where('brand_name', 'like', '%' . $request->search . '%');
         }
 
         $categoryCarrentals = $categoryCarrentals->paginate(6);
