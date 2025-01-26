@@ -1,15 +1,6 @@
 <x-layout :title="$tourpackagecat->name . ' Tour Packages'">
     <x-section-hero :title="$tourpackagecat->name . ' Tour Packages ' . '(' . $categoryTourpackages->total() . ')'">
-        {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
-        {{-- search form --}}
         <form class="mt-8">
-            {{-- @if (request('category'))
-                <input type="hidden" name="category" value="{{ request('category') }}">
-            @endif
-
-            @if (request('author'))
-                <input type="hidden" name="author" value="{{ request('author') }}">
-            @endif --}}
 
             <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
                 <div class="relative w-full">
@@ -37,8 +28,9 @@
     @if ($search)
         <div class="container py-6">
             <p class="text-xl">
-                Hasil pencarian <span class="text-orange-500 font-semibold italic">"{{ $search }}"</span> dari
-                Semua tourpackage <span class="capitalize">{{ $tourpackagecat->name }}</span> (
+                {{ __('menu.tour-package.results.start') }} <span
+                    class="text-orange-500 font-semibold italic">"{{ $search }}"</span>
+                {{ __('menu.tour-package.results.end') }} <span class="capitalize">{{ $tourpackagecat->name }}</span> (
                 {{ $categoryTourpackages->total() }} )
             </p>
         </div>
@@ -46,12 +38,12 @@
 
     @if ($categoryTourpackages->total() == 0)
         <div class="container mt-8">
-            <p class="text-3xl italic font-semibold">Tour Package tidak ditemukan</p>
+            <p class="text-3xl italic font-semibold">{{ __('menu.tour-package.results.not-found') }}</p>
         </div>
     @else
         <div class="container py-12">
             <div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                     @foreach ($categoryTourpackages as $tourpackage)
                         <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
                     @endforeach

@@ -4,16 +4,7 @@
     'keywords' => __('meta.car-rental.keywords'),
 ]">
     <x-section-hero :title="__('menu.car-rental.title')">
-        {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
-        {{-- search form --}}
         <form class="mt-8">
-            {{-- @if (request('category'))
-                <input type="hidden" name="category" value="{{ request('category') }}">
-            @endif
-
-            @if (request('author'))
-                <input type="hidden" name="author" value="{{ request('author') }}">
-            @endif --}}
 
             <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
                 <div class="relative w-full">
@@ -38,16 +29,32 @@
         <x-badge-cat :cats="$carrentalcats" :route="'category-carrentals'" />
     </x-section-hero>
 
-    {{-- sewa mobil list --}}
-    <section class="py-16">
-        <div class="container">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
-                @foreach ($carrentals as $carrental)
-                    <x-carrental-card :carrental="$carrental"></x-carrental-card>
-                @endforeach
-            </div>
+    @if ($search)
+        <div class="container py-6">
+            <p class="text-xl">
+                {{ __('menu.car-rental.results.start') }} <span
+                    class="text-orange-500 font-semibold italic">"{{ $search }}"</span>
+                {{ __('menu.car-rental.results.end') }} ( {{ $carrentals->total() }} )
+            </p>
         </div>
-    </section>
+    @endif
+
+    {{-- sewa mobil list --}}
+    @if ($carrentals->total() == 0)
+        <div class="container">
+            <p class="text-3xl italic font-semibold mt-4">{{ __('menu.car-rental.results.not-found') }}</p>
+        </div>
+    @else
+        <section class="py-16">
+            <div class="container">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
+                    @foreach ($carrentals as $carrental)
+                        <x-carrental-card :carrental="$carrental"></x-carrental-card>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 
     <x-section-destination :destinationblogs="$destinationblogs" />
 

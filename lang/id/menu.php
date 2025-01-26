@@ -51,6 +51,11 @@ return [
     'car-rental' => [
         'title' => 'Sewa Mobil',
         'rent-btn' => 'Sewa',
+        'results' => [
+            'start' => 'Hasil pencarian',
+            'end' => 'dari semua Sewa Mobil',
+            'not-found' => 'Sewa mobil tidak ditemukan'
+        ],
         'show' => [
             'policy' => 'Kebijakan Sewa Mobil',
             'information' => 'Syarat Khusus',
@@ -60,6 +65,11 @@ return [
     'tour-package' => [
         'title' => 'Paket Wisata',
         'book-btn' => 'Pesan',
+        'results' => [
+            'start' => 'Hasil pencarian',
+            'end' => 'dari semua Paket Wisata',
+            'not-found' => 'Paket Wisata tidak ditemukan'
+        ],
         'price' => [
             'start' => 'Mulai Dari',
             'end' => 'Orang'

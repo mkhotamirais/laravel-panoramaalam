@@ -51,6 +51,11 @@ return [
     'car-rental' => [
         'title' => 'Car Rental',
         'rent-btn' => 'Rent',
+        'results' => [
+            'start' => 'Search results',
+            'end' => 'from all Car Rentals',
+            'not-found' => 'No Car Rental found'
+        ],
         'show' => [
             'policy' => 'Car Rental Policy',
             'information' => 'Important Terms',
@@ -63,6 +68,11 @@ return [
         'price' => [
             'start' => 'Starting From',
             'end' => 'Person'
+        ],
+        'results' => [
+            'start' => 'Search results',
+            'end' => 'from all Tour Packages',
+            'not-found' => 'No Tour Package found'
         ],
         'show' => [
             'others' => 'Other Tour Packages',

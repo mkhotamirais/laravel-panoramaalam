@@ -133,7 +133,7 @@ class PublicController extends Controller
 
         $search = $request->search;
         if ($search) {
-            $categoryTourpackagecats = $categoryTourpackages->where('title', 'like', '%' . $request->search . '%');
+            $categoryTourpackagecats = $categoryTourpackages->where('name', 'like', '%' . $request->search . '%');
         }
 
         $categoryTourpackages = $categoryTourpackages->paginate(8);

@@ -68,8 +68,4 @@
 
     <x-section-destination :destinationblogs="$destinationblogs" />
 
-
-    {{-- <x-section-contact /> --}}
-
-
 </x-layout>

@@ -56,16 +56,32 @@
 
     </x-section-hero>
 
-    {{-- paket wisata list --}}
-    <section class="py-16">
-        <div class="container">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
-                @foreach ($tourpackages as $tourpackage)
-                    <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
-                @endforeach
-            </div>
+    @if ($search)
+        <div class="container py-6">
+            <p class="text-xl">
+                {{ __('menu.tour-package.results.start') }} <span
+                    class="text-orange-500 font-semibold italic">"{{ $search }}"</span>
+                {{ __('menu.tour-package.results.end') }} ( {{ $tourpackages->total() }} )
+            </p>
         </div>
-    </section>
+    @endif
+
+    {{-- paket wisata list --}}
+    @if ($tourpackages->total() == 0)
+        <div class="container">
+            <p class="text-3xl italic font-semibold mt-4">{{ __('menu.tour-package.results.not-found') }}</p>
+        </div>
+    @else
+        <section class="py-16">
+            <div class="container">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
+                    @foreach ($tourpackages as $tourpackage)
+                        <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 
     <x-section-destination :destinationblogs="$destinationblogs" />
 

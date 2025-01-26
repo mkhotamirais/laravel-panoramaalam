@@ -37,8 +37,9 @@
     @if ($search)
         <div class="container py-6">
             <p class="text-xl">
-                Hasil pencarian <span class="text-orange-500 font-semibold italic">"{{ $search }}"</span> dari
-                Semua carrental <span class="capitalize">{{ $carrentalcat->name }}</span> (
+                {{ __('menu.car-rental.results.start') }} <span
+                    class="text-orange-500 font-semibold italic">"{{ $search }}"</span>
+                {{ __('menu.car-rental.results.end') }} <span class="capitalize">{{ $carrentalcat->name }}</span> (
                 {{ $categoryCarrentals->total() }} )
             </p>
         </div>
@@ -46,12 +47,12 @@
 
     @if ($categoryCarrentals->total() == 0)
         <div class="container mt-8">
-            <p class="text-3xl italic font-semibold">Car Rental tidak ditemukan</p>
+            <p class="text-3xl italic font-semibold">{{ __('menu.car-rental.results.not-found') }}</p>
         </div>
     @else
         <div class="container py-12">
             <div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                     @foreach ($categoryCarrentals as $carrental)
                         <x-carrental-card :carrental="$carrental"></x-carrental-card>
                     @endforeach
