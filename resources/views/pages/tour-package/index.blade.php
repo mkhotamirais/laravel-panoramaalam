@@ -72,13 +72,14 @@
             <p class="text-3xl italic font-semibold mt-4">{{ __('menu.tour-package.results.not-found') }}</p>
         </div>
     @else
-        <section class="py-16">
-            <div class="container">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
-                    @foreach ($tourpackages as $tourpackage)
-                        <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
-                    @endforeach
-                </div>
+        <section class="container py-12">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
+                @foreach ($tourpackages as $tourpackage)
+                    <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
+                @endforeach
+            </div>
+            <div class="my-12">
+                {{ $tourpackages->links() }}
             </div>
         </section>
     @endif

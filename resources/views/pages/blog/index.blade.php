@@ -54,7 +54,7 @@
             <p class="text-3xl italic font-semibold mt-4">{{ __('menu.blog.results.not-found') }}</p>
         </div>
     @else
-        <div class="container py-12">
+        <section class="container py-12">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach ($blogs as $blog)
                     <x-blog-card :blog="$blog"></x-blog-card>
@@ -63,7 +63,7 @@
             <div class="my-12">
                 {{ $blogs->links() }}
             </div>
-        </div>
+        </section>
     @endif
 
     <x-section-destination :destinationblogs="$destinationblogs" />

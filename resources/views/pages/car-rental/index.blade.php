@@ -45,13 +45,14 @@
             <p class="text-3xl italic font-semibold mt-4">{{ __('menu.car-rental.results.not-found') }}</p>
         </div>
     @else
-        <section class="py-16">
-            <div class="container">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
-                    @foreach ($carrentals as $carrental)
-                        <x-carrental-card :carrental="$carrental"></x-carrental-card>
-                    @endforeach
-                </div>
+        <section class="container py-12">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
+                @foreach ($carrentals as $carrental)
+                    <x-carrental-card :carrental="$carrental"></x-carrental-card>
+                @endforeach
+            </div>
+            <div class="my-12">
+                {{ $carrentals->links() }}
             </div>
         </section>
     @endif
