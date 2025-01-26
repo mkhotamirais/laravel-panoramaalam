@@ -6,20 +6,25 @@
                     alt="{{ $carrental->title ?? 'carrental banner' }}" class="object-contain object-top w-full h-full" />
             </div>
 
-            <div class="flex flex-col px-4 space-y-4 leading-relaxed">
+            <div class="flex flex-col px-4 space-y-6 leading-relaxed">
                 {{-- title --}}
-                <div>
+                <div class="pb-4">
                     <h2 class="text-2xl font-semibold capitalize mb-2">{{ $carrental->brand_name }}</h2>
                     <p class="text-2xl mb-2">Rp{{ number_format($carrental->rental_price, 0, ',', '.') }}</p>
-                    <a href="{{ route('carrentals.show', $carrental) }}"
-                        class="text-orange-500 hover:underline w-fit">{{ $carrental->carrentalcat->name ?? 'cat' }}</a>
+                    {{-- <a href="{{ route('carrentals.show', $carrental) }}"
+                        class="text-orange-500 hover:underline w-fit">{{ $carrental->carrentalcat->name ?? 'cat' }}</a> --}}
+
+                    <a href="{{ route('category-carrentals', $carrental->carrentalcat->slug) }}"
+                        class="text-white bg-orange-500 hover:bg-orange-600 transition rounded-full py-1 px-3 text-sm">{{ $carrental->carrentalcat->name }}</a>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-2">Policy</h3>
+                    <h3 class="text-xl font-semibold mb-2">{{ __('menu.car-rental.show.policy') }}
+                        <i class="font-medium">{{ $carrental->carrentalcat->name }}</i>
+                    </h3>
                     <div class="text-content">{!! $carrental->policy !!}</div>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold">Information</h3>
+                    <h3 class="text-xl font-semibold">{{ __('menu.car-rental.show.information') }}</h3>
                     <div class="text-content">{!! $carrental->information !!}</div>
                 </div>
                 <x-section-order />

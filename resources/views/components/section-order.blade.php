@@ -5,5 +5,5 @@
         (A/N : PT Panorama Alam Bahagia) <br />
         0813-1957-3240
     </p>
-    <button class="btn mt-4">Pesan / Tanya via Whatsapp</button>
+    <a href="https://wa.me/6281319573240" class="btn mt-4 w-fit">Pesan / Tanya via Whatsapp</a>
 </section>

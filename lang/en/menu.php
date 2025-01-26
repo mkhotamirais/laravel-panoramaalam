@@ -26,13 +26,13 @@ return [
             'detail-btn' => 'Check Details'
         ],
         'blogs' => [
-            'title' => 'Read Articles',
-            'big-title' => 'Blogs About Panorama Alam',
+            'title' => 'Our Blogs',
+            'big-title' => 'Discover the Beauty of Nature in Every Article',
             'all-blog-btn' => 'View All Blogs'
         ],
         'destination' => [
             'title' => 'Favorite Destinations',
-            'big-title' => 'Explore Favorite Destinations for You',
+            'big-title' => 'Find the best places for unforgettable experiences.',
             'all-destination-btn' => 'View All Destinations'
         ],
         'contact' => [
@@ -49,7 +49,11 @@ return [
         'language-title' => 'Language',
     ],
     'car-rental' => [
-        'title' => 'Car Rental'
+        'title' => 'Car Rental',
+        'show' => [
+            'policy' => 'Car Rental Policy',
+            'information' => 'Important Terms'
+        ]
     ],
     'tour-package' => [
         'title' => 'Tour Package'
@@ -59,5 +63,7 @@ return [
     ],
     'destinationblog' => [
         'title' => 'Destination Blog'
-    ]
+    ],
+    'order' => 'Order Now'
+
 ];

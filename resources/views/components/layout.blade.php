@@ -132,7 +132,7 @@
                     <div class="mb-12">
                         <h2 class="text-2xl font-semibold">{{ __('menu.footer.contact-title') }}</h2>
                         <nav class="flex flex-col gap-2 mt-4">
-                            <a href="http://api.whatsapp.com/send?phone=6281319573240" class="flex items-center gap-2">
+                            <a href="https://api.whatsapp.com/send?phone=6281319573240" class="flex items-center gap-2">
                                 <x-si-whatsapp class="w-5 h-5" />
                                 <span>(+62) 813-1957-3240</span>
                             </a>
@@ -160,6 +160,11 @@
                 </div>
             </div>
             <p class="text-center font-bold mt-12">PT. Panorama Alam Bahagia</p>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+
+                <button type="submit" href="" class="text-xs w-full text-gray-200">Logout</button>
+            </form>
         </div>
     </footer>
 

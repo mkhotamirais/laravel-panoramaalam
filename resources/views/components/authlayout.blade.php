@@ -94,8 +94,8 @@
 
                 @guest
                     <nav class="flex gap-2 lg:gap-4">
-                        {{-- <a href="{{ route('register') }}"
-                            class="px-3 lg:px-4 py-2 text-sm lg:text-base text-orange-500 border border-orange-500 rounded-full">Daftar</a> --}}
+                        <a href="{{ route('register') }}"
+                            class="px-3 lg:px-4 py-2 text-sm lg:text-base text-orange-500 border border-orange-500 rounded-full">Daftar</a>
                         <a href="{{ route('login') }}"
                             class="px-3 lg:px-4 py-2 text-sm lg:text-base bg-orange-500 text-white rounded-full">Login</a>
                     </nav>

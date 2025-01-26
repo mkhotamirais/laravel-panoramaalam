@@ -10,7 +10,17 @@
                         <span>Posted {{ $blog->created_at->diffForHumans() }} by</span> <a
                             href="{{ route('user-blogs', $blog->user) }}"
                             class="text-orange-500 capitalize hover:underline">{{ $blog->user->username }}</a>
+                        <span>
+                            in
+                            @if ($blog->blogcat)
+                                <a href="{{ route('category-blogs', $blog->blogcat->slug) }}"
+                                    class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
+                            @else
+                                <span>no category</span>
+                            @endif
+                        </span>
                     </div>
+
                 </div>
                 {{-- cover photo --}}
                 <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/svg/panorama_icon.svg') }}"

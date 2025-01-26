@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('license_plate')->nullable();
             $table->decimal('rental_price', 20, 0)->default(0);
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->text('policy');
             $table->text('information')->nullable();
             $table->string('banner')->nullable();

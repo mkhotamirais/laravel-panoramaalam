@@ -31,23 +31,26 @@ class DatabaseSeeder extends Seeder
 
         User::Create([
             'id' => 1,
-            'username' => 'budi',
-            'email' => 'budi@panoramalalam.id',
-            'password' => 'Bismillah2025!'
+            'username' => 'panoramaalam',
+            'email' => 'panoramaalamofficial@gmail.com',
+            'password' => 'Bismillah2025!',
+            'role' => 'admin',
         ]);
 
         User::Create([
             'id' => 2,
             'username' => 'aldi',
             'email' => 'aldibedet03@gmail.com',
-            'password' => 'Bismillah2025'
+            'password' => 'Bismillah2025!',
+            'role' => 'admin',
         ]);
 
         User::Create([
             'id' => 3,
-            'username' => 'ota',
-            'email' => 'ota@gmail.com',
-            'password' => 'ota'
+            'username' => 'mkhotamirais',
+            'email' => 'mkhotamirais@gmail.com',
+            'password' => 'Bismillah2025!',
+            'role' => 'admin',
         ]);
 
         // Blogcat::create(['name' => 'panorama alam', 'slug' => 'panorama-alam']);

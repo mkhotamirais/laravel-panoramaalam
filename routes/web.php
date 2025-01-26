@@ -11,6 +11,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TourpackagecatController;
 use App\Http\Controllers\TourpackageController;
 use App\Http\Controllers\TourrouteController;
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
@@ -35,25 +36,27 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::resource('/destinationblogs', DestinationblogController::class);
 
     Route::middleware('guest')->group(function () {
-        // Route::view('/basmalah', 'auth.register')->name('register');
-        // Route::post('/basmalah', [AuthController::class, 'register']);
+        Route::view('/basmalah', 'auth.register')->name('register');
+        Route::post('/basmalah', [AuthController::class, 'register']);
 
         Route::view('/hamdalah', 'auth.login')->name('login');
         Route::post('/hamdalah', [AuthController::class, 'login']);
     });
 
-    Route::middleware('auth')->group(function () {
-        Route::view('/basmalah', 'auth.register')->name('register');
-        Route::post('/basmalah', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::middleware(['auth', RoleMiddleware::class . ':admin,editor'])->group(function () {
 
         Route::get('/lauhah', [DashController::class, 'index'])->name('dashboard');
-        Route::get('/users', [DashController::class, 'users'])->name('users');
+
         Route::resource('/blogcats', BlogcatController::class);
         Route::resource('/carrentalcats', CarrentalcatController::class);
         Route::resource('/tourpackagecats', TourpackagecatController::class);
         Route::resource('/tourroutes', TourrouteController::class);
+
+        Route::middleware(RoleMiddleware::class . ':admin')->group(function () {
+            Route::get('/users', [DashController::class, 'users'])->name('users');
+        });
     });
 });
 

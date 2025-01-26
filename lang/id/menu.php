@@ -26,13 +26,13 @@ return [
             'detail-btn' => 'Cek Detail'
         ],
         'blogs' => [
-            'title' => 'Baca Artikel',
-            'big-title' => 'Blog Terkait Panorama Alam',
+            'title' => 'Our Blogs',
+            'big-title' => 'Temukan keindahan alam di setiap artikel',
             'all-blog-btn' => 'Lihat Semua Blog'
         ],
         'destination' => [
             'title' => 'Destinasi Favorit',
-            'big-title' => 'Jelajahi Destinasi Favorit Untuk Anda',
+            'big-title' => 'Temukan tempat terbaik untuk pengalaman tak terlupakan.',
             'all-destination-btn' => 'Lihat Semua Destinasi'
         ],
         'contact' => [
@@ -49,7 +49,11 @@ return [
         'language-title' => 'Bahasa',
     ],
     'car-rental' => [
-        'title' => 'Sewa Mobil'
+        'title' => 'Sewa Mobil',
+        'show' => [
+            'policy' => 'Kebijakan Rental Mobil',
+            'information' => 'Syarat Khusus'
+        ]
     ],
     'tour-package' => [
         'title' => 'Paket Wisata'
