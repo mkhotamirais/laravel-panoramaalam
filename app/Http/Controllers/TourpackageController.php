@@ -104,7 +104,7 @@ class TourpackageController extends Controller implements HasMiddleware
      */
     public function show(Tourpackage $tourpackage)
     {
-        $latestThreeTourpackages = Tourpackage::latest()->where('id', '!=', $tourpackage->id)->take(3)->get();
+        $latestThreeTourpackages = Tourpackage::latest()->where('id', '!=', $tourpackage->id)->take(4)->get();
         return view('pages.tour-package.show', compact('tourpackage', 'latestThreeTourpackages'));
     }
 

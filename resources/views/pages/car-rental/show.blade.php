@@ -41,7 +41,7 @@
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mb-8">
             @foreach ($latestThreeCarrentals as $carrental)
                 <x-carrental-card :carrental="$carrental"></x-carrental-card>
             @endforeach

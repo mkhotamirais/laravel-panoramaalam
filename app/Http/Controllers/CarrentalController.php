@@ -68,7 +68,7 @@ class CarrentalController extends Controller implements HasMiddleware
     }
     public function show(Carrental $carrental)
     {
-        $latestThreeCarrentals = Carrental::latest()->where('id', '!=', $carrental->id)->take(3)->get();
+        $latestThreeCarrentals = Carrental::latest()->where('id', '!=', $carrental->id)->take(4)->get();
         return view('pages.car-rental.show', compact('carrental', 'latestThreeCarrentals'));
     }
 
