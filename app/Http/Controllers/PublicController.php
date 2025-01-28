@@ -92,16 +92,23 @@ class PublicController extends Controller
     // Car Rental
     public function carrental(Request $request)
     {
-        $carrentals = Carrental::latest();
+        $carrentals = Carrental::all();
         $carrentalcats = Carrentalcat::all();
         $destinationblogs = Destinationblog::all();
         $search = $request->search;
         $sort = $request->sort;
         $category_slug = $request->category;
 
+        // Mulai query dengan mengutamakan kategori "lepas kunci"
+        $carrentals = Carrental::with('carrentalcat')
+            ->select('carrentals.*')
+            ->join('carrentalcats', 'carrentals.carrentalcat_id', '=', 'carrentalcats.id')
+            ->orderByRaw("CASE WHEN carrentalcats.slug = 'lepas-kunci' THEN 0 ELSE 1 END")
+            ->latest();
+
         if ($sort === 'cheapest') {
             $carrentals = Carrental::orderBy('rental_price');
-        } else if ($sort === 'most-expensive') {
+        } elseif ($sort === 'most-expensive') {
             $carrentals = Carrental::orderByDesc('rental_price');
         }
 
