@@ -107,6 +107,17 @@ return [
         'order-btn' => 'Pesan / Hubungi via WhatsApp',
         'payment' => 'Pembayaran',
         'view-all' => 'Lihat Semua',
-        'search-btn' => 'Cari'
+        'search-btn' => 'Cari',
+        'search-placeholder' => 'Cari disini..',
+        'all-categories' => 'Semua Kategori',
+        'sorting-price' => [
+            'latest' => 'Terbaru',
+            'cheapest' => 'Harga Terendah',
+            'most-expensive' => 'Harga Tertinggi'
+        ],
+        'sorting-time' => [
+            'latest' => 'Terbaru',
+            'oldest' => 'Terlama'
+        ],
     ]
 ];

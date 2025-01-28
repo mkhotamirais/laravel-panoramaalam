@@ -1,18 +1,18 @@
 @props(['blog' => [], 'full' => false, 'route' => 'blogs.show', 'fullblog' => true])
 
-<div class="relative shadow hover:shadow-lg transition rounded overflow-hidden flex flex-col">
+<div class="relative shadow hover:shadow-lg transition rounded-lg overflow-hidden flex flex-col">
     {{-- cover photo --}}
     <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/svg/panorama_icon.svg') }}"
         alt="{{ $blog->title ?? 'blog banner' }}" class="object-cover object-center w-full h-56 bg-gray-100">
 
-    @if ($fullblog)
+    {{-- @if ($fullblog)
         <x-badge-cat-corner :route="'category-blogs'" :cat="$blog->blogcat" />
-    @endif
+    @endif --}}
 
     <div class="p-4 flex flex-col grow bg-white">
         {{-- title --}}
-        <a href="{{ route($route, $blog) }}">
-            <h2 class="text-base sm:text-lg lg:text-xl hover:underline font-semibold capitalize">{{ $blog->title }}</h2>
+        <a href="{{ route($route, $blog) }}" class="card-title">
+            {{ Str::words($blog->title, 6, '...') }}
         </a>
         {{-- author and date --}}
         <div class="text-xs text-gray-500 mt-2">

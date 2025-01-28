@@ -51,13 +51,13 @@
             <p class="text-3xl italic font-semibold mt-4">Destinationblog tidak ditemukan</p>
         </div>
     @else
-        <div class="container py-12">
+        <div class="container py-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 @foreach ($destinationblogs as $destinationblog)
                     <x-blog-card :blog="$destinationblog" route="destinationblogs.show" :fullblog="false"></x-blog-card>
                 @endforeach
             </div>
-            <div class="my-12">
+            <div class="mt-8">
                 {{ $destinationblogs->links() }}
             </div>
         </div>

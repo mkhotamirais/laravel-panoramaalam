@@ -32,6 +32,15 @@
         </form>
     </x-section-hero>
 
+    <div class="container mt-8">
+        <div class="flex flex-col gap-2 lg:flex-row lg:items-center justify-between">
+            {{-- <div class="relative">
+                <x-badge-cat :cats="$blogcats" />
+            </div> --}}
+            <x-badge-sorting :sorting="__('menu.other.sorting-time')" />
+        </div>
+    </div>
+
     @if ($search)
         <div class="container py-6">
             <p class="text-xl">
@@ -48,14 +57,14 @@
             <p class="text-3xl italic font-semibold">{{ __('menu.blog.results.not-found') }}</p>
         </div>
     @else
-        <div class="container py-12">
+        <div class="container py-8">
             <div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                     @foreach ($userBlogs as $blog)
                         <x-blog-card :blog="$blog"></x-blog-card>
                     @endforeach
                 </div>
-                <div class="mt-4">
+                <div class="mt-8">
                     {{ $userBlogs->links() }}
                 </div>
             </div>

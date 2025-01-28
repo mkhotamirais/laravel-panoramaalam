@@ -86,7 +86,7 @@ class CarrentalController extends Controller implements HasMiddleware
         Gate::authorize('modify', $carrental);
         // Validate
         $fields = $request->validate([
-            'brand_name' => 'required|max:255',
+            'brand_name' => "required|max:255|unique:carrentals,brand_name,$carrental->id",
             'license_plate' => 'nullable',
             'rental_price' => 'required|integer',
             'color' => 'required',

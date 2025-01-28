@@ -4,15 +4,17 @@
     'keywords' => __('meta.blog.keywords'),
 ]">
     <x-section-hero :title="__('menu.blog.title')">
-        {{-- <div class="h-1 bg-orange-500 w-32"></div> --}}
-        {{-- search form --}}
         <form class="mt-8">
-            {{-- @if (request('category'))
-                <input type="hidden" name="category" value="{{ request('category') }}">
+            {{-- @if (request('search'))
+                <input type="hidden" name="search" value="{{ request('search') }}">
+            @endif --}}
+
+            @if (request('sort'))
+                <input type="hidden" name="sort" value="{{ request('sort') }}">
             @endif
 
-            @if (request('author'))
-                <input type="hidden" name="author" value="{{ request('author') }}">
+            {{-- @if (request('category'))
+                <input type="hidden" name="category" value="{{ request('category') }}">
             @endif --}}
 
             <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
@@ -35,8 +37,17 @@
             </div>
         </form>
 
-        <x-badge-cat :cats="$blogcats" />
+        {{-- <x-badge-cat :cats="$blogcats" /> --}}
     </x-section-hero>
+
+    <div class="container mt-8">
+        <div class="flex flex-col gap-2 lg:flex-row lg:items-center justify-between">
+            {{-- <div class="relative">
+                <x-badge-cat :cats="$blogcats" />
+            </div> --}}
+            <x-badge-sorting :sorting="__('menu.other.sorting-time')" />
+        </div>
+    </div>
 
     @if ($search)
         <div class="container py-6">
@@ -54,13 +65,13 @@
             <p class="text-3xl italic font-semibold mt-4">{{ __('menu.blog.results.not-found') }}</p>
         </div>
     @else
-        <section class="container py-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <section class="container py-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                 @foreach ($blogs as $blog)
                     <x-blog-card :blog="$blog"></x-blog-card>
                 @endforeach
             </div>
-            <div class="my-12">
+            <div class="mt-8">
                 {{ $blogs->links() }}
             </div>
         </section>

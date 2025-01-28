@@ -76,7 +76,6 @@ class TourpackageController extends Controller implements HasMiddleware
             $path = Storage::disk('public')->put('tourpackages-images', $request->banner);
         }
 
-
         // Create tourpackage
         // $tourpackage = Tourpackage::create([...$fields, 'user_id' => Auth::id()]);
         // Auth::user()->tourpackages()->create($fields);
@@ -130,7 +129,7 @@ class TourpackageController extends Controller implements HasMiddleware
 
         // Validate
         $fields = $request->validate([
-            'name' => 'required|max:255',
+            'name' => "required|max:255|unique:tourpackages,name,$tourpackage->id",
             'detail' => 'nullable',
             'price' => 'required|integer',
             'price_detail' => 'nullable',

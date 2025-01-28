@@ -1,27 +1,34 @@
 @props(['tourpackage' => [], 'full' => false])
 
-<div class="relative shadow hover:shadow-lg transition rounded overflow-hidden flex flex-col">
+<div class="relative hover:shadow-lg transition border rounded-lg overflow-hidden flex flex-col">
     {{-- cover photo --}}
     <img src="{{ $tourpackage->banner ? asset('storage/' . $tourpackage->banner) : asset('storage/svg/panorama_icon.svg') }}"
         alt="{{ $tourpackage->title ?? 'tourpackage banner' }}" class="object-contain object-center w-full bg-gray-100">
 
-    <x-badge-cat-corner :route="'category-tourpackages'" :cat="$tourpackage->tourpackagecat" />
-
+    {{-- <x-badge-cat-corner :route="'category-tourpackages'" :cat="$tourpackage->tourpackagecat" /> --}}
 
     <div class="p-4 flex flex-col grow bg-white">
-        {{-- title --}}
-        <a href="{{ route('tourpackages.show', $tourpackage) }}">
-            <h2 class="text-base sm:text-lg lg:text-xl hover:underline font-semibold capitalize mb-2">
-                {{ $tourpackage->name }}
-            </h2>
-        </a>
-        <div class="w-fit text-xs text-white py-1 px-3 rounded-full bg-blue-500 mb-2">
-            {{ $tourpackage->status === 'active' ? 'Tersedia' : 'Tidak Tersedia' }}</div>
-        <span class="text-gray-600 mt-2">{{ __('menu.tour-package.price.start') }}</span>
-        <p class="text-xl lg:text-2xl mb-4 grow font-semibold">Rp{{ number_format($tourpackage->price, 0, ',', '.') }}
-            <span class="text-sm text-gray-600">/ {{ __('menu.tour-package.price.end') }}</span>
-        </p>
-        <div class="mb-4">
+        <div class="grow mb-2">
+
+            <a href="{{ route('tourpackages.show', $tourpackage) }}" class="card-title">
+                {{ Str::words($tourpackage->name, 6, '...') }}
+            </a>
+
+            <div class="flex gap-1 m1-1 mb-4 flex-wrap">
+                <div
+                    class="border w-fit border-blue-500 leading-none px-1 py-[0.15rem] rounded-sm text-blue-500 text-[0.75rem] font-light">
+                    {{ $tourpackage->status === 'active' ? 'Tersedia' : 'Tidak Tersedia' }}</div>
+                <div
+                    class="overflow-x-scroll min-w-max border w-fit border-blue-500 leading-none px-1 py-[0.15rem] rounded-sm text-blue-900 text-[0.75rem] font-light">
+                    {{ $tourpackage->tourpackagecat->name }}</div>
+            </div>
+
+            <div class="text-gray-600 text-sm">{{ __('menu.tour-package.price.start') }}</div>
+            <p class="text-lg mb-4 grow font-semibold">Rp{{ number_format($tourpackage->price, 0, ',', '.') }}
+                <span class="text-sm text-gray-600 font-medium">/ {{ __('menu.tour-package.price.end') }}</span>
+            </p>
+
+            {{-- <div class="mb-4">
             <span class="text-gray-600 min-w-fit font-semibold">Route :</span>
             @if ($tourpackage->tourroutes->isEmpty())
                 <span>-</span>
@@ -34,7 +41,9 @@
                     @endforeach
                 </span>
             @endif
+        </div> --}}
         </div>
+
         <a href="{{ route('tourpackages.show', $tourpackage) }}"
             class="btn">{{ __('menu.tour-package.book-btn') }}</a>
     </div>

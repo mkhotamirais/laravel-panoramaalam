@@ -93,7 +93,7 @@ class DestinationblogController extends Controller implements HasMiddleware
 
         // Validate
         $fields = $request->validate([
-            'title' => 'required|max:255',
+            'title' => "required|max:255|unique:destinationblogs,title,$destinationblog->id",
             'content' => 'required',
             'banner' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);

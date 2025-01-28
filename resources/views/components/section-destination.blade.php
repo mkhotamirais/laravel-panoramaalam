@@ -10,7 +10,7 @@
         <x-blog-destination :destinationblogs="$destinationblogs"></x-blog-destination>
         <div class="flex items-center mt-8">
             <a href="{{ route('destination-blog') }}"
-                class="btn">{{ __('menu.home.destination.all-destination-btn') }}</a>
+                class="btn lg:py-3 px-5">{{ __('menu.home.destination.all-destination-btn') }}</a>
         </div>
     </div>
 </section>

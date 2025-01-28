@@ -107,6 +107,17 @@ return [
         'order-btn' => 'Chat / Inquire via WhatsApp',
         'payment' => 'Payment',
         'view-all' => 'View All',
-        'search-btn' => 'Search'
+        'search-btn' => 'Search',
+        'search-placeholder' => 'Search here..',
+        'all-categories' => 'All Categories',
+        'sorting-price' => [
+            'latest' => 'latest',
+            'cheapest' => 'Cheapest',
+            'most-expensive' => 'Most Expensive'
+        ],
+        'sorting-time' => [
+            'latest' => 'Latest',
+            'oldest' => 'Oldest'
+        ],
     ]
 ];

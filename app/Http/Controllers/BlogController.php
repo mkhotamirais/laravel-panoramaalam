@@ -102,7 +102,8 @@ class BlogController extends Controller implements HasMiddleware
 
         // Validate
         $fields = $request->validate([
-            'title' => 'required|max:255',
+            // 'title' => ['required', 'max:255', Rule::unique('blogs')->ignore($blog->id)],
+            'title' => "required|max:255|unique:blogs,title,$blog->id",
             'content' => 'required',
             'blogcat_id' => 'nullable|integer|exists:blogcats,id',
             'banner' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:1024',

@@ -25,8 +25,16 @@ class PublicController extends Controller
     // Blog
     public function blog(Request $request)
     {
-        $destinationblogs = Destinationblog::all();
         $blogs = Blog::latest();
+        $blogcats = Blogcat::all();
+        $destinationblogs = Destinationblog::all();
+        $sort_time = $request->sort;
+
+        if ($sort_time === 'latest') {
+            $blogs = Blog::latest();
+        } else if ($sort_time === 'oldest') {
+            $blogs = Blog::oldest();
+        }
 
         $search = $request->search;
         if ($search) {
@@ -34,7 +42,6 @@ class PublicController extends Controller
         }
 
         $blogs = $blogs->paginate(8);
-        $blogcats = Blogcat::all();
 
         return view('pages.blog.index', compact('blogs', 'search', 'blogcats', 'destinationblogs'));
     }
@@ -42,6 +49,13 @@ class PublicController extends Controller
     public function userBlogs(User $user, Request $request)
     {
         $userBlogs = $user->blogs()->latest();
+        $sort_time = $request->sort;
+
+        if ($sort_time === 'latest') {
+            $userBlogs = $user->blogs()->latest();
+        } else if ($sort_time === 'oldest') {
+            $userBlogs = $user->blogs()->oldest();
+        }
 
         $search = $request->search;
         if ($search) {
@@ -55,7 +69,14 @@ class PublicController extends Controller
 
     public function categoryBlogs(Blogcat $blogcat, Request $request)
     {
-        $categoryBlogs = $blogcat->blogs();
+        $categoryBlogs = $blogcat->blogs()->latest();
+        $sort_time = $request->sort;
+
+        if ($sort_time === 'latest') {
+            $categoryBlogs = $blogcat->blogs()->latest();
+        } else if ($sort_time === 'oldest') {
+            $categoryBlogs = $blogcat->blogs()->oldest();
+        }
 
         $search = $request->search;
         if ($search) {
@@ -71,75 +92,82 @@ class PublicController extends Controller
     // Car Rental
     public function carrental(Request $request)
     {
-        $destinationblogs = Destinationblog::all();
         $carrentals = Carrental::latest();
+        $carrentalcats = Carrentalcat::all();
+        $destinationblogs = Destinationblog::all();
         $search = $request->search;
+        $sort = $request->sort;
+        $category_slug = $request->category;
+
+        if ($sort === 'cheapest') {
+            $carrentals = Carrental::orderBy('rental_price');
+        } else if ($sort === 'most-expensive') {
+            $carrentals = Carrental::orderByDesc('rental_price');
+        }
 
         if ($search) {
-            $carrentals = $carrentals->where('brand_name', 'like', '%' . $request->search . '%');
+            $carrentals = $carrentals->where('brand_name', 'like', "%$search%");
+        }
+
+        if ($category_slug) {
+            $carrentals = $carrentals->whereHas('carrentalcat', function ($query) use ($category_slug) {
+                $query->where('slug', $category_slug);  // Mencocokkan slug kategori
+            });
         }
 
         $carrentals = $carrentals->paginate(8);
-        $carrentalcats = Carrentalcat::all();
 
-        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'destinationblogs'));
-    }
-
-    public function categoryCarrentals(Carrentalcat $carrentalcat, Request $request)
-    {
-        $categoryCarrentals = $carrentalcat->carrentals();
-
-        $search = $request->search;
-        if ($search) {
-            $categoryCarrentalcats = $categoryCarrentals->where('brand_name', 'like', '%' . $request->search . '%');
-        }
-
-        $categoryCarrentals = $categoryCarrentals->paginate(6);
-        $carrentalcats = Carrentalcat::all();
-
-        return view('pages.car-rental.cat-car-rental', compact('categoryCarrentals', 'carrentalcat', 'carrentalcats', 'search'));
+        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'destinationblogs', 'sort'));
     }
 
     // Tour Package
     public function tourpackage(Request $request)
     {
+        $tourpackages = Tourpackage::latest();
+        $tourpackagecats = Tourpackagecat::all();
         $destinationblogs = Destinationblog::all();
+        $tourroutes = Tourroute::all();
         $selectedTourroutes = $request->input('tourroutes', []);
-
-        $tourpackages = Tourpackage::when($selectedTourroutes, function ($query) use ($selectedTourroutes) {
-            // Filter buku yang memiliki semua tourroute yang dipilih
-            $query->whereHas('tourroutes', function ($query) use ($selectedTourroutes) {
-                $query->whereIn('tourroutes.slug', $selectedTourroutes);
-            }, '=', count($selectedTourroutes)); // Cek jumlah tourroute yang cocok harus sama dengan yang dipilih
-        })->latest();
-
-
         $search = $request->search;
+        $sort = $request->sort;
+        $category_slug = $request->category;
+
+        if ($sort === 'cheapest') {
+            $carrentals = Tourpackage::orderBy('price');
+        } else if ($sort === 'most-expensive') {
+            $carrentals = Tourpackage::orderByDesc('price');
+        }
+
+        // opsi 1
+        if ($selectedTourroutes) {
+            $tourpackages->whereHas('tourroutes', function ($query) use ($selectedTourroutes) {
+                $query->whereIn('tourroutes.slug', $selectedTourroutes);
+            });
+        }
+
+        // // opsi 2
+        // if ($selectedTourroutes) {
+        //     $tourpackages = Tourpackage::when($selectedTourroutes, function ($query) use ($selectedTourroutes) {
+        //         // Filter buku yang memiliki semua tourroute yang dipilih
+        //         $query->whereHas('tourroutes', function ($query) use ($selectedTourroutes) {
+        //             $query->whereIn('tourroutes.slug', $selectedTourroutes);
+        //         }, '=', count($selectedTourroutes)); // Cek jumlah tourroute yang cocok harus sama dengan yang dipilih
+        //     });
+        // }
+
         if ($search) {
-            $tourpackages = $tourpackages->where('name', 'like', '%' . $request->search . '%');
+            $tourpackages = $tourpackages->where('name', 'like', "%$search%");
+        }
+
+        if ($category_slug) {
+            $tourpackages = $tourpackages->whereHas('tourpackagecat', function ($query) use ($category_slug) {
+                $query->where('slug', $category_slug);  // Mencocokkan slug kategori
+            });
         }
 
         $tourpackages = $tourpackages->paginate(8);
 
-        $tourpackagecats = Tourpackagecat::all();
-        $tourroutes = Tourroute::all();
-
         return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search', 'tourroutes', 'selectedTourroutes', 'destinationblogs'));
-    }
-
-    public function categoryTourpackages(Tourpackagecat $tourpackagecat, Request $request)
-    {
-        $categoryTourpackages = $tourpackagecat->tourpackages();
-
-        $search = $request->search;
-        if ($search) {
-            $categoryTourpackagecats = $categoryTourpackages->where('name', 'like', '%' . $request->search . '%');
-        }
-
-        $categoryTourpackages = $categoryTourpackages->paginate(8);
-        $tourpackagecats = Tourpackagecat::all();
-
-        return view('pages.tour-package.cat-tour-package', compact('categoryTourpackages', 'tourpackagecat', 'tourpackagecats', 'search'));
     }
 
     public function destinationblog(Request $request)

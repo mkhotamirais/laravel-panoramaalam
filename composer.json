@@ -15,6 +15,7 @@
         "davidhsianturi/blade-bootstrap-icons": "^1.5",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "mallardduck/blade-boxicons": "^2.4",
         "owenvoke/blade-fontawesome": "^2.8"
     },
     "require-dev": {

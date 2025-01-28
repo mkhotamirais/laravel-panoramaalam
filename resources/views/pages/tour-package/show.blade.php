@@ -35,7 +35,8 @@
 
                     <span class="text-gray-600">{{ __('menu.tour-package.price.start') }}</span>
                     <p class="text-2xl mb-2 font-semibold">
-                        Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span class="text-sm text-gray-600">/
+                        Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span
+                            class="text-base font-normal text-gray-600">/
                             {{ __('menu.tour-package.price.end') }}</span></p>
 
                 </div>

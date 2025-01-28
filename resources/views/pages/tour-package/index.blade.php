@@ -3,13 +3,25 @@
     'description' => __('meta.tour-package.description'),
     'keywords' => __('meta.tour-package.keywords'),
 ]">
-    <x-section-hero :title="__('menu.tour-package.title')">
+    <x-section-hero :title="__('menu.tour-package.title')" :total="$tourpackages->total()">
         <form class="mt-8">
             {{-- Mempertahankan nilai dari parameter "tourroutes" --}}
             @if (request('tourroutes'))
                 @foreach ((array) request('tourroutes') as $tourroute)
                     <input type="hidden" name="tourroutes[]" value="{{ $tourroute }}">
                 @endforeach
+            @endif
+
+            {{-- @if (request('search'))
+                <input type="hidden" name="search" value="{{ request('search') }}">
+            @endif --}}
+
+            @if (request('sort'))
+                <input type="hidden" name="sort" value="{{ request('sort') }}">
+            @endif
+
+            @if (request('category'))
+                <input type="hidden" name="category" value="{{ request('category') }}">
             @endif
 
             <div class="items-center mx-auto max-w-screen-sm flex sm:space-y-0">
@@ -19,9 +31,9 @@
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                         <x-bi-search class="w-5 h-5 text-gray-500 dark:text-gray-400"></x-bi-search>
                     </div>
-                    <input name="search" autocomplete="off" value="{{ $search }}"
+                    <input type="search" name="search" autocomplete="off" value="{{ $search }}"
                         class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
-                        placeholder="Search blogs" type="text" id="search">
+                        placeholder="{{ __('menu.other.search-placeholder') }}" type="text" id="search">
                 </div>
                 <div>
                     <button type="submit"
@@ -31,8 +43,6 @@
                 </div>
             </div>
         </form>
-
-        <x-badge-cat :cats="$tourpackagecats" :route="'category-tourpackages'" />
 
         @if (!empty($selectedTourroutes))
             <form id="filterForm" action="{{ route('tour-package') }}" method="GET" class="flex mt-2 items-center">
@@ -56,6 +66,15 @@
 
     </x-section-hero>
 
+    <div class="container mt-8">
+        <div class="flex flex-col gap-2 lg:flex-row lg:items-center justify-between">
+            <div class="relative">
+                <x-badge-cat :cats="$tourpackagecats" />
+            </div>
+            <x-badge-sorting :sorting="__('menu.other.sorting-price')" />
+        </div>
+    </div>
+
     @if ($search)
         <div class="container py-6">
             <p class="text-xl">
@@ -72,13 +91,13 @@
             <p class="text-3xl italic font-semibold mt-4">{{ __('menu.tour-package.results.not-found') }}</p>
         </div>
     @else
-        <section class="container py-12">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
+        <section class="container py-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                 @foreach ($tourpackages as $tourpackage)
                     <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
                 @endforeach
             </div>
-            <div class="my-12">
+            <div class="mt-8">
                 {{ $tourpackages->links() }}
             </div>
         </section>

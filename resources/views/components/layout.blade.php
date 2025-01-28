@@ -42,7 +42,7 @@
                     @endforeach
                 </nav>
                 {{-- contact us --}}
-                <a href="http://api.whatsapp.com/send?phone=6281319573240" class="btn">
+                <a href="http://api.whatsapp.com/send?phone=6281319573240" class="btn lg:py-3 px-5">
                     <x-si-whatsapp class="w-5 h-5" />
                     <span>{{ __('menu.header.contact-btn') }}</span>
                 </a>

@@ -28,10 +28,8 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/{blogcat:slug}/categoryblogs', [PublicController::class, 'categoryBlogs'])->name('category-blogs');
 
     Route::resource('/carrentals', CarrentalController::class);
-    Route::get('/{carrentalcat:slug}/categorycarrentals', [PublicController::class, 'categoryCarrentals'])->name('category-carrentals');
 
     Route::resource('/tourpackages', TourpackageController::class);
-    Route::get('/{tourpackagecat:slug}/categorytourpackages', [PublicController::class, 'categoryTourpackages'])->name('category-tourpackages');
 
     Route::resource('/destinationblogs', DestinationblogController::class);
 
