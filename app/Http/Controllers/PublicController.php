@@ -96,7 +96,7 @@ class PublicController extends Controller
         $carrentalcats = Carrentalcat::all();
         $destinationblogs = Destinationblog::all();
         $search = $request->search;
-        $sort = $request->sort;
+        $sort = $request->sort ?? "cheapest";
         $category_slug = $request->category;
 
         // Mulai query dengan mengutamakan kategori "lepas kunci"
