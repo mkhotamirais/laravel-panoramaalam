@@ -45,7 +45,7 @@ return [
         'description' => 'Cari paket wisata lombok, rental mobil lombok, rental motor lombok dengan harga terbaik di lombok',
         'address-title' => 'Alamat',
         'address' => 'Jln Raya Lembar-Gerung Lombok Barat (Dekat dengan bundaran Gerung).',
-        'contact-title' => 'Hubugi Kami',
+        'contact-title' => 'Hubungi Kami',
         'language-title' => 'Bahasa',
     ],
     'car-rental' => [

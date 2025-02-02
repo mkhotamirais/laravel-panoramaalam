@@ -139,7 +139,7 @@
                             <a href="https://www.instagram.com/panoramaalamid?igsh=MXYyMHFndm9vNGgwbA=="
                                 class="flex items-center gap-2">
                                 <x-si-instagram class="w-5 h-5" />
-                                <span>@panoramaalam</span>
+                                <span>@panoramaalamid</span>
                             </a>
                             <a href="https://www.facebook.com/profile.php?id=100089579831759"
                                 class="flex items-center gap-2">
