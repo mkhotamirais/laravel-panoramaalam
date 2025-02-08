@@ -27,6 +27,20 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Google tag (gtag.js) --}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-POLSLX1ZTQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-POLSLX1ZTQ');
+    </script>
+
+
 </head>
 
 <body class="flex flex-col min-h-screen font-poppins">
