@@ -56,7 +56,7 @@
                     @endforeach
                 </nav>
                 {{-- contact us --}}
-                <a href="http://api.whatsapp.com/send?phone=6281319573240" class="btn lg:py-3 px-5">
+                <a href="{{ config('common.links.wa-href') }}" class="btn lg:py-3 px-5">
                     <x-si-whatsapp class="w-5 h-5" />
                     <span>{{ __('common.common.contact-btn') }}</span>
                 </a>
@@ -110,20 +110,13 @@
 
     <main class="grow">
         {{ $slot }}
-        <div x-data="{ visible: false, timeout: null }" x-init="window.addEventListener('scroll', () => {
-            visible = true;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => visible = false, 2000);
-        })" :class="visible ? 'translate-x-0' : 'translate-x-full'"
-            class="fixed bottom-0 right-0 pr-6 pb-6 flex lg:hidden transition-transform duration-300"
-            @mouseenter="clearTimeout(timeout)" @mouseleave="timeout = setTimeout(() => visible = false, 2000)">
-            <a href="http://api.whatsapp.com/send?phone=6281319573240"
-                class="flex items-center hover:scale-105 transition">
-                <img src="https://raw.githubusercontent.com/grommet/grommet-icons/master/public/img/whatsapp.svg"
-                    alt="" class="size-12">
-            </a>
-        </div>
     </main>
+
+    <div class="fixed bottom-0 right-0 pr-6 lg:pb-8 lg:pr-12 pb-6 flex !z-50">
+        <a href="{{ config('common.links.wa-href') }}" class="flex items-center hover:scale-105 transition">
+            <x-fab-whatsapp class="size-14 text-green-600" />
+        </a>
+    </div>
 
     <footer class="pt-16 pb-6 bg-gradient-to-b from-white to-gray-500/10">
         <div class="container">
@@ -194,35 +187,6 @@
         });
     </script>
 
-    {{-- swiper --}}
-    <script>
-        new Swiper(".card-wrapper", {
-            loop: false,
-            spaceBetween: 12,
-
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                dynamicBullets: true,
-            },
-
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-            },
-        })
-    </script>
 </body>
 
 </html>

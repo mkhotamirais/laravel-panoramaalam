@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'links' => [
+        'wa-href' => 'http://api.whatsapp.com/send?phone=6281319573240',
+    ],
     'address' => 'Jln Raya Lembar-Gerung West Lombok (Near the Gerung roundabout).',
     'dashboard-menu' => [
         ['name' => 'dashboard', 'label' => 'Dashboard'],

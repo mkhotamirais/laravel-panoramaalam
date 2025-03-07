@@ -13,9 +13,7 @@
                 <span>
                     Posted in
                     @if ($blog->blogcat)
-                        <div>blogcaada</div>
-                        {{-- <a href="{{ route('category-blogs', $blog->blogcat->slug) }}"
-                            class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a> --}}
+                        <span class="text-orange-500">{{ $blog->blogcat->name }}</span>
                     @else
                         <span>panoramablog</span>
                     @endif

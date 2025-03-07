@@ -102,4 +102,33 @@
     {{-- destination --}}
     <x-section-destination :destinationblogs="$destinationblogs" bg="bg-gray-50" />
 
+    {{-- swiper --}}
+    <script>
+        new Swiper(".card-wrapper", {
+            loop: false,
+            spaceBetween: 12,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        })
+    </script>
 </x-layout>

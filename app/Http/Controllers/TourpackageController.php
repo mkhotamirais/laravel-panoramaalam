@@ -24,9 +24,7 @@ class TourpackageController extends Controller implements HasMiddleware
             // new Middleware('auth'),
         ];
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tourpackages = Tourpackage::latest()->paginate(6);
@@ -34,9 +32,6 @@ class TourpackageController extends Controller implements HasMiddleware
         return view('dashboard.tour-package.index', compact('tourpackages', 'myTourpackages'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $tourpackagecats = Tourpackagecat::all();
@@ -44,9 +39,6 @@ class TourpackageController extends Controller implements HasMiddleware
         return view('dashboard.tour-package.create', compact('tourpackagecats', 'tourroutes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validate
@@ -76,9 +68,6 @@ class TourpackageController extends Controller implements HasMiddleware
             $path = Storage::disk('public')->put('tourpackages-images', $request->banner);
         }
 
-        // Create tourpackage
-        // $tourpackage = Tourpackage::create([...$fields, 'user_id' => Auth::id()]);
-        // Auth::user()->tourpackages()->create($fields);
         $tourpackage = Auth::user()->tourpackages()->create([...$fields, 'slug' => $slug, 'banner' => $path]);
 
         // Simpan gambar-gambar ke storage dan database
@@ -93,40 +82,24 @@ class TourpackageController extends Controller implements HasMiddleware
 
         $tourpackage->tourroutes()->attach($fields['tourroutes']);
 
-        // Redirect
-        // return back()->with('success', 'Tourpackage created successfully');
         return redirect('/tourpackages')->with('success', 'Tourpackage created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Tourpackage $tourpackage)
     {
         $latestThreeTourpackages = Tourpackage::latest()->where('id', '!=', $tourpackage->id)->take(4)->get();
         return view('pages.tour-package.show', compact('tourpackage', 'latestThreeTourpackages'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Request $request, Tourpackage $tourpackage)
     {
-        // authorize
-        Gate::authorize('modify', $tourpackage);
-
         $tourroutes = Tourroute::all();
         $tourpackagecats = Tourpackagecat::all();
         return view('dashboard.tour-package.edit', compact('tourpackage', 'tourpackagecats', 'tourroutes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Tourpackage $tourpackage)
     {
-        Gate::authorize('modify', $tourpackage);
-
         // Validate
         $fields = $request->validate([
             'name' => "required|max:255|unique:tourpackages,name,$tourpackage->id",
@@ -198,14 +171,8 @@ class TourpackageController extends Controller implements HasMiddleware
         return redirect('/tourpackages')->with('success', 'Tourpackage updaed successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Tourpackage $tourpackage)
     {
-        // authorize
-        Gate::authorize('modify', $tourpackage);
-
         foreach ($tourpackage->tourimages as $image) {
             $filePath = $image->image_path;
             if (Storage::disk('public')->exists($filePath)) {

@@ -33,20 +33,20 @@
                     {{-- <h3 class="w-fit">{{ $tourpackage->tourpackagecat->name ?? 'cat' }}</h3> --}}
                     <h2 class="text-2xl lg:text-3xl font-semibold capitalize mb-2">{{ $tourpackage->name }}</h2>
 
-                    <span class="text-gray-600">{{ __('menu.tour-package.price.start') }}</span>
+                    <span class="text-gray-600">{{ __('common.tour-package.price.start') }}</span>
                     <p class="text-2xl mb-2 font-semibold">
                         Rp{{ number_format($tourpackage->price, 0, ',', '.') }} <span
                             class="text-base font-normal text-gray-600">/
-                            {{ __('menu.tour-package.price.end') }}</span></p>
+                            {{ __('common.tour-package.price.end') }}</span></p>
 
                 </div>
-                <a href="#pesan" class="btn">{{ __('menu.tour-package.show.book-btn') }}</a>
+                <a href="#pesan" class="btn">{{ __('common.tour-package.show.book-btn') }}</a>
             </div>
 
             @if ($tourpackage->price_detail)
                 <details class="pb-6">
                     <summary class="text-lg text-orange-500 hover:underline cursor-pointer w-fit font-semibold mb-2">
-                        {{ __('menu.tour-package.show.price-details') }}
+                        {{ __('common.tour-package.show.price-details') }}
                     </summary>
                     <div class="text-price">{!! $tourpackage->price_detail !!}</div>
                 </details>
@@ -69,20 +69,20 @@
             </div>
 
             {{-- itenary --}}
-            <x-details title="{{ __('menu.tour-package.show.itinerary') }}" bg="bg-green-50" :description="$tourpackage->itenary_description"
-                detail_title="Detail {{ __('menu.tour-package.show.itinerary') }}" :detail="$tourpackage->itenary_detail">
+            <x-details title="{{ __('common.tour-package.show.itinerary') }}" bg="bg-green-50" :description="$tourpackage->itenary_description"
+                detail_title="Detail {{ __('common.tour-package.show.itinerary') }}" :detail="$tourpackage->itenary_detail">
                 <x-slot:icon><x-bi-geo-alt class="w-6 h-6" /></x-slot:icon>
             </x-details>
 
             {{-- policy --}}
-            <x-details title="{{ __('menu.tour-package.show.policy') }}" :description="$tourpackage->policy_description"
-                detail_title="Detail {{ __('menu.tour-package.show.policy') }}" :detail="$tourpackage->policy_detail">
+            <x-details title="{{ __('common.tour-package.show.policy') }}" :description="$tourpackage->policy_description"
+                detail_title="Detail {{ __('common.tour-package.show.policy') }}" :detail="$tourpackage->policy_detail">
                 <x-slot:icon><x-bi-shield-check class="w-6 h-6" /></x-slot:icon>
             </x-details>
 
             {{-- info --}}
-            <x-details title="{{ __('menu.tour-package.show.Information') }}" bg="bg-green-50" :description="$tourpackage->info_description"
-                detail_title="Detail {{ __('menu.tour-package.show.Information') }}" :detail="$tourpackage->info_detail">
+            <x-details title="{{ __('common.tour-package.show.Information') }}" bg="bg-green-50" :description="$tourpackage->info_description"
+                detail_title="Detail {{ __('common.tour-package.show.Information') }}" :detail="$tourpackage->info_detail">
                 <x-slot:icon><x-bi-info-circle class="w-6 h-6" /></x-slot:icon>
             </x-details>
 
@@ -94,10 +94,10 @@
 
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
-            <h2 class="text-2xl font-semibold">{{ __('menu.tour-package.show.others') }}</h2>
+            <h2 class="text-2xl font-semibold">{{ __('common.tour-package.show.others') }}</h2>
             <a href="{{ route('tour-package') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
-                <span>{{ __('menu.other.view-all') }}</span>
+                <span>{{ __('common.common.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>
