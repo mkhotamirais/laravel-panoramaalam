@@ -38,36 +38,12 @@
                 @enderror
             </div>
 
-            {{-- license_plate --}}
-            <div class="mb-4">
-                <label for="license_plate">License Plate</label>
-                <select value="{{ old('license_plate') }}" class="select @error('') !ring-red-500 @enderror"
-                    name="license_plate" id="license_plate">
-                    <option value="">-- Select License Plate</option>
-                    <option value="DR">DR</option>
-                    <option value="D">D</option>
-                </select>
-                @error('license_plate')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
-
             {{-- carrental price --}}
             <div class="mb-4">
                 <label for="rental_price">Rental Price</label>
                 <input type="text" name="rental_price" id="rental_price" value="{{ old('rental_price') }}"
                     class="input @error('rental_price') !ring-red-500 @enderror">
                 @error('rental_price')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
-
-            {{-- color --}}
-            <div class="mb-4">
-                <label for="color">Color</label>
-                <input type="text" name="color" id="color" value="{{ old('color') }}"
-                    class="input @error('color') !ring-red-500 @enderror">
-                @error('color')
                     <p class="error">{{ $message }}</p>
                 @enderror
             </div>

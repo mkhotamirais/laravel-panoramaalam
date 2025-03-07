@@ -2,8 +2,7 @@
     <div class="container py-4">
         <h1 class="title">Car Rental List</h1>
 
-        {{-- <h2 class="text-2xl font-semibold mt-3 py-2">Your Car Reental ({{ $myCarrentals->total() }})</h2> --}}
-        <h2 class="text-2xl font-semibold mt-3 py-2">Your Car Reentals (8)</h2>
+        <h2 class="text-2xl font-semibold mt-3 py-2">Car Reentals ({{ $carrentals->total() }})</h2>
         <a href="{{ route('carrentals.create') }}"
             class="bg-orange-500 hover:bg-orange-600 py-2 px-4 rounded-full text-white inline-block my-2">Add new car
             rental</a>
@@ -19,7 +18,7 @@
 
         <div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                @foreach ($myCarrentals as $carrental)
+                @foreach ($carrentals as $carrental)
                     <x-carrental-card :carrental="$carrental">
                         <div class="mt-auto flex justify-end gap-1 items-center bg-gray-100 p-2 border-t">
                             {{-- update carrental --}}
@@ -34,21 +33,6 @@
                             </form>
                         </div>
                     </x-carrental-card>
-                @endforeach
-            </div>
-
-            <div class="mt-4">
-                {{ $myCarrentals->links() }}
-            </div>
-        </div>
-
-        {{-- <h1 class="text-2xl font-semibold mt-3 py-2">Semua Carrental Wisata ({{ $carrentals->total() }})</h1> --}}
-        <h1 class="text-2xl font-semibold mt-3 py-2">All Car Rentals (7)</h1>
-
-        <div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                @foreach ($carrentals as $carrental)
-                    <x-carrental-card :carrental="$carrental"></x-carrental-card>
                 @endforeach
             </div>
 

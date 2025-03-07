@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('content');
             $table->string('banner')->nullable();
-            $table->foreignId('blogcat_id')->default(1)->constrained()->cascadeOnDelete();
+            $table->foreignId('blogcat_id')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

@@ -28,8 +28,7 @@ class BlogController extends Controller implements HasMiddleware
     public function index()
     {
         $blogs = Blog::latest()->paginate(6);
-        $myBlogs = Blog::where('user_id', Auth::id())->latest()->paginate(3);
-        return view('dashboard.blog.index', compact('blogs', 'myBlogs'));
+        return view('dashboard.blog.index', compact('blogs'));
     }
 
     /**
@@ -62,45 +61,25 @@ class BlogController extends Controller implements HasMiddleware
             $path = Storage::disk('public')->put('blogs-images', $request->banner);
         }
 
-        // Create blog
-        // $blog = Blog::create([...$fields, 'user_id' => Auth::id()]);
-        // Auth::user()->blogs()->create($fields);
         Auth::user()->blogs()->create([...$fields, 'slug' => $slug, 'banner' => $path]);
 
-        // Redirect
-        // return back()->with('success', 'Blog created successfully');
         return redirect('/blogs')->with('success', 'Blog created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Blog $blog)
     {
         $latestThreeBlogs = Blog::latest()->where('id', '!=', $blog->id)->take(4)->get();
         return view('pages.blog.show', compact('blog', 'latestThreeBlogs'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Blog $blog)
     {
-        // authorize
-        Gate::authorize('modify', $blog);
         $blogcats = Blogcat::all();
         return view('dashboard.blog.edit', compact('blog', 'blogcats'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, blog $blog)
     {
-        // authorize
-        Gate::authorize('modify', $blog);
-
-        // Validate
         $fields = $request->validate([
             // 'title' => ['required', 'max:255', Rule::unique('blogs')->ignore($blog->id)],
             'title' => "required|max:255|unique:blogs,title,$blog->id",
@@ -111,7 +90,6 @@ class BlogController extends Controller implements HasMiddleware
 
         $slug = Str::slug($fields['title']);
 
-        // Upload image if file exist
         $path = $blog->banner ?? null;
         if ($request->hasFile('banner')) {
             if ($blog->banner) {
@@ -119,22 +97,13 @@ class BlogController extends Controller implements HasMiddleware
             }
             $path = Storage::disk('public')->put('blogs-images', $request->banner);
         }
-        // Update the blog
         $blog->update([...$fields, 'slug' => $slug, 'banner' => $path]);
 
-        // Redirect
-        // return back()->with('success', 'Blog updated successfully');
         return redirect('/blogs')->with('success', 'Blog updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Blog $blog)
     {
-        // authorize
-        Gate::authorize('modify', $blog);
-
         if ($blog->banner) {
             Storage::disk('public')->delete($blog->banner);
         }

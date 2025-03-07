@@ -7,15 +7,10 @@
                     <h2 class="text-5xl font-semibold capitalize">{{ $blog->title }}</h2>
                     {{-- author and date --}}
                     <div class="text-gray-500 mt-2">
-                        <span>{{ __('menu.blog.show.post-detail.0') }} {{ $blog->created_at->diffForHumans() }}
-                            {{ __('menu.blog.show.post-detail.1') }}</span> <a
-                            href="{{ route('user-blogs', $blog->user) }}"
-                            class="text-orange-500 capitalize hover:underline">{{ $blog->user->username }}</a>
                         <span>
                             {{ __('menu.blog.show.post-detail.2') }}
                             @if ($blog->blogcat)
-                                <a href="{{ route('category-blogs', $blog->blogcat->slug) }}"
-                                    class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
+                                <a href="" class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
                             @else
                                 <span>no category</span>
                             @endif
@@ -34,9 +29,7 @@
                         <h2 class="text-3xl font-semibold capitalize">{{ $blog->title }}</h2>
                         {{-- author and date --}}
                         <div class="text-sm text-gray-600">
-                            <span>Posted {{ $blog->created_at->diffForHumans() }} by</span> <a
-                                href="{{ route('user-blogs', $blog->user) }}"
-                                class="text-orange-500 capitalize hover:underline">{{ $blog->user->username }}</a>
+                            <span>Posted {{ $blog->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
 

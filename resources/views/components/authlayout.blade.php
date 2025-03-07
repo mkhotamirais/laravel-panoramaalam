@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ asset('storage/svg/panorama_icon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/img/panorama_icon.svg') }}" type="image/x-icon">
 
     <title>{{ env('APP_NAME', 'Laravel') }}</title>
 
@@ -48,7 +48,7 @@
                                 class="fixed w-72 left-0 top-16 bottom-0 bg-white p-4 border-r lg:translate-x-0 overflow-auto">
                                 <div class="flex flex-col gap-2">
                                     <h2 class="text-xl font-semibold">Admin Dashboard</h2>
-                                    @foreach (__('menudash.aside.main-menu') as $menu)
+                                    @foreach (config('common.dashboard-menu') as $menu)
                                         @if ($menu['name'] !== '')
                                             <a href="{{ route($menu['name']) }}"
                                                 class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>

@@ -23,9 +23,9 @@
                     {{ $tourpackage->tourpackagecat->name }}</div>
             </div>
 
-            <div class="text-gray-600 text-sm">{{ __('menu.tour-package.price.start') }}</div>
+            <div class="text-gray-600 text-sm">{{ __('common.tour-package.price.start') }}</div>
             <p class="text-lg mb-4 grow font-semibold">Rp{{ number_format($tourpackage->price, 0, ',', '.') }}
-                <span class="text-sm text-gray-600 font-medium">/ {{ __('menu.tour-package.price.end') }}</span>
+                <span class="text-sm text-gray-600 font-medium">/ {{ __('common.tour-package.price.end') }}</span>
             </p>
 
             {{-- <div class="mb-4">
@@ -45,7 +45,7 @@
         </div>
 
         <a href="{{ route('tourpackages.show', $tourpackage) }}"
-            class="btn">{{ __('menu.tour-package.book-btn') }}</a>
+            class="btn">{{ __('common.tour-package.book-btn') }}</a>
     </div>
     {{ $slot }}
 </div>

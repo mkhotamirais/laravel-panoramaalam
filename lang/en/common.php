@@ -1,52 +1,65 @@
 <?php
 
 return [
-    'header' => [
-        'main-menu' => [
-            ['name' => 'home', 'label' => 'Home'],
-            ['name' => 'car-rental', 'label' => 'Car Rental'],
-            ['name' => 'tour-package', 'label' => 'Tour Package'],
-            ['name' => 'blog', 'label' => 'Blog'],
-        ],
+    'common' => [
         'contact-btn' => 'Contact Us',
+        'car-rental-btn' => 'Car Rental',
+        'tour-package-btn' => 'Tour Package',
+        'view-all' => 'View All',
+        'sorting-time' => [
+            'latest' => 'Latest',
+            'oldest' => 'Oldest'
+        ],
+        'order' => 'Order Now',
+        'order-btn' => 'Chat / Inquire via WhatsApp',
+        'payment' => 'Payment',
+        'search-btn' => 'Search',
+        'search-placeholder' => 'Search here..',
+        'all-categories' => 'All Categories',
+        'sorting-price' => [
+            'latest' => 'latest',
+            'cheapest' => 'Cheapest',
+            'most-expensive' => 'Most Expensive'
+        ],
+    ],
+    'main-menu' => [
+        ['name' => 'home', 'label' => 'Home'],
+        ['name' => 'car-rental', 'label' => 'Car Rental'],
+        ['name' => 'tour-package', 'label' => 'Tour Package'],
+        ['name' => 'blog', 'label' => 'Blog'],
     ],
     'home' => [
         'hero' => [
+            'title' => 'The Best Tour Packages & Car Rentals in Lombok',
             'description' => 'Get the comfort of <span>Car Rental</span> and <span>Tour Packages</span> in Lombok with professional and friendly service from us. Explore the beauty of Lombok with ease and enjoy a pleasant journey.',
-            'hero-btn-car-rental' => 'Car Rental',
-            'hero-btn-tour-package' => 'Tour Package',
         ],
-        'products' => [
-            'title' => 'Our Products and Services',
-            'big-title' => 'Choose the Package You Need',
-            'offers' => [
-                ['title' => 'Car Rental', 'href' => 'car-rental', 'image' => 'storage/img/storyset-driving-bro.png',  'description' => 'Easy, fast, and affordable car rental! Choose your favorite vehicle for a comfortable journey with us.'],
-                ['title' => 'Tour Packages', 'href' => 'tour-package', 'image' => 'storage/img/storyset-Journey-amico.png', 'description' => 'Explore your dream destinations with the best travel packages! Enjoy exciting and affordable vacations with us.'],
-            ],
-            'detail-btn' => 'Check Details'
+        'tour-package' => [
+            'title' => 'Best Tour Packages',
+            'big-title' => 'Discover Your Dream Vacation in Lombok',
+        ],
+        'car-rental' => [
+            'title' => 'Best Car Rentals',
+            'big-title' => 'Choose a Car That Fits Your Needs',
         ],
         'blogs' => [
             'title' => 'Our Blogs',
             'big-title' => 'Discover the Beauty of Nature in Every Article',
-            'all-blog-btn' => 'View All Blogs'
         ],
         'destination' => [
             'title' => 'Favorite Destinations',
             'big-title' => 'Find the best places for unforgettable experiences',
-            'all-destination-btn' => 'View All Destinations'
         ],
         'contact' => [
             'big-title' => 'Want to rent a car or choose a holiday package?',
             'description' => 'Contact us for reservations and more information.',
-            'contact-btn' => 'Contact Us'
         ]
     ],
     'footer' => [
-        'description' => 'Find Lombok tour packages, car rentals, and motorbike rentals at the best prices in Lombok',
-        'address-title' => 'Address',
-        'address' => 'Jln Raya Lembar-Gerung West Lombok (Near the Gerung roundabout).',
-        'contact-title' => 'Contact Us',
-        'language-title' => 'Language',
+        "links" => "Links",
+        "other-links" => "Other Links",
+        "other-links-menu" => [
+            ["label" => "Rentallombok", "href" => "https://rentallombok.id"],
+        ]
     ],
     'car-rental' => [
         'title' => 'Car Rental',
@@ -96,28 +109,4 @@ return [
             'post-detail' => ['Posted', 'by', 'in'],
         ],
     ],
-    'destinationblog' => [
-        'title' => 'Destination Blog',
-        'show' => [
-            'others' => 'Other Destination Blogs'
-        ]
-    ],
-    'other' => [
-        'order' => 'Order Now',
-        'order-btn' => 'Chat / Inquire via WhatsApp',
-        'payment' => 'Payment',
-        'view-all' => 'View All',
-        'search-btn' => 'Search',
-        'search-placeholder' => 'Search here..',
-        'all-categories' => 'All Categories',
-        'sorting-price' => [
-            'latest' => 'latest',
-            'cheapest' => 'Cheapest',
-            'most-expensive' => 'Most Expensive'
-        ],
-        'sorting-time' => [
-            'latest' => 'Latest',
-            'oldest' => 'Oldest'
-        ],
-    ]
 ];

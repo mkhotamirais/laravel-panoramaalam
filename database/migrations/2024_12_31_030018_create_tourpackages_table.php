@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('info_description');
             $table->text('info_detail')->nullable();
             $table->string('banner')->nullable();
-            $table->foreignId('tourpackagecat_id')->default(1)->constrained()->cascadeOnDelete();
+            $table->foreignId('tourpackagecat_id')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

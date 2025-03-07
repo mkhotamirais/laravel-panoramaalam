@@ -21,7 +21,7 @@
                 Rp{{ number_format($carrental->rental_price, 0, ',', '.') }}</p>
 
         </div>
-        <a href="{{ route('carrentals.show', $carrental) }}" class="btn">{{ __('menu.car-rental.rent-btn') }}</a>
+        <a href="{{ route('carrentals.show', $carrental) }}" class="btn">{{ __('common.car-rental.rent-btn') }}</a>
     </div>
 
     {{ $slot }}

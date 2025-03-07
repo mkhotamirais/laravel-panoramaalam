@@ -19,13 +19,13 @@
                         {{ $carrental->carrentalcat->name }}</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-2">{{ __('menu.car-rental.show.policy') }}
+                    <h3 class="text-xl font-semibold mb-2">{{ __('common.car-rental.show.policy') }}
                         <i class="font-medium">{{ $carrental->carrentalcat->name }}</i>
                     </h3>
                     <div class="text-content">{!! $carrental->policy !!}</div>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold">{{ __('menu.car-rental.show.information') }}</h3>
+                    <h3 class="text-xl font-semibold">{{ __('common.car-rental.show.information') }}</h3>
                     <div class="text-content">{!! $carrental->information !!}</div>
                 </div>
                 <x-section-order />
@@ -35,10 +35,10 @@
 
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
-            <h2 class="text-2xl font-semibold">{{ __('menu.car-rental.show.others') }}</h2>
+            <h2 class="text-2xl font-semibold">{{ __('common.car-rental.show.others') }}</h2>
             <a href="{{ route('car-rental') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
-                <span>{{ __('menu.other.view-all') }}</span>
+                <span>{{ __('common.common.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>

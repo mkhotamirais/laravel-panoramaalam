@@ -16,7 +16,7 @@
     <label class="badge-filter {{ request('category') == '' ? '!bg-orange-500 !text-white' : '' }}">
         <input type="radio" name="category" value="" {{ request('category') == '' ? 'checked' : '' }}
             onchange="this.form.submit()" class="hidden">
-        <span>{{ __('menu.other.all-categories') }}</span>
+        <span>{{ __('common.common.all-categories') }}</span>
     </label>
 
     @foreach ($cats as $cat)

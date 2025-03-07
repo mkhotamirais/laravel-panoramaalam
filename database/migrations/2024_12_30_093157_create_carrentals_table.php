@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('brand_name');
             $table->string('slug')->unique();
-            $table->string('license_plate')->nullable();
             $table->decimal('rental_price', 20, 0)->default(0);
-            $table->string('color')->nullable();
             $table->text('policy');
             $table->text('information')->nullable();
             $table->string('banner')->nullable();
-            $table->foreignId('carrentalcat_id')->default(1)->constrained()->cascadeOnDelete();
+            $table->foreignId('carrentalcat_id')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

@@ -130,8 +130,8 @@ table th {
     @apply text-orange-500 text-4xl font-medium;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .card-wrapper .swiper-slide-button {
         display: none;
     }
-}
+} */

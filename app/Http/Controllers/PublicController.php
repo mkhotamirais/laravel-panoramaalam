@@ -6,7 +6,6 @@ use App\Models\Blog;
 use App\Models\Blogcat;
 use App\Models\Carrental;
 use App\Models\Carrentalcat;
-use App\Models\Destinationblog;
 use App\Models\Tourpackage;
 use App\Models\Tourpackagecat;
 use App\Models\Tourroute;
@@ -18,16 +17,22 @@ class PublicController extends Controller
     public function index()
     {
         $latestThreeBlogs = Blog::latest()->take(4)->get();
-        $destinationblogs = Destinationblog::all();
-        return view('home', compact('latestThreeBlogs', 'destinationblogs'));
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
+        $carrentals = Carrental::latest()->get();
+        $tourpackages = Tourpackage::latest()->get();
+        return view('home', compact('latestThreeBlogs', 'destinationblogs', 'carrentals', 'tourpackages'));
     }
 
     // Blog
     public function blog(Request $request)
     {
         $blogs = Blog::latest();
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
         $blogcats = Blogcat::all();
-        $destinationblogs = Destinationblog::all();
         $sort_time = $request->sort;
 
         if ($sort_time === 'latest') {
@@ -46,58 +51,17 @@ class PublicController extends Controller
         return view('pages.blog.index', compact('blogs', 'search', 'blogcats', 'destinationblogs'));
     }
 
-    public function userBlogs(User $user, Request $request)
-    {
-        $userBlogs = $user->blogs()->latest();
-        $sort_time = $request->sort;
-
-        if ($sort_time === 'latest') {
-            $userBlogs = $user->blogs()->latest();
-        } else if ($sort_time === 'oldest') {
-            $userBlogs = $user->blogs()->oldest();
-        }
-
-        $search = $request->search;
-        if ($search) {
-            $userBlogs = $userBlogs->where('title', 'like', '%' . $request->search . '%');
-        }
-
-        $userBlogs = $userBlogs->paginate(8);
-
-        return view('pages.blog.user-blog', compact('userBlogs', 'user', 'search'));
-    }
-
-    public function categoryBlogs(Blogcat $blogcat, Request $request)
-    {
-        $categoryBlogs = $blogcat->blogs()->latest();
-        $sort_time = $request->sort;
-
-        if ($sort_time === 'latest') {
-            $categoryBlogs = $blogcat->blogs()->latest();
-        } else if ($sort_time === 'oldest') {
-            $categoryBlogs = $blogcat->blogs()->oldest();
-        }
-
-        $search = $request->search;
-        if ($search) {
-            $categoryBlogs = $categoryBlogs->where('title', 'like', '%' . $request->search . '%');
-        }
-
-        $categoryBlogs = $categoryBlogs->paginate(8);
-        $blogcats = Blogcat::all();
-
-        return view('pages.blog.cat-blog', compact('categoryBlogs', 'blogcat', 'blogcats', 'search'));
-    }
-
     // Car Rental
     public function carrental(Request $request)
     {
         $carrentals = Carrental::all();
         $carrentalcats = Carrentalcat::all();
-        $destinationblogs = Destinationblog::all();
         $search = $request->search;
         $sort = $request->sort ?? "cheapest";
         $category_slug = $request->category;
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
 
         // Mulai query dengan mengutamakan kategori "lepas kunci"
         $carrentals = Carrental::with('carrentalcat')
@@ -124,7 +88,7 @@ class PublicController extends Controller
 
         $carrentals = $carrentals->paginate(8);
 
-        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'destinationblogs', 'sort'));
+        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'sort', 'destinationblogs'));
     }
 
     // Tour Package
@@ -132,12 +96,14 @@ class PublicController extends Controller
     {
         $tourpackages = Tourpackage::latest();
         $tourpackagecats = Tourpackagecat::all();
-        $destinationblogs = Destinationblog::all();
         $tourroutes = Tourroute::all();
         $selectedTourroutes = $request->input('tourroutes', []);
         $search = $request->search;
         $sort = $request->sort;
         $category_slug = $request->category;
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
 
         if ($sort === 'cheapest') {
             $carrentals = Tourpackage::orderBy('price');
@@ -175,19 +141,5 @@ class PublicController extends Controller
         $tourpackages = $tourpackages->paginate(8);
 
         return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search', 'tourroutes', 'selectedTourroutes', 'destinationblogs'));
-    }
-
-    public function destinationblog(Request $request)
-    {
-        $destinationblogs = Destinationblog::latest();
-
-        $search = $request->search;
-        if ($search) {
-            $destinationblogs = $destinationblogs->where('title', 'like', '%' . $request->search . '%');
-        }
-
-        $destinationblogs = $destinationblogs->paginate(8);
-
-        return view('pages.destination-blog.index', compact('destinationblogs', 'search'));
     }
 }

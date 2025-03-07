@@ -13,11 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ asset('storage/svg/panorama_icon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/img/panorama_icon.svg') }}" type="image/x-icon">
 
     <title>{{ $meta['title'] ?? 'Panorama Alam' }}</title>
     <meta name="description" content="{{ $meta['description'] ?? 'Paket wisata terbaik lombok' }}">
-    <meta name="keywords" content="{{ $meta['keywords'] ?? 'paket wisata Lombok, sewa mobil Lombok, travel Lombok' }}">
 
     {{-- Swiper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -47,10 +46,11 @@
     <header class="bg-white h-[4.6rem] sticky top-0 w-full z-50 transition">
         <div class="container flex h-full justify-between items-center">
             <x-logo />
+
             {{-- nav desktop --}}
             <div class="hidden lg:flex items-center">
                 <nav class="flex text-gray-600 text-md mr-8">
-                    @foreach (__('menu.header.main-menu') as $menu)
+                    @foreach (__('common.main-menu') as $menu)
                         <a href="{{ route($menu['name']) }}"
                             class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : '' }} font-medium px-3 hover:text-orange-400 transition">{{ $menu['label'] }}</a>
                     @endforeach
@@ -58,11 +58,12 @@
                 {{-- contact us --}}
                 <a href="http://api.whatsapp.com/send?phone=6281319573240" class="btn lg:py-3 px-5">
                     <x-si-whatsapp class="w-5 h-5" />
-                    <span>{{ __('menu.header.contact-btn') }}</span>
+                    <span>{{ __('common.common.contact-btn') }}</span>
                 </a>
                 {{-- language --}}
                 <x-lang />
             </div>
+
             {{-- nav mobile --}}
             <div x-data="{ open: false }" class="lg:hidden flex">
                 <button @click="open = !open" class="flex">
@@ -81,12 +82,12 @@
                         <div>
                             <x-lang />
                         </div>
-                        @foreach (__('menu.header.main-menu') as $menu)
+                        @foreach (__('common.main-menu') as $menu)
                             <a href="{{ route($menu['name']) }}"
                                 class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-white' }} font-montserrat text-2xl p-4 hover:text-orange-500 transition">{{ $menu['label'] }}</a>
                         @endforeach
                         <div class="mt-8">
-                            <h3 class="text-center text-orange-500 mb-4">{{ __('menu.header.contact-btn') }}</h3>
+                            <h3 class="text-center text-orange-500 mb-4">{{ __('common.common.contact-btn') }}</h3>
                             <div class="h-[2px] w-12 bg-orange-500 rounded-full mx-auto mb-8"></div>
                             <div class="flex flex-row gap-8">
                                 <a href="http://api.whatsapp.com/send?phone=6281319573240" class="text-white">
@@ -126,25 +127,34 @@
 
     <footer class="pt-16 pb-6 bg-gradient-to-b from-white to-gray-500/10">
         <div class="container">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
                 <div class="space-y-4">
                     <x-logo />
-                    <p class="text-gray-600">{{ __('menu.footer.description') }}</p>
+                    <p class="text-gray-600">{{ __('common.home.hero.title') }}</p>
                     {{-- <x-si-maplibre class="w-5 h-5 min-w-fit mr-2 inline" /> Address --}}
-                    <p><b>{{ __('menu.footer.address-title') }}</b> {{ __('menu.footer.address') }}</p>
+                    <address>{{ config('common.address') }}</address>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-semibold">Menu</h2>
+                    <h2 class="text-2xl font-semibold">{{ __('common.footer.links') }}</h2>
                     <nav class="flex flex-col gap-2 mt-4">
-                        @foreach (__('menu.header.main-menu') as $menu)
+                        @foreach (__('common.main-menu') as $menu)
                             <a href="{{ route($menu['name']) }}"
                                 class="{{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600' }} hover:text-orange-400 transition w-fit">{{ $menu['label'] }}</a>
                         @endforeach
                     </nav>
                 </div>
                 <div>
+                    <h2 class="text-2xl font-semibold">{{ __('common.footer.other-links') }}</h2>
+                    <nav class="flex flex-col gap-2 mt-4">
+                        @foreach (__('common.footer.other-links-menu') as $menu)
+                            <a href="{{ $menu['href'] }}"
+                                class="text-gray-600 hover:text-orange-400 transition w-fit">{{ $menu['label'] }}</a>
+                        @endforeach
+                    </nav>
+                </div>
+                <div>
                     <div class="mb-12">
-                        <h2 class="text-2xl font-semibold">{{ __('menu.footer.contact-title') }}</h2>
+                        <h2 class="text-2xl font-semibold">{{ __('common.common.contact-btn') }}</h2>
                         <nav class="flex flex-col gap-2 mt-4">
                             <a href="https://api.whatsapp.com/send?phone=6281319573240" class="flex items-center gap-2">
                                 <x-si-whatsapp class="w-5 h-5" />
@@ -161,15 +171,6 @@
                                 <span>@panoramaalam</span>
                             </a>
                         </nav>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-semibold">{{ __('menu.footer.language-title') }}</h2>
-                        <div class="flex flex-col mt-4 gap-2">
-                            <a href="{{ route('set-locale', 'id') }}"
-                                class="hover:text-orange-500 {{ session('locale') == 'id' ? 'text-orange-500' : '' }}">Indonesia</a>
-                            <a href="{{ route('set-locale', 'en') }}"
-                                class="hover:text-orange-500 {{ session('locale') == 'en' ? 'text-orange-500' : '' }}">English</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -191,6 +192,36 @@
                 img.oncontextmenu = () => false;
             });
         });
+    </script>
+
+    {{-- swiper --}}
+    <script>
+        new Swiper(".card-wrapper", {
+            loop: false,
+            spaceBetween: 12,
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        })
     </script>
 </body>
 

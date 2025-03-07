@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'username',
+        'name',
         'email',
         'password',
     ];
@@ -60,10 +60,5 @@ class User extends Authenticatable
     public function tourpackages()
     {
         return $this->hasMany(Tourpackage::class);
-    }
-
-    public function destinationblogs()
-    {
-        return $this->hasMany(Destinationblog::class);
     }
 }
