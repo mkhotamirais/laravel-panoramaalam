@@ -10,8 +10,10 @@
                 <div class="card-list swiper-wrapper">
                     @foreach ($tourpackage->tourimages as $image)
                         <div class="card-item swiper-slide h-[70vh]">
-                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $tourpackage->title }}"
-                                class="card-image h-full w-full object-cover object-center rounded-xl">
+                            <a href="{{ asset('storage/' . $image->image_path) }}">
+                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $tourpackage->title }}"
+                                    class="card-image h-full w-full object-cover object-center rounded-xl">
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -112,7 +114,7 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
     <script>
         new Swiper(".card-wrapper", {
-            loop: true,
+            loop: false,
             spaceBetween: 4,
 
             pagination: {
