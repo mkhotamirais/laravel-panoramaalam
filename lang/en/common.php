@@ -109,4 +109,26 @@ return [
             'post-detail' => ['Posted', 'by', 'in'],
         ],
     ],
+    'meta' => [
+        'home' => [
+            'title' => 'Panorama Alam - Lombok Tour Packages & Car Rental',
+            'description' => 'Explore the beauty of Lombok with the best tour packages and car rental services from Panorama Alam. An unforgettable vacation awaits you!',
+        ],
+        'blog' => [
+            'title' => 'Panorama Alam Blog - Best Lombok Travel Tips',
+            'description' => 'Read articles, tips, and travel guides about Lombok on the Panorama Alam blog. Get the latest information for a more exciting vacation!',
+        ],
+        'tour-package' => [
+            'title' => 'Lombok Tour Packages - Exciting Trips with Us',
+            'description' => 'Choose the best Lombok tour packages from Panorama Alam. Explore beaches, mountains, and Lombok’s rich culture at affordable prices!',
+        ],
+        'car-rental' => [
+            'title' => 'Lombok Car Rental - Trusted Service & Best Rates',
+            'description' => 'Rent a car in Lombok with comfort and affordable rates. Contact Panorama Alam now for a hassle-free journey!',
+        ],
+        "car-rental-show" => [
+            "title" => ["Rent a Car ", " at Panoramaalam"],
+            "description" => ["Rent a Car ", " in Lombok at an affordable price. Explore the beauty of Lombok with Panoramaalam"]
+        ]
+    ]
 ];

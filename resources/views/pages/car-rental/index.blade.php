@@ -1,8 +1,4 @@
-<x-layout :meta="[
-    'title' => __('meta.car-rental.title'),
-    'description' => __('meta.car-rental.description'),
-    'keywords' => __('meta.car-rental.keywords'),
-]">
+<x-layout :title="__('common.meta.car-rental.title')" :description="__('common.meta.car-rental.description')">
     <x-section-hero :title="__('common.car-rental.title')" :total="$carrentals->total()">
         <form class="mt-8 max-w-screen-sm">
 

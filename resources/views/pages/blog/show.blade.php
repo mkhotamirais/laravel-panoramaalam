@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="Str::words($blog->title, 10, '...')" description="{!! Str::words(strip_tags(html_entity_decode($blog->content)), 25, '...') !!}">
     <div class="pb-16 pt-0 lg:pt-16">
         <div class="max-w-screen-lg mx-auto">
             <div class="flex flex-col">

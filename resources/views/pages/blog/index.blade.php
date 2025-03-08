@@ -1,8 +1,4 @@
-<x-layout :meta="[
-    'title' => __('meta.blog.title'),
-    'description' => __('meta.blog.description'),
-    'keywords' => __('meta.blog.keywords'),
-]">
+<x-layout :title="__('common.meta.blog.title')" :description="__('common.meta.blog.description')">
     <x-section-hero :title="__('common.blog.title')">
         <form class="mt-8 max-w-screen-sm">
             {{-- @if (request('search'))

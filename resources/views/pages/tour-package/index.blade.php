@@ -1,8 +1,4 @@
-<x-layout :meta="[
-    'title' => __('meta.tour-package.title'),
-    'description' => __('meta.tour-package.description'),
-    'keywords' => __('meta.tour-package.keywords'),
-]">
+<x-layout :title="__('common.meta.tour-package.title')" :description="__('common.meta.tour-package.description')">
     <x-section-hero :title="__('common.tour-package.title')" :total="$tourpackages->total()">
         <form class="mt-8 max-w-screen-sm">
             {{-- Mempertahankan nilai dari parameter "tourroutes" --}}

@@ -1,4 +1,8 @@
-<x-layout>
+<x-layout :title="__('common.meta.car-rental-show.title.0') .
+    $carrental->brand_name .
+    __('common.meta.car-rental-show.title.1')" :description="__('common.meta.car-rental-show.description.0') .
+    $carrental->brand_name .
+    __('common.meta.car-rental-show.description.1')">
     <section class="lg:container">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 py-0 lg:py-16 min-h-[20vh]">
             <div class="h-auto">

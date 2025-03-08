@@ -1,4 +1,8 @@
-<x-layout>
+<x-layout :title="Str::words($tourpackage->name, 10, '...')" description="{!! Str::words(
+    strip_tags(html_entity_decode($tourpackage->detail ?: __('common.meta.tour-package.description'))),
+    25,
+    '...',
+) !!}">
     <section class="lg:container">
         {{-- <div class="h-[70vh] rounded-xl overflow-hidden">
                 <img src="{{ $tourpackage->banner ? asset('storage/' . $tourpackage->banner) : asset('storage/svg/panorama_icon.svg') }}"

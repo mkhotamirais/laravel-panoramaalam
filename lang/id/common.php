@@ -109,4 +109,26 @@ return [
             'post-detail' => ['Diposting', 'oleh', 'dalam'],
         ]
     ],
+    'meta' => [
+        'home' => [
+            'title' => 'Panorama Alam - Paket Wisata & Sewa Mobil Lombok',
+            'description' => 'Jelajahi keindahan Lombok dengan paket wisata dan sewa mobil terbaik dari Panorama Alam. Liburan tak terlupakan menanti Anda!',
+        ],
+        'blog' => [
+            'title' => 'Blog Panorama Alam - Tips Wisata Lombok Terbaik',
+            'description' => 'Baca artikel, tips, dan panduan wisata Lombok di blog Panorama Alam. Dapatkan informasi terbaru untuk liburan yang lebih seru!',
+        ],
+        'tour-package' => [
+            'title' => 'Paket Wisata Lombok - Liburan Seru Bersama Kami',
+            'description' => 'Pilih paket wisata Lombok terbaik dari Panorama Alam. Jelajahi pantai, gunung, dan budaya Lombok dengan harga terjangkau!',
+        ],
+        'car-rental' => [
+            'title' => 'Sewa Mobil Lombok - Rental Terpercaya & Harga Terbaik',
+            'description' => 'Sewa mobil di Lombok dengan nyaman dan harga bersahabat. Hubungi Panorama Alam sekarang untuk perjalanan yang lebih mudah!',
+        ],
+        "car-rental-show" => [
+            "title" => ["Sewa Mobil ", " di Panoramaalam"],
+            "description" => ["Sewa Mobil ", " di Lombok dengan harga terjangkau. Jelajahi keindahan Lombok bersama Panoramaalam"]
+        ]
+    ]
 ];
