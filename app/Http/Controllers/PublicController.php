@@ -16,7 +16,11 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $latestThreeBlogs = Blog::latest()->take(4)->get();
+        // $latestThreeBlogs = Blog::latest()->take(4)->get();
+        $latestThreeBlogs = Blog::with('blogcat')
+            ->whereDoesntHave('blogcat', function ($query) {
+                $query->where('slug', 'destinasi');
+            })->latest()->take(4)->get();
         $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
             $query->where('slug', 'destinasi');
         })->latest()->get();
