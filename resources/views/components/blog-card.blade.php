@@ -9,17 +9,6 @@
             {{ Str::words($blog->title, 6, '...') }}
         </a>
         <div class="text-xs text-gray-500 mt-2">
-            @if ($fullblog)
-                <span>
-                    Posted in
-                    @if ($blog->blogcat)
-                        <span class="text-orange-500">{{ $blog->blogcat->name }}</span>
-                    @else
-                        <span>panoramablog</span>
-                    @endif
-                </span>
-            @endif
-
             <span>{{ $blog->created_at->diffForHumans() }}</span>
         </div>
         {{-- content --}}

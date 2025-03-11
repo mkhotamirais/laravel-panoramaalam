@@ -8,12 +8,8 @@
                     {{-- author and date --}}
                     <div class="text-gray-500 mt-2">
                         <span>
-                            {{ __('menu.blog.show.post-detail.2') }}
-                            @if ($blog->blogcat)
-                                <a href="" class="text-orange-500 hover:underline">{{ $blog->blogcat->name }}</a>
-                            @else
-                                <span>no category</span>
-                            @endif
+                            {{ $blog->created_at->diffForHumans() }} {{ __('common.blog.show.post-detail.2') }}
+                            {{ $blog->blogcat->name ?: 'panorama blog' }}
                         </span>
                     </div>
 
@@ -29,7 +25,7 @@
                         <h2 class="text-3xl font-semibold capitalize">{{ $blog->title }}</h2>
                         {{-- author and date --}}
                         <div class="text-sm text-gray-600">
-                            <span>Posted {{ $blog->created_at->diffForHumans() }}</span>
+                            <span>{{ $blog->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
 
@@ -43,9 +39,9 @@
 
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
-            <h2 class="text-2xl font-semibold mr-2">{{ __('menu.blog.show.others') }}</h2>
+            <h2 class="text-2xl font-semibold mr-2">{{ __('common.blog.show.others') }}</h2>
             <a href="{{ route('blog') }}" class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
-                <span>{{ __('menu.other.view-all') }}</span>
+                <span>{{ __('common.common.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />
             </a>
         </div>

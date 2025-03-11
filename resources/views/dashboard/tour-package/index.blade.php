@@ -40,19 +40,5 @@
                 {{ $myTourpackages->links() }}
             </div>
         </div>
-
-        <h1 class="text-2xl font-semibold mt-3 py-2">All Tour Packages ({{ $tourpackages->total() }})</h1>
-
-        <div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                @foreach ($tourpackages as $tourpackage)
-                    <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
-                @endforeach
-            </div>
-
-            <div class="mt-4">
-                {{ $tourpackages->links() }}
-            </div>
-        </div>
     </div>
 </x-authlayout>

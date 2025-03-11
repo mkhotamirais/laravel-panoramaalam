@@ -110,9 +110,9 @@ class PublicController extends Controller
         })->latest()->get();
 
         if ($sort === 'cheapest') {
-            $carrentals = Tourpackage::orderBy('price');
+            $tourpackages = Tourpackage::orderBy('price');
         } else if ($sort === 'most-expensive') {
-            $carrentals = Tourpackage::orderByDesc('price');
+            $tourpackages = Tourpackage::orderByDesc('price');
         }
 
         // opsi 1
