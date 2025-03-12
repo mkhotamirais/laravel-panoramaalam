@@ -12,16 +12,8 @@
     <title>{{ $title ?: 'Panorama Alam' }}</title>
     <meta name="description" content="{{ $description ?: 'Paket wisata terbaik lombok' }}">
 
-    {{-- Swiper --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    {{-- Alpine --}}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    {{-- Google tag (gtag.js) --}}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-POLSLX1ZTQ"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SY0C85WWJP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -30,9 +22,16 @@
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-POLSLX1ZTQ');
+        gtag('config', 'G-SY0C85WWJP');
     </script>
 
+    {{-- Swiper --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    {{-- Alpine --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
