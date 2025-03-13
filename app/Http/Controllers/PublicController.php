@@ -24,8 +24,9 @@ class PublicController extends Controller
         $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
             $query->where('slug', 'destinasi');
         })->latest()->get();
-        $carrentals = Carrental::latest()->get();
-        $tourpackages = Tourpackage::latest()->get();
+
+        $carrentals = Carrental::orderBy('rental_price')->get();
+        $tourpackages = Tourpackage::orderBy('price')->get();
         return view('home', compact('latestThreeBlogs', 'destinationblogs', 'carrentals', 'tourpackages'));
     }
 
@@ -71,8 +72,8 @@ class PublicController extends Controller
         $carrentals = Carrental::with('carrentalcat')
             ->select('carrentals.*')
             ->join('carrentalcats', 'carrentals.carrentalcat_id', '=', 'carrentalcats.id')
-            ->orderByRaw("CASE WHEN carrentalcats.slug = 'lepas-kunci' THEN 0 ELSE 1 END")
-            ->latest();
+            ->orderByRaw("CASE WHEN carrentalcats.slug = 'lepas-kunci' THEN 0 ELSE 1 END,
+            carrentals.rental_price ASC");
 
         if ($sort === 'cheapest') {
             $carrentals = Carrental::orderBy('rental_price');
@@ -98,7 +99,7 @@ class PublicController extends Controller
     // Tour Package
     public function tourpackage(Request $request)
     {
-        $tourpackages = Tourpackage::latest();
+        $tourpackages = Tourpackage::all();
         $tourpackagecats = Tourpackagecat::all();
         $tourroutes = Tourroute::all();
         $selectedTourroutes = $request->input('tourroutes', []);
@@ -108,6 +109,14 @@ class PublicController extends Controller
         $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
             $query->where('slug', 'destinasi');
         })->latest()->get();
+
+        // Mulai query dengan mengutamakan kategori "lepas kunci"
+        $tourpackages = Tourpackage::with('tourpackagecat')
+            ->select('tourpackages.*')
+            ->join('tourpackagecats', 'tourpackages.tourpackagecat_id', '=', 'tourpackagecats.id')
+            ->orderByRaw("CASE WHEN tourpackagecats.slug = 'lepas-kunci' THEN 0 ELSE 1 END,
+            tourpackages.price ASC");
+
 
         if ($sort === 'cheapest') {
             $tourpackages = Tourpackage::orderBy('price');
