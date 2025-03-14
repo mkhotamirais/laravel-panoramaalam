@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Tourpackage;
 use Illuminate\Support\Str;
 use App\Models\Tourpackagecat;
@@ -88,7 +89,12 @@ class TourpackageController extends Controller implements HasMiddleware
     public function show(Tourpackage $tourpackage)
     {
         $latestThreeTourpackages = Tourpackage::latest()->where('id', '!=', $tourpackage->id)->take(4)->get();
-        return view('pages.tour-package.show', compact('tourpackage', 'latestThreeTourpackages'));
+        $blogs = Blog::with('blogcat')
+            ->whereDoesntHave('blogcat', function ($query) {
+                $query->where('slug', 'destinasi');
+            })->latest()->take(4)->get();
+
+        return view('pages.tour-package.show', compact('tourpackage', 'blogs', 'latestThreeTourpackages'));
     }
 
     public function edit(Request $request, Tourpackage $tourpackage)

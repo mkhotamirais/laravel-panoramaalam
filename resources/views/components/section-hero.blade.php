@@ -6,7 +6,7 @@
 ])
 
 <section id="hero" class="relative {{ $height }} w-full bg-gradient-to-b from-black/30 to-black/60">
-    <img src="{{ asset($banner) }}" alt="panoramaalam hero"
+    <img src="{{ asset($banner) }}" alt="panoramaalam hero" width="100%" height="100%"
         class="absolute w-full object-cover object-center {{ $height }} -z-10">
     <div class="container text-white h-full flex items-center w-full">
         <div class="max-w-4xl leading-relaxed w-full">

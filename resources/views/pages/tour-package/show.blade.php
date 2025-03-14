@@ -145,5 +145,7 @@
         })
     </script>
 
+    <x-section-blog :blogs="$blogs" />
+
 
 </x-layout>

@@ -52,4 +52,7 @@
             @endforeach
         </div>
     </div>
+
+    <x-section-blog :blogs="$blogs" />
+
 </x-layout>

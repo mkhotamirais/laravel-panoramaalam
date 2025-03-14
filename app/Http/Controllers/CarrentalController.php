@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Carrental;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Str;
@@ -60,7 +61,12 @@ class CarrentalController extends Controller implements HasMiddleware
     public function show(Carrental $carrental)
     {
         $latestThreeCarrentals = Carrental::latest()->where('id', '!=', $carrental->id)->take(4)->get();
-        return view('pages.car-rental.show', compact('carrental', 'latestThreeCarrentals'));
+        $blogs = Blog::with('blogcat')
+            ->whereDoesntHave('blogcat', function ($query) {
+                $query->where('slug', 'destinasi');
+            })->latest()->take(4)->get();
+
+        return view('pages.car-rental.show', compact('carrental', 'blogs', 'latestThreeCarrentals'));
     }
 
     public function edit(Carrental $carrental)

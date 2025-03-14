@@ -58,7 +58,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div x-data="{ open: false }" class="lg:hidden flex">
+            <div x-cloak x-data="{ open: false }" class="lg:hidden flex">
                 <button @click="open = !open" class="flex">
                     <x-fas-bars class="w-7 h-7" />
                 </button>

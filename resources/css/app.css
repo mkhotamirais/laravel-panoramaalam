@@ -8,6 +8,12 @@ section {
     @apply min-h-[30vh];
 }
 
+/* alpine */
+[x-cloak] {
+    display: none !important;
+}
+/* end alpine */
+
 .ck-editor__editable {
     @apply h-36 resize-y;
 }

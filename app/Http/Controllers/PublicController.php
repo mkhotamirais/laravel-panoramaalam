@@ -17,7 +17,7 @@ class PublicController extends Controller
     public function index()
     {
         // $latestThreeBlogs = Blog::latest()->take(4)->get();
-        $latestThreeBlogs = Blog::with('blogcat')
+        $blogs = Blog::with('blogcat')
             ->whereDoesntHave('blogcat', function ($query) {
                 $query->where('slug', 'destinasi');
             })->latest()->take(4)->get();
@@ -27,7 +27,7 @@ class PublicController extends Controller
 
         $carrentals = Carrental::orderBy('rental_price')->get();
         $tourpackages = Tourpackage::orderBy('price')->get();
-        return view('home', compact('latestThreeBlogs', 'destinationblogs', 'carrentals', 'tourpackages'));
+        return view('home', compact('blogs', 'destinationblogs', 'carrentals', 'tourpackages'));
     }
 
     // Blog
