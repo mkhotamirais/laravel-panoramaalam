@@ -63,27 +63,27 @@
 
                 {{-- auth --}}
                 @auth
-                    <div x-cloak x-data="{ open: false }" class="flex mx-2 !z-50">
-                        <button x-on:click="open = true"
+                    <div x-cloak x-data="{ buka: false }" class="flex mx-2 !z-50">
+                        <button x-on:click="buka = true"
                             class="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
                             <x-fas-user class="w-5 h-5" />
                         </button>
-                        <div x-on:click="open = false" class="fixed inset-0 bg-black/20 transition-all"
-                            :class="{ 'visible opacity-100': open, 'invisible opacity-0': !open }">
+                        <div x-on:click="buka = false" class="fixed inset-0 bg-black/20 transition-all"
+                            :class="{ 'visible opacity-100': buka, 'invisible opacity-0': !buka }">
                             <div x-on:click.stop class="absolute w-80 border-l h-full bg-white right-0 transition-all"
-                                :class="{ 'translate-x-0': open, 'translate-x-full': !open }">
+                                :class="{ 'translate-x-0': buka, 'translate-x-full': !buka }">
                                 <div class="flex items-center justify-between p-3">
                                     <div class="px-3">
                                         Halo, <b>{{ auth()->user()->name }}</b>
                                     </div>
-                                    <button x-on:click="open = false" class="p-2 rounded-lg hover:bg-gray-100">
+                                    <button x-on:click="buka = false" class="p-2 rounded-lg hover:bg-gray-100">
                                         <x-bi-x-lg class="w-5 h-5" />
                                     </button>
                                 </div>
                                 <div class="px-6 space-y-3">
                                     @foreach (config('common.dashboard-menu') as $menu)
                                         @if ($menu['name'] !== '')
-                                            <a href="{{ route($menu['name']) }}" x-on:click="open = false"
+                                            <a href="{{ route($menu['name']) }}" x-on:click="buka = false"
                                                 class="block {{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>
                                         @else
                                             <p class="font-semibold mt-3">{{ $menu['label'] }}</p>
