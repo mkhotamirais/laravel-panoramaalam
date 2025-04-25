@@ -62,8 +62,9 @@
                 </div>
 
                 {{-- auth --}}
-                @auth
-                    <div x-cloak x-data="{ buka: false }" class="flex !z-50">
+
+                <div x-cloak x-data="{ buka: false }" class="flex">
+                    @auth
                         <button @click="buka = true"
                             class="p-3 mx-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
                             <x-fas-user class="w-5 h-5" />
@@ -97,8 +98,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endauth
+                    @endauth
+                </div>
 
                 {{-- nav mobile --}}
                 <div x-cloak x-data="{ open: false }" class="lg:hidden flex">
