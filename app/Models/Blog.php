@@ -34,4 +34,26 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . request('search') . '%');
+        }
+
+        if ($filters['category'] ?? false) {
+            $slugCategory = str_replace('-', ' ', $filters['category']);
+            $query->whereHas('blogcat', function ($q) use ($slugCategory) {
+                $q->whereRaw('LOWER(name) = ?', [strtolower($slugCategory)]);
+            });
+        }
+
+        if ($filters['sort'] ?? false) {
+            if ($filters['sort'] === 'latest') {
+                $query->latest();
+            } else if ($filters['sort'] === 'oldest') {
+                $query->oldest();
+            }
+        }
+    }
 }

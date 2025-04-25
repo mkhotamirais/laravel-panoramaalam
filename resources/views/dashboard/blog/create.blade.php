@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container">
         <h2 class="text-2xl font-semibold py-2 mt-4">Create New Blog</h2>
 
@@ -7,7 +7,7 @@
             <x-flash-msg message="{{ session('success') }}"></x-flash-msg>
         @endif
 
-        <form action="{{ route('blogs.store') }}" method="POST" class="mt-8" enctype="multipart/form-data">
+        <form action="{{ route('blog.store') }}" method="POST" class="mt-8" enctype="multipart/form-data">
             @csrf
 
             {{-- blog title --}}
@@ -68,4 +68,4 @@
             <button type="submit" class="btn">Create</button>
         </form>
     </div>
-</x-authlayout>
+</x-layout>

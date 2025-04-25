@@ -41,7 +41,7 @@
         </form>
 
         @if (!empty($selectedTourroutes))
-            <form id="filterForm" action="{{ route('tour-package') }}" method="GET" class="flex mt-2 items-center">
+            <form id="filterForm" action="{{ route('paket-wisata') }}" method="GET" class="flex mt-2 items-center">
                 {{-- Mempertahankan nilai dari parameter "search" --}}
                 @if (request('search'))
                     <input type="hidden" name="search" value="{{ request('search') }}">
@@ -61,6 +61,23 @@
         @endif
 
     </x-section-hero>
+
+    @auth
+        <div class="container mt-8">
+            <a href="{{ route('paket-wisata.create') }}"
+                class="bg-orange-500 hover:bg-orange-600 py-2 px-4 rounded-full text-white inline-block my-2">Add new tour
+                package</a>
+
+            {{-- Session Messages --}}
+            @if (session('error'))
+                <x-flash-msg message="{{ session('error') }}" bg="bg-green-500"></x-flash-msg>
+            @endif
+
+            @if (session('success'))
+                <x-flash-msg message="{{ session('success') }}" bg="bg-green-500"></x-flash-msg>
+            @endif
+        </div>
+    @endauth
 
     <div class="container mt-8">
         <div class="flex flex-col gap-2 lg:flex-row lg:items-center justify-between">
@@ -90,7 +107,22 @@
         <section class="container py-8">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                 @foreach ($tourpackages as $tourpackage)
-                    <x-tourpackage-card :tourpackage="$tourpackage"></x-tourpackage-card>
+                    <x-tourpackage-card :tourpackage="$tourpackage">
+                        @auth
+                            <div class="mt-auto flex justify-end gap-1 items-center bg-gray-100 p-2 border-t">
+                                {{-- update tourpackage --}}
+                                <a href="{{ route('paket-wisata.edit', $tourpackage) }}"
+                                    class="bg-green-500 hover:bg-green-600 py-1 px-3 rounded-full text-white text-sm">Ubah</a>
+                                {{-- delete tourpackage --}}
+                                <form action="{{ route('paket-wisata.destroy', $tourpackage) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="return confirm('Are you sure?')" type="submit"
+                                        class="bg-red-500 hover:bg-red-600 py-1 px-3 rounded-full text-white text-sm">Hapus</button>
+                                </form>
+                            </div>
+                        @endauth
+                    </x-tourpackage-card>
                 @endforeach
             </div>
             <div class="mt-8">

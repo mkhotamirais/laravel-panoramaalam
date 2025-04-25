@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container py-4">
 
         <h1 class="title">Halo, {{ auth()->user()->name ?? '' }}</h1>
@@ -10,4 +10,4 @@
             <x-dash-card title="Tour Package" total="{{ $tourpackages->count() }}" :links="$links['tourpackage']" />
         </div>
     </div>
-</x-authlayout>
+</x-layout>

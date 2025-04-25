@@ -4,9 +4,9 @@
         <div class="mt-8 space-y-8">
             <p class="deskripsi max-w-screen-sm">{!! __('common.home.hero.description') !!}</p>
             <div class="flex flex-col lg:flex-row gap-2">
-                <a href="{{ route('car-rental') }}"
+                <a href="{{ route('rental-mobil') }}"
                     class="lg:px-6 lg:py-4 uppercase btn w-44">{{ __('common.common.car-rental-btn') }}</a>
-                <a href="{{ route('tour-package') }}"
+                <a href="{{ route('paket-wisata') }}"
                     class="lg:px-6 lg:py-4 uppercase btn w-44 !bg-transparent border border-orange-500 hover:text-orange-600">{{ __('common.common.tour-package-btn') }}</a>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('car-rental') }}"
+            <a href="{{ route('rental-mobil') }}"
                 class="py-3 px-6 rounded-full border-2 border-orange-500 text-orange-500 inline-block">{{ __('common.common.view-all') }}</a>
         </div>
     </section>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('tour-package') }}"
+            <a href="{{ route('paket-wisata') }}"
                 class="py-3 px-6 rounded-full border-2 border-orange-500 text-orange-500 inline-block">{{ __('common.common.view-all') }}</a>
 
         </div>

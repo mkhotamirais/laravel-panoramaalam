@@ -17,15 +17,37 @@ class CarrentalController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('auth', except: ['show']),
+            new Middleware('auth', except: ['index', 'show']),
         ];
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $carrentals = Carrental::latest()->paginate(6);
+        $carrentalcats = Carrentalcat::all();
 
-        return view('dashboard.car-rental.index', compact('carrentals'));
+        $search = $request->search;
+        $sort = $request->sort ?? "cheapest";
+        $category = $request->category;
+
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
+
+        $carrentals = Carrental::with('carrentalcat:id,name,slug')
+            ->select('carrentals.*') // Kalau perlu: ,'carrentalcats.slug'
+            ->join('carrentalcats', 'carrentals.carrentalcat_id', '=', 'carrentalcats.id')
+            ->orderByRaw("CASE WHEN carrentalcats.slug = 'lepas-kunci' THEN 0 WHEN carrentalcats.slug = 'include-driver' THEN 1 ELSE 2 END")
+            ->orderBy('rental_price', 'asc')
+            ->paginate(8);
+
+        if (isset($request->search) || isset($request->sort) || isset($request->category)) {
+            $carrentals = Carrental::with('carrentalcat:id,name')
+                ->filter(request(['search', 'sort', 'category']))
+                ->latest()
+                ->paginate(8);
+        }
+
+        return view('pages.car-rental.index', compact('carrentals', 'carrentalcats', 'search', 'sort', 'destinationblogs'));
     }
 
     public function create()
@@ -56,8 +78,9 @@ class CarrentalController extends Controller implements HasMiddleware
 
         Auth::user()->carrentals()->create([...$fields, 'slug' => $slug, 'banner' => $path]);
 
-        return redirect('/carrentals')->with('success', 'Carrental created successfully');
+        return redirect('/rental-mobil')->with('success', 'Carrental created successfully');
     }
+
     public function show(Carrental $carrental)
     {
         $latestThreeCarrentals = Carrental::latest()->where('id', '!=', $carrental->id)->take(4)->get();
@@ -101,7 +124,7 @@ class CarrentalController extends Controller implements HasMiddleware
         // Update the carrental
         $carrental->update([...$fields, 'slug' => $slug, 'banner' => $path]);
 
-        return redirect('/carrentals')->with('success', 'Carrental updated successfully');
+        return redirect('/rental-mobil')->with('success', 'Carrental updated successfully');
     }
 
     public function destroy(Carrental $carrental)

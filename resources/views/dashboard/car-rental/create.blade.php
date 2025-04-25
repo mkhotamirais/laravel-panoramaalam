@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container">
         <h2 class="text-2xl font-semibold py-2 mt-4">Create New Car Rental</h2>
 
@@ -7,7 +7,7 @@
             <x-flash-msg message="{{ session('success') }}"></x-flash-msg>
         @endif
 
-        <form action="{{ route('carrentals.store') }}" method="POST" class="mt-8" enctype="multipart/form-data">
+        <form action="{{ route('rental-mobil.store') }}" method="POST" class="mt-8" enctype="multipart/form-data">
             @csrf
 
             {{-- Brand Name --}}
@@ -96,4 +96,4 @@
                 class="bg-orange-500 hover:bg-orange-600 transition py-2 px-6 rounded-full text-white">Create</button>
         </form>
     </div>
-</x-authlayout>
+</x-layout>

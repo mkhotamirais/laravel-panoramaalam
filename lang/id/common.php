@@ -24,8 +24,8 @@ return [
     ],
     'main-menu' => [
         ['name' => 'home', 'label' => 'Home'],
-        ['name' => 'car-rental', 'label' => 'Sewa Mobil'],
-        ['name' => 'tour-package', 'label' => 'Paket Wisata'],
+        ['name' => 'rental-mobil', 'label' => 'Sewa Mobil'],
+        ['name' => 'paket-wisata', 'label' => 'Paket Wisata'],
         ['name' => 'blog', 'label' => 'Blog'],
     ],
     'home' => [
@@ -58,6 +58,7 @@ return [
         "links" => "Links",
         "other-links" => "Other Links",
         "other-links-menu" => [
+            ["label" => "Masuk", "href" => "/login"],
             ["label" => "Rentallombok", "href" => "https://rentallombok.id"],
         ]
     ],

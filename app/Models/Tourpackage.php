@@ -56,4 +56,26 @@ class Tourpackage extends Model
     {
         return $this->belongsToMany(Tourroute::class, 'tourpackage_tourroute');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        if ($filters['category'] ?? false) {
+            $slugCategory = str_replace('-', ' ', $filters['category']);
+            $query->whereHas('tourpackagecat', function ($q) use ($slugCategory) {
+                $q->whereRaw('LOWER(name) = ?', [strtolower($slugCategory)]);
+            });
+        }
+
+        if ($filters['sort'] ?? false) {
+            if ($filters['sort'] === 'cheapest') {
+                $query->orderBy('price');
+            } else if ($filters['sort'] === 'most-expensive') {
+                $query->orderByDesc('price');
+            }
+        }
+    }
 }

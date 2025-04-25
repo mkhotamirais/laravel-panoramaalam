@@ -17,18 +17,27 @@ class BlogController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            // new Middleware('auth', only: ['store']),
-            new Middleware('auth', except: ['show']),
-            // new Middleware('auth'),
+            new Middleware('auth', except: ['index', 'show']),
         ];
     }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::latest()->paginate(6);
-        return view('dashboard.blog.index', compact('blogs'));
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
+        $blogcats = Blogcat::all();
+
+        $blogs = Blog::with('blogcat:id,name')
+            ->filter(request(['search', 'category', 'sort']))
+            ->latest()->paginate(8);
+
+        $sort_time = $request->sort;
+        $search = $request->search;
+
+        return view('pages.blog.index', compact('blogs', 'search', 'blogcats', 'destinationblogs'));
     }
 
     /**
@@ -63,7 +72,7 @@ class BlogController extends Controller implements HasMiddleware
 
         Auth::user()->blogs()->create([...$fields, 'slug' => $slug, 'banner' => $path]);
 
-        return redirect('/blogs')->with('success', 'Blog created successfully');
+        return redirect('/blog')->with('success', 'Blog created successfully');
     }
 
     public function show(Blog $blog)
@@ -99,7 +108,7 @@ class BlogController extends Controller implements HasMiddleware
         }
         $blog->update([...$fields, 'slug' => $slug, 'banner' => $path]);
 
-        return redirect('/blogs')->with('success', 'Blog updated successfully');
+        return redirect('/blog')->with('success', 'Blog updated successfully');
     }
 
     public function destroy(Blog $blog)

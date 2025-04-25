@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container">
         <h2 class="text-2xl font-semibold py-2 mt-4">Create New Tour Package</h2>
 
@@ -7,7 +7,7 @@
             <x-flash-msg message="{{ session('success') }}"></x-flash-msg>
         @endif
 
-        <form action="{{ route('tourpackages.store') }}" method="POST" class="mt-8" enctype="multipart/form-data">
+        <form action="{{ route('paket-wisata.store') }}" method="POST" class="mt-8" enctype="multipart/form-data">
             @csrf
 
             {{-- Name --}}
@@ -221,4 +221,4 @@
                 console.error(error);
             });
     </script>
-</x-authlayout>
+</x-layout>

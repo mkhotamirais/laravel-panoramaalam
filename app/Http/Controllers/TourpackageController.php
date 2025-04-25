@@ -20,23 +20,63 @@ class TourpackageController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            // new Middleware('auth', only: ['store']),
-            new Middleware('auth', except: ['show']),
-            // new Middleware('auth'),
+            new Middleware('auth', except: ['index', 'show']),
         ];
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $tourpackages = Tourpackage::latest()->paginate(6);
-        $myTourpackages = Tourpackage::where('user_id', Auth::id())->latest()->paginate(3);
-        return view('dashboard.tour-package.index', compact('tourpackages', 'myTourpackages'));
+        $tourpackagecats = Tourpackagecat::all();
+        $tourroutes = Tourroute::all();
+        $selectedTourroutes = $request->input('tourroutes', []);
+
+        $tourpackages = Tourpackage::with('tourpackagecat')
+            ->select('tourpackages.*')
+            ->join('tourpackagecats', 'tourpackages.tourpackagecat_id', '=', 'tourpackagecats.id')
+            ->orderByRaw("CASE WHEN tourpackagecats.slug = 'lepas-kunci' THEN 0 ELSE 1 END,
+        tourpackages.price ASC")
+            ->latest()
+            ->paginate(8);
+
+        if (isset($request->category) || isset($request->search) || isset($request->sort)) {
+            $tourpackages = Tourpackage::with('tourpackagecat')
+                ->filter(request(['search', 'category', 'sort']))
+                ->latest()
+                ->paginate(8);
+        }
+
+        $search = $request->search;
+        $sort = $request->sort;
+        $category_slug = $request->category;
+
+        $destinationblogs = Blog::with('blogcat')->whereHas('blogcat', function ($query) {
+            $query->where('slug', 'destinasi');
+        })->latest()->get();
+
+        // opsi 1
+        if ($selectedTourroutes) {
+            $tourpackages->whereHas('tourroutes', function ($query) use ($selectedTourroutes) {
+                $query->whereIn('tourroutes.slug', $selectedTourroutes);
+            });
+        }
+
+        // // opsi 2
+        // if ($selectedTourroutes) {
+        //     $tourpackages = Tourpackage::when($selectedTourroutes, function ($query) use ($selectedTourroutes) {
+        //         // Filter buku yang memiliki semua tourroute yang dipilih
+        //         $query->whereHas('tourroutes', function ($query) use ($selectedTourroutes) {
+        //             $query->whereIn('tourroutes.slug', $selectedTourroutes);
+        //         }, '=', count($selectedTourroutes)); // Cek jumlah tourroute yang cocok harus sama dengan yang dipilih
+        //     });
+        // }
+
+        return view('pages.tour-package.index', compact('tourpackages', 'tourpackagecats', 'search', 'tourroutes', 'selectedTourroutes', 'destinationblogs'));
     }
 
     public function create()
     {
-        $tourpackagecats = Tourpackagecat::all();
-        $tourroutes = Tourroute::all();
+        $tourpackagecats = Tourpackagecat::orderBy('name', 'asc')->get();
+        $tourroutes = Tourroute::orderBy('name', 'asc')->get();
         return view('dashboard.tour-package.create', compact('tourpackagecats', 'tourroutes'));
     }
 
@@ -83,7 +123,7 @@ class TourpackageController extends Controller implements HasMiddleware
 
         $tourpackage->tourroutes()->attach($fields['tourroutes']);
 
-        return redirect('/tourpackages')->with('success', 'Tourpackage created successfully');
+        return redirect('/paket-wisata')->with('success', 'Tourpackage created successfully');
     }
 
     public function show(Tourpackage $tourpackage)
@@ -99,8 +139,8 @@ class TourpackageController extends Controller implements HasMiddleware
 
     public function edit(Request $request, Tourpackage $tourpackage)
     {
-        $tourroutes = Tourroute::all();
-        $tourpackagecats = Tourpackagecat::all();
+        $tourpackagecats = Tourpackagecat::orderBy('name', 'asc')->get();
+        $tourroutes = Tourroute::orderBy('name', 'asc')->get();
         return view('dashboard.tour-package.edit', compact('tourpackage', 'tourpackagecats', 'tourroutes'));
     }
 
@@ -174,7 +214,7 @@ class TourpackageController extends Controller implements HasMiddleware
             }
         }
 
-        return redirect('/tourpackages')->with('success', 'Tourpackage updaed successfully');
+        return redirect('/paket-wisata')->with('success', 'Tourpackage updaed successfully');
     }
 
     public function destroy(Tourpackage $tourpackage)

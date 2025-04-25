@@ -1,4 +1,4 @@
-@props(['blog' => [], 'full' => false, 'route' => 'blogs.show', 'fullblog' => true])
+@props(['blog' => [], 'full' => false, 'route' => 'blog.show', 'fullblog' => true])
 
 <div class="relative shadow hover:shadow-lg transition rounded-lg overflow-hidden flex flex-col">
     <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/svg/panorama_icon.svg') }}"
@@ -9,6 +9,7 @@
             {{ Str::words($blog->title, 6, '...') }}
         </a>
         <div class="text-xs text-gray-500 mt-2">
+            <span class="capitalize">{{ $blog->blogcat->name }}</span> |
             <span>{{ $blog->created_at->diffForHumans() }}</span>
         </div>
         {{-- content --}}

@@ -36,6 +36,23 @@
 
     </x-section-hero>
 
+    @auth
+        <div class="container mt-8">
+            <a href="{{ route('rental-mobil.create') }}"
+                class="bg-orange-500 hover:bg-orange-600 py-2 px-4 rounded-full text-white inline-block my-2">Add new car
+                rental</a>
+
+            {{-- Session Messages --}}
+            @if (session('delete'))
+                <x-flash-msg message="{{ session('delete') }}" bg="bg-green-500"></x-flash-msg>
+            @endif
+
+            @if (session('success'))
+                <x-flash-msg message="{{ session('success') }}" bg="bg-green-500"></x-flash-msg>
+            @endif
+        </div>
+    @endauth
+
     <div class="container mt-8">
         <div class="flex flex-col gap-2 lg:flex-row lg:items-center justify-between">
             <div class="relative">
@@ -64,7 +81,22 @@
         <section class="container py-8">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                 @foreach ($carrentals as $carrental)
-                    <x-carrental-card :carrental="$carrental"></x-carrental-card>
+                    <x-carrental-card :carrental="$carrental">
+                        @auth
+                            <div class="mt-auto flex justify-end gap-1 items-center bg-gray-100 p-2 border-t">
+                                {{-- update carrental --}}
+                                <a href="{{ route('rental-mobil.edit', $carrental) }}"
+                                    class="bg-green-500 hover:bg-green-600 py-1 px-3 rounded-full text-white text-sm">Ubah</a>
+                                {{-- delete carrental --}}
+                                <form action="{{ route('rental-mobil.destroy', $carrental) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="return confirm('Are you sure?')" type="submit"
+                                        class="bg-red-500 hover:bg-red-600 py-1 px-3 rounded-full text-white text-sm">Hapus</button>
+                                </form>
+                            </div>
+                        @endauth
+                    </x-carrental-card>
                 @endforeach
             </div>
             <div class="mt-8">

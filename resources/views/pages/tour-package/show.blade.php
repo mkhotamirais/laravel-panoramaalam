@@ -101,7 +101,7 @@
     <div class="container">
         <div class="flex justify-between items-center py-2 mt-4 mb-2">
             <h2 class="text-2xl font-semibold">{{ __('common.tour-package.show.others') }}</h2>
-            <a href="{{ route('tour-package') }}"
+            <a href="{{ route('paket-wisata') }}"
                 class="text-orange-500 min-w-max hover:underline flex gap-2 items-center">
                 <span>{{ __('common.common.view-all') }}</span>
                 <x-bi-arrow-right class="w-4 flex" />

@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container py-4">
         <h1 class="title">Car Rental Category List</h1>
 
@@ -58,4 +58,4 @@
             </div>
         </div>
     </div>
-</x-authlayout>
+</x-layout>

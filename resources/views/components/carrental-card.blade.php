@@ -9,7 +9,7 @@
 
     <div class="p-4 flex flex-col grow bg-white">
         <div class="grow mb-2">
-            <a href="{{ route('carrentals.show', $carrental) }}" class="card-title">
+            <a href="{{ route('rental-mobil.show', $carrental) }}" class="card-title">
                 {{ Str::words($carrental->brand_name, 3, '...') }}
             </a>
 
@@ -21,7 +21,7 @@
                 Rp{{ number_format($carrental->rental_price, 0, ',', '.') }}</p>
 
         </div>
-        <a href="{{ route('carrentals.show', $carrental) }}" class="btn">{{ __('common.car-rental.rent-btn') }}</a>
+        <a href="{{ route('rental-mobil.show', $carrental) }}" class="btn">{{ __('common.car-rental.rent-btn') }}</a>
     </div>
 
     {{ $slot }}

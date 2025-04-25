@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container">
         <h2 class="text-2xl font-semibold py-2 mt-4">Update Car Rental</h2>
 
@@ -7,7 +7,7 @@
             <x-flash-msg message="{{ session('success') }}"></x-flash-msg>
         @endif
 
-        <form action="{{ route('carrentals.update', $carrental) }}" method="POST" class="mt-8"
+        <form action="{{ route('rental-mobil.update', $carrental) }}" method="POST" class="mt-8"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -108,4 +108,4 @@
                 class="bg-orange-500 hover:bg-orange-600 transition py-2 px-6 rounded-full text-white">Save</button>
         </form>
     </div>
-</x-authlayout>
+</x-layout>

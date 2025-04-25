@@ -1,4 +1,4 @@
-<x-authlayout>
+<x-layout>
     <div class="container py-4">
         <h1 class="title">Tour Package Category List</h1>
 
@@ -52,7 +52,8 @@
                             <form action="{{ route('tourpackagecats.destroy', $tourpackagecat) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline">hapus</button>
+                                <button type="submit" class="text-red-500 hover:underline"
+                                    onclick="return confirm('are you sure?')">hapus</button>
                             </form>
                         </div>
                     </div>
@@ -60,4 +61,4 @@
             </div>
         </div>
     </div>
-</x-authlayout>
+    </x-layo>

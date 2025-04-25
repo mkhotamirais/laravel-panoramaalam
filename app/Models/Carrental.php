@@ -38,4 +38,26 @@ class Carrental extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('brand_name', 'like', '%' . request('search') . '%');
+        }
+
+        if ($filters['category'] ?? false) {
+            $slugCategory = str_replace('-', ' ', $filters['category']);
+            $query->whereHas('carrentalcat', function ($q) use ($slugCategory) {
+                $q->whereRaw('LOWER(name) = ?', [strtolower($slugCategory)]);
+            });
+        }
+
+        if ($filters['sort'] ?? false) {
+            if ($filters['sort'] === 'cheapest') {
+                $query->orderBy('rental_price');
+            } else if ($filters['sort'] === 'most-expensive') {
+                $query->orderByDesc('rental_price');
+            }
+        }
+    }
 }

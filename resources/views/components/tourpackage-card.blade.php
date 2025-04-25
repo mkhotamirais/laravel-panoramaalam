@@ -10,7 +10,7 @@
     <div class="p-4 flex flex-col grow bg-white">
         <div class="grow mb-2">
 
-            <a href="{{ route('tourpackages.show', $tourpackage) }}" class="card-title">
+            <a href="{{ route('paket-wisata.show', $tourpackage) }}" class="card-title">
                 {{ Str::words($tourpackage->name, 6, '...') }}
             </a>
 
@@ -44,7 +44,7 @@
         </div> --}}
         </div>
 
-        <a href="{{ route('tourpackages.show', $tourpackage) }}"
+        <a href="{{ route('paket-wisata.show', $tourpackage) }}"
             class="btn">{{ __('common.tour-package.book-btn') }}</a>
     </div>
     {{ $slot }}

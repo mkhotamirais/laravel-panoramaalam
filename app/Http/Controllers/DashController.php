@@ -14,15 +14,15 @@ class DashController extends Controller
     {
         $links = [
             'blog' => [
-                ['href' => 'blogs.index', 'label' => 'Blog List'],
+                ['href' => 'blog', 'label' => 'Blog List'],
                 ['href' => 'blogcats.index', 'label' => 'Blog Categories'],
             ],
             'carrental' => [
-                ['href' => 'carrentals.index', 'label' => 'Car Rental List'],
+                ['href' => 'rental-mobil', 'label' => 'Car Rental List'],
                 ['href' => 'carrentalcats.index', 'label' => 'Car Rental Categories'],
             ],
             'tourpackage' => [
-                ['href' => 'tourpackages.index', 'label' => 'Tour Package List'],
+                ['href' => 'paket-wisata', 'label' => 'Tour Package List'],
                 ['href' => 'tourpackagecats.index', 'label' => 'Tour Package Categories'],
                 ['href' => 'tourroutes.index', 'label' => 'Tour Package Routes'],
             ],

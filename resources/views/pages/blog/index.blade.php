@@ -36,11 +36,23 @@
         {{-- <x-badge-cat :cats="$blogcats" /> --}}
     </x-section-hero>
 
+    @auth
+        <div class="container mt-8">
+            <a href="{{ route('blog.create') }}"
+                class="bg-orange-500 hover:bg-orange-600 py-2 px-4 rounded-full text-white inline-block my-2">Add New
+                Blog</a>
+
+            @if (session('success'))
+                <x-flash-msg message="{{ session('success') }}" bg="bg-green-500"></x-flash-msg>
+            @endif
+        </div>
+    @endauth
+
     <div class="container mt-8">
         <div class="flex flex-col gap-2 lg:flex-row lg:items-center justify-between">
-            {{-- <div class="relative">
+            <div class="relative">
                 <x-badge-cat :cats="$blogcats" />
-            </div> --}}
+            </div>
             <x-badge-sorting :sorting="__('common.common.sorting-time')" />
         </div>
     </div>
@@ -64,7 +76,23 @@
         <section class="container py-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                 @foreach ($blogs as $blog)
-                    <x-blog-card :blog="$blog"></x-blog-card>
+                    <x-blog-card :blog="$blog">
+                        @auth
+                            <div class="mt-auto flex justify-end gap-1 items-center bg-gray-100 p-2 border-t">
+                                {{-- update blog --}}
+                                <a href="{{ route('blog.edit', $blog) }}"
+                                    class="bg-green-500 hover:bg-green-600 py-1 px-3 rounded-full text-white text-sm">Ubah</a>
+                                {{-- delete blog --}}
+                                <form action="{{ route('blog.destroy', $blog) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="return confirm('Are you sure?')" type="submit"
+                                        class="bg-red-500 hover:bg-red-600 py-1 px-3 rounded-full text-white text-sm">Hapus</button>
+                                </form>
+                            </div>
+                        @endauth
+
+                    </x-blog-card>
                 @endforeach
             </div>
             <div class="mt-8">
