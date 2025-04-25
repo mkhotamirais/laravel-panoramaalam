@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="w-1/2 mx-auto py-8">
+    <section class="container w-1/2 mx-auto py-8">
         <h1 class="title">Lupa Password</h1>
         <p class="mb-4">
             Kamu lupa password? Tidak masalah. Kami akan mengirimkan link reset
