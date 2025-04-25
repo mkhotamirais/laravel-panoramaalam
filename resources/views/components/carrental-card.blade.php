@@ -3,7 +3,8 @@
 <div class="relative shadow hover:shadow-lg transition rounded-lg overflow-hidden flex flex-col">
     {{-- cover photo --}}
     <img src="{{ $carrental->banner ? asset('storage/' . $carrental->banner) : asset('storage/svg/panorama_icon.svg') }}"
-        alt="{{ $carrental->title ?? 'carrental banner' }}" class="object-contain object-center w-full bg-gray-100">
+        loading="lazy" alt="{{ $carrental->title ?? 'carrental banner' }}"
+        class="object-contain object-center w-full bg-gray-100">
 
     {{-- <x-badge-cat-corner :route="'category-carrentals'" :cat="$carrental->carrentalcat" /> --}}
 

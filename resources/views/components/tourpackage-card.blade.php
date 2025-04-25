@@ -3,7 +3,8 @@
 <div class="relative hover:shadow-lg transition border rounded-lg overflow-hidden flex flex-col">
     {{-- cover photo --}}
     <img src="{{ $tourpackage->banner ? asset('storage/' . $tourpackage->banner) : asset('storage/svg/panorama_icon.svg') }}"
-        alt="{{ $tourpackage->title ?? 'tourpackage banner' }}" class="object-contain object-center w-full bg-gray-100">
+        loading="lazy" alt="{{ $tourpackage->title ?? 'tourpackage banner' }}"
+        class="object-contain object-center w-full bg-gray-100">
 
     {{-- <x-badge-cat-corner :route="'category-tourpackages'" :cat="$tourpackage->tourpackagecat" /> --}}
 

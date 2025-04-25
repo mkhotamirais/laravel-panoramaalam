@@ -2,7 +2,8 @@
 
 <div class="relative shadow hover:shadow-lg transition rounded-lg overflow-hidden flex flex-col">
     <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/svg/panorama_icon.svg') }}"
-        alt="{{ $blog->title ?? 'blog banner' }}" class="object-cover object-center w-full h-56 bg-gray-100">
+        loading="lazy" alt="{{ $blog->title ?? 'blog banner' }}"
+        class="object-cover object-center w-full h-56 bg-gray-100">
 
     <div class="p-4 flex flex-col grow bg-white">
         <a href="{{ route($route, $blog) }}" class="card-title">

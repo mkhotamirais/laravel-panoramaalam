@@ -17,7 +17,7 @@
                                 class="z-10 text-2xl capitalize font-semibold absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white">
                                 {{ $destinationblog->title }}</h1> --}}
                             <img src="{{ $destinationblog->banner ? asset('storage/' . $destinationblog->banner) : asset('storage/svg/panorama_icon.svg') }}"
-                                alt="{{ $destinationblog->title ?? 'blog banner' }}"
+                                loading="lazy" alt="{{ $destinationblog->title ?? 'blog banner' }}"
                                 class="object-cover object-center w-full h-56 bg-gray-100">
                             <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition"></div>
                         </a>
