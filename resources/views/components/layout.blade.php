@@ -62,7 +62,7 @@
                 </div>
 
                 {{-- auth --}}
-                {{-- @auth
+                @auth
                     <div x-cloak x-data="{ open: false }" class="flex mx-2 !z-50">
                         <button x-on:click="open = true"
                             class="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                @endauth --}}
+                @endauth
 
                 {{-- nav mobile --}}
                 <div x-cloak x-data="{ open: false }" class="lg:hidden flex">
@@ -189,7 +189,8 @@
                     <div class="mb-12">
                         <h2 class="text-2xl font-semibold">{{ __('common.common.contact-btn') }}</h2>
                         <nav class="flex flex-col gap-2 mt-4">
-                            <a href="https://api.whatsapp.com/send?phone=6281319573240" class="flex items-center gap-2">
+                            <a href="https://api.whatsapp.com/send?phone=6281319573240"
+                                class="flex items-center gap-2">
                                 <x-si-whatsapp class="w-5 h-5" />
                                 <span>(+62) 813-1957-3240</span>
                             </a>
