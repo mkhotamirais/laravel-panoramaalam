@@ -63,14 +63,14 @@
 
                 {{-- auth --}}
                 @auth
-                    <div x-cloak x-data="{ buka: false }" class="flex mx-2 !z-50">
-                        <button x-on:click="buka = true"
-                            class="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
+                    <div x-cloak x-data="{ buka: false }" class="flex !z-50">
+                        <button @click="buka = true"
+                            class="p-3 mx-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
                             <x-fas-user class="w-5 h-5" />
                         </button>
-                        <div x-on:click="buka = false" class="fixed inset-0 bg-black/20 transition-all"
+                        <div @click="buka = false" class="fixed inset-0 bg-black transition-all"
                             :class="{ 'visible opacity-100': buka, 'invisible opacity-0': !buka }">
-                            <div x-on:click.stop class="absolute w-80 border-l h-full bg-white right-0 transition-all"
+                            <div @click.stop class="absolute w-80 border-l h-full bg-white right-0 transition-all"
                                 :class="{ 'translate-x-0': buka, 'translate-x-full': !buka }">
                                 <div class="flex items-center justify-between p-3">
                                     <div class="px-3">
