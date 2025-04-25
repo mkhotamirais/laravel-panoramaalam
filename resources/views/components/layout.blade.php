@@ -118,13 +118,13 @@
                                 <x-bi-x-lg class="w-5 h-5" />
                             </button>
                         </div>
-                        <div class="px-6 space-y-3">
+                        <div class="px-6">
                             @foreach (config('common.dashboard-menu') as $menu)
                                 @if ($menu['name'] !== '')
                                     <a href="{{ route($menu['name']) }}" x-on:click="buka = false"
-                                        class="block {{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>
+                                        class="block py-2 {{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>
                                 @else
-                                    <p class="font-semibold mt-3">{{ $menu['label'] }}</p>
+                                    <p class="font-semibold mt-3 py-2">{{ $menu['label'] }}</p>
                                 @endif
                             @endforeach
 
