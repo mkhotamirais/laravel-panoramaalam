@@ -102,7 +102,7 @@
 
                 <div x-cloak x-data="{ buka: false }" class="flex">
                     <button x-on:click="buka = true"
-                        class="p-3 mx-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all mx-2">
+                        class="p-3 ml-2 mr-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
                         <x-fas-user class="w-5 h-5" />
                     </button>
                     <div x-show="buka" x-transition:enter="transition ease-out duration-300"
@@ -130,7 +130,7 @@
 
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="block !text-red-600 hover:!text-red-500">Logout</button>
+                                <button type="submit" class="block !text-red-600 hover:text-red-500">Logout</button>
                             </form>
                         </div>
                     </div>
