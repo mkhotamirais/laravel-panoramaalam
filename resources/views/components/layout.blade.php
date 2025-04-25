@@ -63,16 +63,15 @@
 
                 {{-- auth --}}
                 @auth
-                    <div x-data="{ open: false }" class="flex mx-2">
+                    <div x-cloak x-data="{ open: false }" class="flex mx-2 !z-50">
                         <button x-on:click="open = true"
                             class="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
                             <x-fas-user class="w-5 h-5" />
                         </button>
-                        <div x-on:click="open = false" class="fixed inset-0 z-50 bg-black/20 transition-all"
-                            :class="open ? 'visible opacity-100' : 'invisible opacity-0'">
-                            <div x-on:click="e => e.stopPropagation()"
-                                class="absolute w-80 border-l h-full bg-white right-0 transition-all"
-                                :class="open ? 'translate-x-0' : 'translate-x-full'">
+                        <div x-on:click="open = false" class="fixed inset-0 bg-black/20 transition-all"
+                            :class="{ 'visible opacity-100': open, 'invisible opacity-0': !open }">
+                            <div x-on:click.stop class="absolute w-80 border-l h-full bg-white right-0 transition-all"
+                                :class="{ 'translate-x-0': open, 'translate-x-full': !open }">
                                 <div class="flex items-center justify-between p-3">
                                     <div class="px-3">
                                         Halo, <b>{{ auth()->user()->name }}</b>
