@@ -100,41 +100,44 @@
                     </div>
                 @endauth --}}
 
-                <div x-cloak x-data="{ buka: false }" class="flex">
-                    <button x-on:click="buka = true"
-                        class="p-3 ml-2 mr-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
-                        <x-fas-user class="w-5 h-5" />
-                    </button>
-                    <div x-show="buka" x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-                        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
-                        x-transition:leave-end="translate-x-full" x-on:click.outside="buka = false"
-                        class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 p-3">
-                        <div class="flex items-center justify-between p-3">
-                            <div class="px-3">
-                                Halo, <b>{{ auth()->user()->name }}</b>
+                @auth
+                    <div x-cloak x-data="{ buka: false }" class="flex">
+                        <button x-on:click="buka = true"
+                            class="p-3 ml-2 mr-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
+                            <x-fas-user class="w-5 h-5" />
+                        </button>
+                        <div x-show="buka" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+                            x-transition:leave-end="translate-x-full" x-on:click.outside="buka = false"
+                            class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 p-3">
+                            <div class="flex items-center justify-between p-3">
+                                <div class="px-3">
+                                    Halo, <b>{{ auth()->user()->name }}</b>
+                                </div>
+                                <button x-on:click="buka = false" class="p-2 rounded-lg hover:bg-gray-100">
+                                    <x-bi-x-lg class="w-5 h-5" />
+                                </button>
                             </div>
-                            <button x-on:click="buka = false" class="p-2 rounded-lg hover:bg-gray-100">
-                                <x-bi-x-lg class="w-5 h-5" />
-                            </button>
-                        </div>
-                        <div class="px-6">
-                            @foreach (config('common.dashboard-menu') as $menu)
-                                @if ($menu['name'] !== '')
-                                    <a href="{{ route($menu['name']) }}" x-on:click="buka = false"
-                                        class="block py-1 {{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>
-                                @else
-                                    <p class="font-semibold mt-3 py-2">{{ $menu['label'] }}</p>
-                                @endif
-                            @endforeach
+                            <div class="px-6">
+                                @foreach (config('common.dashboard-menu') as $menu)
+                                    @if ($menu['name'] !== '')
+                                        <a href="{{ route($menu['name']) }}" x-on:click="buka = false"
+                                            class="block py-1 {{ request()->routeIs($menu['name']) ? 'text-orange-400' : 'text-gray-600 hover:text-orange-500' }}">{{ $menu['label'] }}</a>
+                                    @else
+                                        <p class="font-semibold mt-3 py-2">{{ $menu['label'] }}</p>
+                                    @endif
+                                @endforeach
 
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="block !text-red-600 hover:text-red-500">Logout</button>
-                            </form>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block !text-red-600 hover:text-red-500">Logout</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endauth
+
 
                 {{-- nav mobile --}}
                 <div x-cloak x-data="{ open: false }" class="lg:hidden flex">
