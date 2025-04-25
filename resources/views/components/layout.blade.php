@@ -63,7 +63,7 @@
 
                 {{-- auth --}}
                 @auth
-                    <div x-cloak x-data="{ open: false }" class="flex mx-2">
+                    <div x-data="{ open: false }" class="flex mx-2">
                         <button x-on:click="open = true"
                             class="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all">
                             <x-fas-user class="w-5 h-5" />
