@@ -12,7 +12,7 @@
                 <div class="card-list swiper-wrapper">
                     @foreach ($destinationblogs as $destinationblog)
                         <a href="{{ route('blog.show', $destinationblog) }}"
-                            class="swiper-slide h-[30vh] relative group rounded-xl overflow-hidden">
+                            class="swiper-slide h-auto relative group rounded-xl overflow-hidden">
                             {{-- <h1
                                 class="z-10 text-2xl capitalize font-semibold absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white">
                                 {{ $destinationblog->title }}</h1> --}}

@@ -1,6 +1,6 @@
 @props([
     'title' => __('common.home.hero.title'),
-    'height' => 'h-[40vh]',
+    'height' => 'h-[36vh]',
     'banner' => 'storage/img/unsplash_home_hero_bg.avif',
     'total' => 0,
 ])

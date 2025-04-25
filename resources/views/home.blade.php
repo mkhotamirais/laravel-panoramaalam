@@ -1,6 +1,6 @@
 <x-layout>
     {{-- hero --}}
-    <x-section-hero height="h-[calc(100vh-4rem)]">
+    <x-section-hero height="h-[80vh] lg:h-[calc(100vh-4rem)]">
         <div class="mt-8 space-y-8">
             <p class="deskripsi max-w-screen-sm">{!! __('common.home.hero.description') !!}</p>
             <div class="flex flex-col lg:flex-row gap-2">
