@@ -13,6 +13,8 @@ use App\Models\Destinationblog;
 use App\Models\Tourroute;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,19 +23,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        // Blog::factory(10)->create();
-
-        // User::factory()->create([
-        //     'username' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         User::Create([
             'id' => 1,
             'name' => 'panoramaalam',
-            'email' => 'admin@panoramaalam.id',
-            'password' => 'panoramaalam2025',
+            'email' => 'panoramaalamofficial@gmail.com',
+            'email_verified_at' => now(),
+            'password' => 'Bismillah2025!',
+            // 'role' => 'admin',
+            'remember_token' => null,
         ]);
     }
 }

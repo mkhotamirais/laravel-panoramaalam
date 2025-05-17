@@ -33,22 +33,22 @@ Route::middleware([SetLocale::class])->group(function () {
 
         Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
 
-        Route::resource('/blog', BlogController::class)->except(['show', 'index']);
-        Route::resource('/rental-mobil', CarrentalController::class)
+        Route::resource('blog', BlogController::class)->except(['show', 'index']);
+        Route::resource('rental-mobil', CarrentalController::class)
             ->parameters([
                 'rental-mobil' => 'carrental',
             ])
             ->except(['show', 'index']);;
-        Route::resource('/paket-wisata', TourpackageController::class)
+        Route::resource('paket-wisata', TourpackageController::class)
             ->parameters([
                 'paket-wisata' => 'tourpackage',
             ])
             ->except(['show', 'index']);
 
-        Route::resource('/blogcats', BlogcatController::class);
-        Route::resource('/carrentalcats', CarrentalcatController::class);
-        Route::resource('/tourpackagecats', TourpackagecatController::class);
-        Route::resource('/tourroutes', TourrouteController::class);
+        Route::resource('blogcats', BlogcatController::class);
+        Route::resource('carrentalcats', CarrentalcatController::class);
+        Route::resource('tourpackagecats', TourpackagecatController::class);
+        Route::resource('tourroutes', TourrouteController::class);
     });
 
     Route::get('/blog', [BlogController::class, 'index'])->name('blog');
