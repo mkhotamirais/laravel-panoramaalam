@@ -15,7 +15,7 @@
 
                 </div>
                 {{-- cover photo --}}
-                <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/svg/panorama_icon.svg') }}"
+                <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/img/panorama_icon.svg') }}"
                     alt="{{ $blog->title ?? 'blog banner' }}"
                     class="object-cover object-center aspect-[16/9] rounded-none lg:rounded-lg bg-gray-100">
 
