@@ -1,7 +1,7 @@
 @props(['blog' => [], 'full' => false, 'route' => 'blog.show', 'fullblog' => true])
 
 <div class="relative shadow hover:shadow-lg transition rounded-lg overflow-hidden flex flex-col">
-    <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/svg/panorama_icon.svg') }}"
+    <img src="{{ $blog->banner ? asset('storage/' . $blog->banner) : asset('storage/img/panorama_icon.svg') }}"
         loading="lazy" alt="{{ $blog->title ?? 'blog banner' }}"
         class="object-cover object-center w-full h-56 bg-gray-100">
 
